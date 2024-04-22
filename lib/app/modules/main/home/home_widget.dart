@@ -1,4 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:match/app/core/values/app_constants.dart';
 import 'package:match/app/core/values/app_styles.dart';
@@ -6,6 +9,7 @@ import 'package:match/app/core/values/app_values.dart';
 import 'package:match/app/data/preference/session_manager.dart';
 import 'package:match/app/modules/intro/login/login_page.dart';
 import 'package:match/app/modules/main/home/home_controller.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarHomeWidget({super.key});
@@ -78,12 +82,14 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: Colors.transparent,
         systemOverlayStyle: systemUiOverlayStyle(theme),
         foregroundColor: theme.iconTheme.color,
-        leadingWidth: 80.0,
-        leading: const Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: AppValues.padding_4
+        leadingWidth: 70.0,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: AppValues.extraSmallPadding
           ),
-          child: CircleAvatar(),
+          child: CircleAvatar(
+            child: SvgPicture.asset(imAvatar),
+          ),
         ),
         titleSpacing: 0.0,
         title: Column(
@@ -96,6 +102,10 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
                 color: theme.disabledColor,
                 fontSize: 16.0,
               ),
+            ),
+
+            const SizedBox(
+              height: AppValues.padding_4,
             ),
 
             //Name
@@ -111,9 +121,9 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
           IconButton(
             onPressed: () async {
               await SessionManager.removeAccessToken();
-              Get.toNamed(LoginPage.routeName);
+              Get.offNamed(LoginPage.routeName);
             },
-            icon: const Icon(Icons.notifications_none_rounded),
+            icon: SvgPicture.asset(icNotification),
             splashRadius: AppValues.splashRadius,
           )
         ],
@@ -126,3 +136,88 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
     return const Size.fromHeight(kToolbarHeight);
   }
 }
+
+class BannerWidget extends StatelessWidget {
+  const BannerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final BannerController bannerController = Get.put(BannerController());
+
+    final List<Map<String, dynamic>> bannerList = [
+      {"image": imBanner, "id": 1},
+      {"image": imBanner, "id": 2},
+      {"image": imBanner, "id": 3},
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppValues.padding
+      ),
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+
+          CarouselSlider.builder(
+            options: CarouselOptions(
+              height: 150,
+              enableInfiniteScroll: false,
+              viewportFraction: 0.95,
+              autoPlay: true,
+              autoPlayAnimationDuration: const Duration(seconds: 1),
+              onPageChanged: (index, reason) {
+                bannerController.selectedIndex.value = index;
+              },
+            ),
+            itemCount: bannerList.length,
+            itemBuilder: (context, index, realIndex) {
+              String image = bannerList[index]["image"];
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppValues.halfPadding
+                ),
+                child: InkWell(
+                  onTap: () {
+
+                  },
+                  borderRadius: BorderRadius.circular(AppValues.radius),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.background,
+                      borderRadius: BorderRadius.circular(AppValues.radius),
+                      image: DecorationImage(
+                        image: AssetImage(image),
+                        fit: BoxFit.cover
+                      )
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+
+          Obx(() {
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppValues.extraLargePadding,
+                vertical: AppValues.buttonVerticalPadding
+              ),
+              child: AnimatedSmoothIndicator(
+                activeIndex: bannerController.selectedIndex.value,
+                count: bannerList.length,
+                effect: ExpandingDotsEffect(
+                  dotColor: theme.colorScheme.background.withOpacity(0.5),
+                  activeDotColor: theme.colorScheme.background,
+                  dotHeight: 6.0,
+                  dotWidth: 6.0,
+                ),
+              ),
+            );
+          }),
+        ],
+      ),
+    );
+  }
+}
+

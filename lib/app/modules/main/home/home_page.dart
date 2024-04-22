@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: const AppBarHomeWidget(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppValues.padding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -23,33 +22,40 @@ class HomePage extends StatelessWidget {
             Obx(() {
               return Visibility(
                 visible: homeController.isGuest.value,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //Title
-                    Text("Cari acara menarikmu disini!",
-                      style: TextStyle(
-                        color: theme.disabledColor,
-                        fontSize: 16.0,
-                      ),
-                    ),
-
-                    //Subtitle
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        top: AppValues.halfPadding
-                      ),
-                      child: Text("Pesan tiket? yuk masuk dulu",
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppValues.padding
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //Title
+                      Text("Cari acara menarikmu disini!",
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20.0,
+                          color: theme.disabledColor,
+                          fontSize: 16.0,
                         ),
                       ),
-                    ),
-                  ],
+
+                      //Subtitle
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          top: AppValues.halfPadding
+                        ),
+                        child: Text("Pesan tiket? yuk masuk dulu",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
-            })
+            }),
+
+            const BannerWidget(),
           ],
         ),
       ),

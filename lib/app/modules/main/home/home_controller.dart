@@ -16,3 +16,9 @@ class HomeController extends GetxController {
     isGuest.value = SessionManager.getAccessToken() == null;
   }
 }
+
+class BannerController extends GetxController {
+
+  var selectedIndex = 0.obs;
+
+}
