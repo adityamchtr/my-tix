@@ -1,4 +1,4 @@
-package com.example.match
+package com.example.mytix
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     }
 
     return GetMaterialApp(
-      title: "Match",
+      title: "MyTix",
       initialRoute: initialPage,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
