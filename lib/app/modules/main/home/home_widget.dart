@@ -606,20 +606,37 @@ class EventItemWidget extends StatelessWidget {
                       ),
                     ),
 
-                    if (isEnded) Positioned(
+                    Positioned(
                       left: AppValues.extraSmallPadding,
                       right: AppValues.extraSmallPadding,
                       bottom: AppValues.extraSmallPadding,
-                      child: Ink(
-                        padding: const EdgeInsets.all(AppValues.extraSmallPadding),
-                        decoration: BoxDecoration(
-                          color: AppColors.colorRed,
-                          borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
-                        ),
-                        child: const Text("Berakhir",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
+                        child: ClipRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 5.0,
+                              sigmaY: 5.0
+                            ),
+                            child: Ink(
+                              padding: const EdgeInsets.all(AppValues.extraSmallPadding),
+                              decoration: BoxDecoration(
+                                color: isEnded ? AppColors.colorRed : AppColors.colorGreen.withOpacity(0.8),
+                                borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    isEnded ? const Color(0xFFF04438).withOpacity(0.8) : const Color(0xFF12A92A).withOpacity(0.8),
+                                    isEnded ? const Color(0xFFE85B50).withOpacity(0.8) : const Color(0xFF087C1A).withOpacity(0.8)
+                                  ]
+                                )
+                              ),
+                              child: Text(isEnded ? "Berakhir" : "Berlangsung",
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.white
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
