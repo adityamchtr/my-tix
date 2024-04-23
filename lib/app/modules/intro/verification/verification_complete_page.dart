@@ -5,6 +5,7 @@ import 'package:match/app/core/values/app_constants.dart';
 import 'package:match/app/core/values/app_values.dart';
 import 'package:match/app/core/widgets/widgets.dart';
 import 'package:match/app/data/preference/session_manager.dart';
+import 'package:match/app/modules/main/main_controller.dart';
 import 'package:match/app/modules/main/main_page.dart';
 
 class VerificationCompletePage extends StatelessWidget {
@@ -16,8 +17,9 @@ class VerificationCompletePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
-    void gotoMain() {
-      SessionManager.setAccessToken("oke");
+    void gotoMain() async {
+      await SessionManager.setAccessToken("oke");
+      await Get.delete<MainController>();
       Get.offAllNamed(
         MainPage.routeName,
       );

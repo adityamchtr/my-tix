@@ -12,6 +12,7 @@ const icMainProfile = "assets/icons/main_profile.svg";
 const icMainProfileSelected = "assets/icons/main_profile_selected.svg";
 const icGoogle = "assets/icons/google.svg";
 const icNotification = "assets/icons/notification.svg";
+const icSearch = "assets/icons/search.svg";
 
 //Images
 const imBoarding1 = "assets/images/boarding1.png";
@@ -21,6 +22,7 @@ const imLogo = "assets/images/logo.png";
 const imSuccess = "assets/images/success.svg";
 const imAvatar = "assets/images/avatar.svg";
 const imBanner = "assets/images/banner.png";
+const imBannerEvent = "assets/images/banner_event.png";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";

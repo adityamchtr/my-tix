@@ -1,24 +1,31 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:match/app/data/preference/session_manager.dart';
 
 class HomeController extends GetxController {
 
-  var isGuest = true.obs;
+  final TextEditingController searchTextController = TextEditingController();
+
+  var isLoading = true.obs;
+  var bannerSelected = 0.obs;
+  var categorySelected = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
 
-    setGuest();
+    fetchData();
   }
 
-  void setGuest() {
-    isGuest.value = SessionManager.getAccessToken() == null;
+  @override
+  void onClose() {
+    super.onClose();
+
+    searchTextController.dispose();
   }
-}
 
-class BannerController extends GetxController {
-
-  var selectedIndex = 0.obs;
-
+  Future<dynamic> fetchData() async {
+    isLoading.value = true;
+    await 2.delay();
+    isLoading.value = false;
+  }
 }

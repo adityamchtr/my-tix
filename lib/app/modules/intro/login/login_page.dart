@@ -10,6 +10,8 @@ import 'package:match/app/data/preference/session_manager.dart';
 import 'package:match/app/modules/intro/forgot/forgot_password_page.dart';
 import 'package:match/app/modules/intro/login/login_controller.dart';
 import 'package:match/app/modules/intro/register/register_page.dart';
+import 'package:match/app/modules/main/main_controller.dart';
+import 'package:match/app/modules/main/main_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -197,11 +199,12 @@ class LoginPage extends StatelessWidget {
             ),
             child: ButtonPrimaryWidget(
               title: "Masuk",
-              onPressed: () {
+              onPressed: () async {
                 if (loginController.formKey.currentState!.validate()) {
-                  SessionManager.setAccessToken("oke");
-                  Get.back(
-                    result: "oke"
+                  await SessionManager.setAccessToken("oke");
+                  await Get.delete<MainController>();
+                  Get.offAllNamed(
+                    MainPage.routeName,
                   );
                 }
               },

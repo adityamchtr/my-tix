@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:match/app/core/values/app_values.dart';
 import 'package:pinput/pinput.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 /// Font Size Default
 /// displayLarge 112.0
@@ -44,5 +45,11 @@ PinTheme pinTheme(ThemeData theme) {
       borderRadius: BorderRadius.circular(AppValues.smallRadius),
       border: Border.all(color: theme.dividerColor),
     ),
+  );
+}
+
+ShimmerEffect shimmerEffect() {
+  return const ShimmerEffect(
+    duration: Duration(milliseconds: 1000)
   );
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:match/app/core/values/app_styles.dart';
 import 'package:match/app/core/values/app_values.dart';
+import 'package:match/app/core/widgets/widgets.dart';
 import 'package:match/app/modules/main/home/home_controller.dart';
 import 'package:match/app/modules/main/home/home_widget.dart';
+import 'package:match/app/modules/main/main_controller.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,13 +25,15 @@ class HomePage extends StatelessWidget {
 
             Obx(() {
               return Visibility(
-                visible: homeController.isGuest.value,
+                visible: MainController.to.isGuest.value,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppValues.padding
+                  padding: const EdgeInsets.only(
+                    top: AppValues.padding,
+                    left: AppValues.padding,
+                    right: AppValues.padding
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       //Title
                       Text("Cari acara menarikmu disini!",
@@ -55,7 +61,87 @@ class HomePage extends StatelessWidget {
               );
             }),
 
+            //Banner Slider
             const BannerWidget(),
+
+            //Search
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppValues.padding
+              ),
+              child: SearchWidget(
+                controller: homeController.searchTextController,
+                hintText: "Cari event disini",
+              ),
+            ),
+
+            //Location
+            const LocationWidget(),
+
+            //Label Pilihan Terbaik
+            Padding(
+              padding: const EdgeInsets.only(
+                top: AppValues.halfPadding,
+                left: AppValues.padding,
+                right: AppValues.padding,
+              ),
+              child: LabelMoreWidget(
+                label: "Pilihan Terbaik",
+                onTap: () {
+
+                },
+              ),
+            ),
+
+            //Menu
+            SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppValues.halfPadding
+              ),
+              scrollDirection: Axis.horizontal,
+              child: Obx(() {
+                return Skeletonizer(
+                  enabled: homeController.isLoading.value,
+                  effect: shimmerEffect(),
+                  child: Row(
+                    children: List.generate(3, (index) {
+                      return const MenuItemWidget();
+                    }),
+                  ),
+                );
+              }),
+            ),
+
+            //Label Acara Berakhir
+            Padding(
+              padding: const EdgeInsets.only(
+                top: AppValues.halfPadding,
+                left: AppValues.padding,
+                right: AppValues.padding,
+                bottom: AppValues.padding
+              ),
+              child: LabelMoreWidget(
+                label: "Acara Berakhir",
+                onTap: () {
+
+                },
+              ),
+            ),
+
+            //Event Ended
+            Obx(() {
+              return Skeletonizer(
+                enabled: homeController.isLoading.value,
+                effect: shimmerEffect(),
+                child: Column(
+                  children: List.generate(3, (index) {
+                    return const EventItemWidget(
+                      isEnded: true,
+                    );
+                  }),
+                ),
+              );
+            })
           ],
         ),
       ),

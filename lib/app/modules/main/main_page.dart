@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:match/app/core/values/app_constants.dart';
 import 'package:match/app/core/values/app_values.dart';
 import 'package:match/app/core/widgets/widgets.dart';
+import 'package:match/app/modules/intro/login/login_page.dart';
 import 'package:match/app/modules/main/home/home_page.dart';
 import 'package:match/app/modules/main/main_controller.dart';
 
@@ -43,7 +44,11 @@ class MainPage extends StatelessWidget {
                 _navigationDestination(icMainProfile, icMainProfileSelected, "Profile"),
               ],
               onDestinationSelected: (value) {
-                controller.selectedIndex = value;
+                if (value > 0 && controller.isGuest.value) {
+                  Get.toNamed(LoginPage.routeName);
+                } else {
+                  controller.selectedIndex = value;
+                }
               },
             ),
           );
