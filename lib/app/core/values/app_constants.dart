@@ -32,6 +32,7 @@ const imSuccess = "assets/images/success.svg";
 const imAvatar = "assets/images/avatar.svg";
 const imBanner = "assets/images/banner.png";
 const imBannerEvent = "assets/images/banner_event.png";
+const ilNotification = "assets/images/il_notification.svg";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";

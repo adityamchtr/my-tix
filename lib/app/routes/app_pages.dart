@@ -6,6 +6,7 @@ import 'package:mytix/app/modules/intro/register/register_page.dart';
 import 'package:mytix/app/modules/intro/verification/verification_complete_page.dart';
 import 'package:mytix/app/modules/intro/verification/verification_page.dart';
 import 'package:mytix/app/modules/main/main_page.dart';
+import 'package:mytix/app/modules/main/notication/notification_page.dart';
 
 class AppPages {
 
@@ -37,6 +38,10 @@ class AppPages {
     GetPage(
       name: ForgotPasswordPage.routeName,
       page: () => const ForgotPasswordPage(),
+    ),
+    GetPage(
+      name: NotificationPage.routeName,
+      page: () => const NotificationPage(),
     ),
   ];
 }

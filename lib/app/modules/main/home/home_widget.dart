@@ -13,6 +13,7 @@ import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/intro/login/login_page.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
+import 'package:mytix/app/modules/main/notication/notification_page.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -122,7 +123,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           onPressed: () {
-
+            Get.toNamed(NotificationPage.routeName);
           },
           icon: SvgPicture.asset(icNotification),
           splashRadius: AppValues.splashRadius,
