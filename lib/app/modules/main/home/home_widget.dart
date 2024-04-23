@@ -575,6 +575,7 @@ class EventItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
+                //Image
                 Stack(
                   children: [
                     Skeleton.replace(
@@ -621,12 +622,12 @@ class EventItemWidget extends StatelessWidget {
                             child: Ink(
                               padding: const EdgeInsets.all(AppValues.extraSmallPadding),
                               decoration: BoxDecoration(
-                                color: isEnded ? AppColors.colorRed : AppColors.colorGreen.withOpacity(0.8),
+                                color: isEnded ? const Color(0xCCF04438) : const Color(0xCC12A92A),
                                 borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
                                 gradient: LinearGradient(
                                   colors: [
-                                    isEnded ? const Color(0xFFF04438).withOpacity(0.8) : const Color(0xFF12A92A).withOpacity(0.8),
-                                    isEnded ? const Color(0xFFE85B50).withOpacity(0.8) : const Color(0xFF087C1A).withOpacity(0.8)
+                                    isEnded ? const Color(0xCCF04438) : const Color(0xCC12A92A),
+                                    isEnded ? const Color(0xCCE85B50) : const Color(0xCC087C1A)
                                   ]
                                 )
                               ),
@@ -644,6 +645,7 @@ class EventItemWidget extends StatelessWidget {
                   ],
                 ),
 
+                //Body
                 Flexible(
                   child: Ink(
                     padding: const EdgeInsets.only(

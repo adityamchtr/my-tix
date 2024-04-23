@@ -25,10 +25,11 @@ class SearchPage extends StatelessWidget {
           title: const Text("Pencarian"),
           systemOverlayStyle: systemUiOverlayStyle(theme),
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(112.0),
+            preferredSize: const Size.fromHeight(112.0 + 1),
             child: Column(
               children: [
 
+                //Search
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppValues.padding,
@@ -47,7 +48,7 @@ class SearchPage extends StatelessWidget {
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500
                   ),
-                  indicatorPadding: const EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: AppValues.padding
                   ),
                   tabs: const [
@@ -55,6 +56,12 @@ class SearchPage extends StatelessWidget {
                     Tab(text: "Berakhir"),
                   ],
                 ),
+
+                const Divider(
+                  height: 1,
+                  indent: AppValues.padding,
+                  endIndent: AppValues.padding,
+                )
               ],
             ),
           ),
