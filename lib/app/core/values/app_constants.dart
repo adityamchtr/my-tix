@@ -13,6 +13,7 @@ const icMainProfileSelected = "assets/icons/main_profile_selected.svg";
 const icGoogle = "assets/icons/google.svg";
 const icNotification = "assets/icons/notification.svg";
 const icSearch = "assets/icons/search.svg";
+const icSearchAppbar = "assets/icons/search_appbar.svg";
 const icLocation = "assets/icons/location.svg";
 const icProfileAbout = "assets/icons/profile_about.svg";
 const icProfileAccount = "assets/icons/profile_account.svg";

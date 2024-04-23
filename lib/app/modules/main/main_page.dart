@@ -10,6 +10,7 @@ import 'package:mytix/app/modules/main/home/home_page.dart';
 import 'package:mytix/app/modules/main/main_controller.dart';
 import 'package:mytix/app/modules/main/profile/profile_page.dart';
 import 'package:mytix/app/modules/main/search/search_page.dart';
+import 'package:mytix/app/modules/main/ticket/ticket_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -68,7 +69,7 @@ List<Widget> _pages = [
   const HomePage(),
   const SearchPage(),
   const SizedBox(),
-  const SizedBox(),
+  const TicketPage(),
   const ProfilePage(),
 ];
 
