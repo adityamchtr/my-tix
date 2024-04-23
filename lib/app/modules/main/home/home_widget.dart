@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -8,7 +12,6 @@ import 'package:match/app/core/values/app_constants.dart';
 import 'package:match/app/core/values/app_styles.dart';
 import 'package:match/app/core/values/app_values.dart';
 import 'package:match/app/core/widgets/widgets.dart';
-import 'package:match/app/data/preference/session_manager.dart';
 import 'package:match/app/modules/intro/login/login_page.dart';
 import 'package:match/app/modules/main/home/home_controller.dart';
 import 'package:match/app/modules/main/main_controller.dart';
@@ -89,6 +92,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
             vertical: AppValues.extraSmallPadding
           ),
           child: CircleAvatar(
+            backgroundColor: theme.colorScheme.primary,
             child: SvgPicture.asset(imAvatar),
           ),
         ),
@@ -125,6 +129,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: SvgPicture.asset(icNotification),
             splashRadius: AppValues.splashRadius,
+            tooltip: "Notifikasi",
           )
         ],
       );
@@ -350,39 +355,83 @@ class MenuItemWidget extends StatelessWidget {
           children: [
 
             //Image
-            Skeleton.replace(
-              width: width,
-              height: 140.0,
-              replacement: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.background,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(AppValues.radius),
-                    topRight: Radius.circular(AppValues.radius)
-                  ),
-                ),
-              ),
-              child: Ink(
-                width: width,
-                height: 140.0,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(AppValues.radius),
-                    topRight: Radius.circular(AppValues.radius)
-                  ),
-                  image: const DecorationImage(
-                    image: AssetImage(imBannerEvent),
-                    fit: BoxFit.cover
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.colorPurple.withOpacity(0.3),
-                      spreadRadius: 8,
-                      blurRadius: 16,
+            Stack(
+              children: [
+                Skeleton.replace(
+                  width: width,
+                  height: 140.0,
+                  replacement: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.background,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(AppValues.radius),
+                        topRight: Radius.circular(AppValues.radius)
+                      ),
                     ),
-                  ]
+                  ),
+                  child: Ink(
+                    width: width,
+                    height: 140.0,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(AppValues.radius),
+                        topRight: Radius.circular(AppValues.radius)
+                      ),
+                      image: const DecorationImage(
+                        image: AssetImage(imBannerEvent),
+                        fit: BoxFit.cover
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.colorPurple.withOpacity(0.3),
+                          spreadRadius: 8,
+                          blurRadius: 16,
+                        ),
+                      ]
+                    ),
+                  ),
                 ),
-              ),
+
+                Positioned(
+                  top: AppValues.halfPadding,
+                  right: AppValues.halfPadding,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppValues.largeRadius),
+                    child: ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 5.0,
+                          sigmaY: 5.0
+                        ),
+                        child: Container(
+                          color: Colors.white.withOpacity(0.2),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: AppValues.halfPadding,
+                            horizontal: AppValues.buttonVerticalPadding
+                          ),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(icLocation),
+
+                              const SizedBox(
+                                width: AppValues.halfPadding,
+                              ),
+                              
+                              const Text("Karawang",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+
+              ],
             ),
 
             //Body
