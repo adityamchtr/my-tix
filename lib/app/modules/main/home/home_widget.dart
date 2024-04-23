@@ -10,9 +10,9 @@ import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/intro/login/login_page.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
-import 'package:mytix/app/modules/main/main_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -23,115 +23,113 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
-    return Obx(() {
-      if (MainController.to.isGuest.value) {
-        return AppBar(
-          automaticallyImplyLeading: false,
-          elevation: 0.0,
-          backgroundColor: theme.scaffoldBackgroundColor,
-          systemOverlayStyle: systemUiOverlayStyle(theme),
-          leadingWidth: 80.0 + AppValues.extraLargePadding,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppValues.padding
-            ),
-            child: Image.asset(imLogo,
-              height: 32,
-              alignment: Alignment.centerLeft,
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(AppValues.halfPadding),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppValues.smallRadius),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppValues.padding
-                  ),
-                  foregroundColor: Colors.white,
-                  backgroundColor: theme.colorScheme.primary,
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                onPressed: () {
-                  Get.toNamed(LoginPage.routeName);
-                },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.login_rounded,
-                      size: AppValues.iconSmallSize,
-                    ),
-                    SizedBox(
-                      width: AppValues.extraSmallPadding,
-                    ),
-                    Text("Masuk"),
-                  ],
-                ),
-              ),
-            )
-          ],
-        );
-      }
-
+    if (SessionManager.getAccessToken() == null) {
       return AppBar(
         automaticallyImplyLeading: false,
         elevation: 0.0,
         backgroundColor: theme.scaffoldBackgroundColor,
         systemOverlayStyle: systemUiOverlayStyle(theme),
-        foregroundColor: theme.iconTheme.color,
-        leadingWidth: 70.0,
+        leadingWidth: 80.0 + AppValues.extraLargePadding,
         leading: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: AppValues.extraSmallPadding
+            horizontal: AppValues.padding
           ),
-          child: CircleAvatar(
-            backgroundColor: theme.colorScheme.primary,
-            child: SvgPicture.asset(imAvatar),
+          child: Image.asset(imLogo,
+            height: 32,
+            alignment: Alignment.centerLeft,
           ),
-        ),
-        titleSpacing: 0.0,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-
-            //Title
-            Text("Cari acara menarikmu disini!",
-              style: TextStyle(
-                color: theme.disabledColor,
-                fontSize: 16.0,
-              ),
-            ),
-
-            const SizedBox(
-              height: AppValues.padding_4,
-            ),
-
-            //Name
-            const Text("Hai, hilmychan",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20.0,
-              ),
-            ),
-          ],
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-
-            },
-            icon: SvgPicture.asset(icNotification),
-            splashRadius: AppValues.splashRadius,
-            tooltip: "Notifikasi",
+          Padding(
+            padding: const EdgeInsets.all(AppValues.halfPadding),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppValues.smallRadius),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppValues.padding
+                ),
+                foregroundColor: Colors.white,
+                backgroundColor: theme.colorScheme.primary,
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              onPressed: () {
+                Get.toNamed(LoginPage.routeName);
+              },
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.login_rounded,
+                    size: AppValues.iconSmallSize,
+                  ),
+                  SizedBox(
+                    width: AppValues.extraSmallPadding,
+                  ),
+                  Text("Masuk"),
+                ],
+              ),
+            ),
           )
         ],
       );
-    });
+    }
+
+    return AppBar(
+      automaticallyImplyLeading: false,
+      elevation: 0.0,
+      backgroundColor: theme.scaffoldBackgroundColor,
+      systemOverlayStyle: systemUiOverlayStyle(theme),
+      foregroundColor: theme.iconTheme.color,
+      leadingWidth: 70.0,
+      leading: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppValues.extraSmallPadding
+        ),
+        child: CircleAvatar(
+          backgroundColor: theme.colorScheme.primary,
+          child: SvgPicture.asset(imAvatar),
+        ),
+      ),
+      titleSpacing: 0.0,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          //Title
+          Text("Cari acara menarikmu disini!",
+            style: TextStyle(
+              color: theme.disabledColor,
+              fontSize: 16.0,
+            ),
+          ),
+
+          const SizedBox(
+            height: AppValues.padding_4,
+          ),
+
+          //Name
+          const Text("Hai, hilmychan",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 20.0,
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+
+          },
+          icon: SvgPicture.asset(icNotification),
+          splashRadius: AppValues.splashRadius,
+          tooltip: "Notifikasi",
+        )
+      ],
+    );
   }
 
   @override

@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
 import 'package:mytix/app/modules/main/home/home_widget.dart';
-import 'package:mytix/app/modules/main/main_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,43 +23,41 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Obx(() {
-              return Visibility(
-                visible: MainController.to.isGuest.value,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppValues.padding,
-                    left: AppValues.padding,
-                    right: AppValues.padding
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      //Title
-                      Text("Cari acara menarikmu disini!",
-                        style: TextStyle(
-                          color: theme.disabledColor,
-                          fontSize: 16.0,
-                        ),
-                      ),
-
-                      //Subtitle
-                      const Padding(
-                        padding: EdgeInsets.only(
-                          top: AppValues.halfPadding
-                        ),
-                        child: Text("Pesan tiket? yuk masuk dulu",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+            Visibility(
+              visible: SessionManager.getAccessToken() == null,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: AppValues.padding,
+                  left: AppValues.padding,
+                  right: AppValues.padding
                 ),
-              );
-            }),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    //Title
+                    Text("Cari acara menarikmu disini!",
+                      style: TextStyle(
+                        color: theme.disabledColor,
+                        fontSize: 16.0,
+                      ),
+                    ),
+
+                    //Subtitle
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        top: AppValues.halfPadding
+                      ),
+                      child: Text("Pesan tiket? yuk masuk dulu",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
             //Banner Slider
             const BannerWidget(),

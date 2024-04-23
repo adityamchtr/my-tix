@@ -6,7 +6,6 @@ import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/intro/login/login_page.dart';
-import 'package:mytix/app/modules/main/main_controller.dart';
 import 'package:mytix/app/modules/main/profile/profile_widget.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -96,29 +95,22 @@ class ProfilePage extends StatelessWidget {
                     );
                   }),
 
-                  Obx(() {
-                    if (MainController.to.isGuest.value) {
-                      return const SizedBox();
-                    }
 
-                    return Column(
-                      children: [
-                        const Divider(
-                          indent: AppValues.padding,
-                          endIndent: AppValues.padding,
-                        ),
+                  if (SessionManager.getAccessToken() != null) ...[
+                    const Divider(
+                      indent: AppValues.padding,
+                      endIndent: AppValues.padding,
+                    ),
 
-                        ProfileItemWidget(
-                          icon: icProfileLogout,
-                          title: "Keluar Akun",
-                          onTap: () async {
-                            await SessionManager.removeAccessToken();
-                            Get.offNamed(LoginPage.routeName);
-                          },
-                        )
-                      ],
-                    );
-                  })
+                    ProfileItemWidget(
+                      icon: icProfileLogout,
+                      title: "Keluar Akun",
+                      onTap: () async {
+                        await SessionManager.removeAccessToken();
+                        Get.offNamed(LoginPage.routeName);
+                      },
+                    )
+                  ],
                 ],
               ),
             )

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/intro/login/login_page.dart';
 import 'package:mytix/app/modules/main/home/home_page.dart';
 import 'package:mytix/app/modules/main/main_controller.dart';
@@ -45,7 +46,7 @@ class MainPage extends StatelessWidget {
                 _navigationDestination(icMainProfile, icMainProfileSelected, "Profile"),
               ],
               onDestinationSelected: (value) {
-                if (controller.isGuest.value) {
+                if (SessionManager.getAccessToken() == null) {
                   if (value != 0 && value != 4) {
                     Get.toNamed(LoginPage.routeName);
                     return;
