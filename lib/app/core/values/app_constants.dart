@@ -13,6 +13,15 @@ const icMainProfileSelected = "assets/icons/main_profile_selected.svg";
 const icGoogle = "assets/icons/google.svg";
 const icNotification = "assets/icons/notification.svg";
 const icSearch = "assets/icons/search.svg";
+const icLocation = "assets/icons/location.svg";
+const icProfileAbout = "assets/icons/profile_about.svg";
+const icProfileAccount = "assets/icons/profile_account.svg";
+const icProfileContact = "assets/icons/profile_contact.svg";
+const icProfileInfo = "assets/icons/profile_info.svg";
+const icProfileLogout = "assets/icons/profile_logout.svg";
+const icProfilePassword = "assets/icons/profile_password.svg";
+const icProfileTicket = "assets/icons/profile_ticket.svg";
+const icProfileTransaction = "assets/icons/profile_transaction.svg";
 
 //Images
 const imBoarding1 = "assets/images/boarding1.png";

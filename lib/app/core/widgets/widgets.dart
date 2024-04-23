@@ -31,6 +31,7 @@ class SystemUiOverlayWidget extends StatelessWidget {
 class ButtonPrimaryWidget extends StatelessWidget {
   const ButtonPrimaryWidget({super.key,
     required this.title,
+    this.height = 50.0,
     this.onPressed,
     this.icon,
     this.backgroundColor,
@@ -39,6 +40,7 @@ class ButtonPrimaryWidget extends StatelessWidget {
   });
 
   final String title;
+  final double height;
   final VoidCallback? onPressed;
   final Widget? icon;
   final Color? backgroundColor;
@@ -50,7 +52,7 @@ class ButtonPrimaryWidget extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     return SizedBox(
-      height: 50.0,
+      height: height,
       child: TextButton(
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(

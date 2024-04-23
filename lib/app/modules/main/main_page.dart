@@ -7,6 +7,7 @@ import 'package:match/app/core/widgets/widgets.dart';
 import 'package:match/app/modules/intro/login/login_page.dart';
 import 'package:match/app/modules/main/home/home_page.dart';
 import 'package:match/app/modules/main/main_controller.dart';
+import 'package:match/app/modules/main/profile/profile_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -44,11 +45,14 @@ class MainPage extends StatelessWidget {
                 _navigationDestination(icMainProfile, icMainProfileSelected, "Profile"),
               ],
               onDestinationSelected: (value) {
-                if (value > 0 && controller.isGuest.value) {
-                  Get.toNamed(LoginPage.routeName);
-                } else {
-                  controller.selectedIndex = value;
+                if (controller.isGuest.value) {
+                  if (value != 0 && value != 4) {
+                    Get.toNamed(LoginPage.routeName);
+                    return;
+                  }
                 }
+
+                controller.selectedIndex = value;
               },
             ),
           );
@@ -63,7 +67,7 @@ List<Widget> _pages = [
   const SizedBox(),
   const SizedBox(),
   const SizedBox(),
-  const SizedBox(),
+  const ProfilePage(),
 ];
 
 NavigationDestination _navigationDestination(String icon, String selectedIcon, String label) {
