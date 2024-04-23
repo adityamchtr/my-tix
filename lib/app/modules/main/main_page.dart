@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:match/app/core/values/app_constants.dart';
-import 'package:match/app/core/values/app_values.dart';
-import 'package:match/app/core/widgets/widgets.dart';
-import 'package:match/app/modules/intro/login/login_page.dart';
-import 'package:match/app/modules/main/home/home_page.dart';
-import 'package:match/app/modules/main/main_controller.dart';
-import 'package:match/app/modules/main/profile/profile_page.dart';
+import 'package:mytix/app/core/values/app_constants.dart';
+import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/modules/intro/login/login_page.dart';
+import 'package:mytix/app/modules/main/home/home_page.dart';
+import 'package:mytix/app/modules/main/main_controller.dart';
+import 'package:mytix/app/modules/main/profile/profile_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

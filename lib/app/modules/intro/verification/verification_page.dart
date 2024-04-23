@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:match/app/core/values/app_colors.dart';
-import 'package:match/app/core/values/app_styles.dart';
-import 'package:match/app/core/values/app_values.dart';
-import 'package:match/app/core/widgets/widgets.dart';
-import 'package:match/app/modules/intro/verification/verfication_controller.dart';
-import 'package:match/app/modules/intro/verification/verification_complete_page.dart';
+import 'package:mytix/app/core/values/app_colors.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
+import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/modules/intro/verification/verfication_controller.dart';
+import 'package:mytix/app/modules/intro/verification/verification_complete_page.dart';
 import 'package:pinput/pinput.dart';
 
 class VerificationPage extends StatelessWidget {

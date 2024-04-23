@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:match/app/core/values/app_constants.dart';
-import 'package:match/app/core/values/app_styles.dart';
-import 'package:match/app/core/values/app_values.dart';
-import 'package:match/app/core/widgets/text_field_widget.dart';
-import 'package:match/app/core/widgets/widgets.dart';
-import 'package:match/app/modules/intro/forgot/forgot_password_controller.dart';
-import 'package:match/app/modules/intro/register/register_page.dart';
+import 'package:mytix/app/core/values/app_constants.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
+import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/core/widgets/text_field_widget.dart';
+import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/modules/intro/forgot/forgot_password_controller.dart';
+import 'package:mytix/app/modules/intro/register/register_page.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});

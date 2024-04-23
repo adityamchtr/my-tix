@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:match/app/core/values/app_colors.dart';
-import 'package:match/app/data/preference/session_manager.dart';
-import 'package:match/app/modules/intro/boarding/boarding_page.dart';
-import 'package:match/app/modules/main/main_page.dart';
-import 'package:match/app/routes/app_pages.dart';
+import 'package:mytix/app/core/values/app_colors.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
+import 'package:mytix/app/modules/intro/boarding/boarding_page.dart';
+import 'package:mytix/app/modules/main/main_page.dart';
+import 'package:mytix/app/routes/app_pages.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

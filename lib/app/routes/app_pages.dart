@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:match/app/modules/intro/boarding/boarding_page.dart';
-import 'package:match/app/modules/intro/forgot/forgot_password_page.dart';
-import 'package:match/app/modules/intro/login/login_page.dart';
-import 'package:match/app/modules/intro/register/register_page.dart';
-import 'package:match/app/modules/intro/verification/verification_complete_page.dart';
-import 'package:match/app/modules/intro/verification/verification_page.dart';
-import 'package:match/app/modules/main/main_page.dart';
+import 'package:mytix/app/modules/intro/boarding/boarding_page.dart';
+import 'package:mytix/app/modules/intro/forgot/forgot_password_page.dart';
+import 'package:mytix/app/modules/intro/login/login_page.dart';
+import 'package:mytix/app/modules/intro/register/register_page.dart';
+import 'package:mytix/app/modules/intro/verification/verification_complete_page.dart';
+import 'package:mytix/app/modules/intro/verification/verification_page.dart';
+import 'package:mytix/app/modules/main/main_page.dart';
 
 class AppPages {
 

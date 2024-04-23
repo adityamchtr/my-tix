@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:match/app/core/values/app_styles.dart';
-import 'package:match/app/core/values/app_values.dart';
-import 'package:match/app/core/widgets/widgets.dart';
-import 'package:match/app/modules/main/home/home_controller.dart';
-import 'package:match/app/modules/main/home/home_widget.dart';
-import 'package:match/app/modules/main/main_controller.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
+import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/modules/main/home/home_controller.dart';
+import 'package:mytix/app/modules/main/home/home_widget.dart';
+import 'package:mytix/app/modules/main/main_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatelessWidget {

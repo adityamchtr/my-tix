@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:match/app/data/preference/session_manager.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
 
 class MainController extends GetxController {
 

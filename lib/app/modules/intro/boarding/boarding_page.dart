@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:match/app/core/values/app_constants.dart';
-import 'package:match/app/core/values/app_styles.dart';
-import 'package:match/app/core/values/app_values.dart';
-import 'package:match/app/data/preference/session_manager.dart';
-import 'package:match/app/modules/intro/boarding/boarding_controller.dart';
-import 'package:match/app/modules/main/main_page.dart';
+import 'package:mytix/app/core/values/app_constants.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
+import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
+import 'package:mytix/app/modules/intro/boarding/boarding_controller.dart';
+import 'package:mytix/app/modules/main/main_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingPage extends StatelessWidget {
