@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 
 class SystemUiOverlayWidget extends StatelessWidget {
@@ -158,84 +156,6 @@ class AlertDialogWidget extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SearchWidget extends StatelessWidget {
-  const SearchWidget({super.key,
-    required this.controller,
-    this.hintText,
-    this.onChanged,
-    this.onSubmitted,
-    this.onPressedClear,
-  });
-
-  final TextEditingController controller;
-  final String? hintText;
-  final ValueChanged<String>? onChanged;
-  final ValueChanged<String>? onSubmitted;
-  final VoidCallback? onPressedClear;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: StatefulBuilder(
-        builder: (context, setState) {
-          return TextField(
-            controller: controller,
-            textInputAction: TextInputAction.search,
-            style: const TextStyle(
-              fontSize: 18.0
-            ),
-            onChanged: (value) {
-              setState(() {});
-                if (onChanged != null) onChanged!(value);
-              },
-            onSubmitted: onSubmitted,
-            decoration: InputDecoration(
-              hintText: hintText,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(AppValues.smallRadius),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(AppValues.smallRadius),
-                borderSide: const BorderSide(
-                  width: 1.5
-                )
-              ),
-              isDense: true,
-              contentPadding: EdgeInsets.zero,
-              prefixIcon: SvgPicture.asset(icSearch,
-                fit: BoxFit.scaleDown,
-              ),
-              suffixIcon: controller.text.isNotEmpty ?
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      controller.clear();
-                    });
-                    if (onPressedClear != null) onPressedClear!.call();
-                  },
-                  icon: const Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(Icons.circle_rounded),
-                      Icon(Icons.close_rounded,
-                        color: Colors.white,
-                        size: AppValues.iconSmallerSize,
-                      ),
-                    ],
-                  ),
-                  iconSize: AppValues.iconSmallSize,
-                  color: Colors.grey,
-                  splashRadius: AppValues.radius,
-                ) : null
-            ),
-          );
-        }
       ),
     );
   }
