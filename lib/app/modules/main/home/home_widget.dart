@@ -382,8 +382,8 @@ class MenuItemWidget extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: AppColors.colorPurple.withOpacity(0.3),
-                          spreadRadius: 5.0,
-                          blurRadius: 10.0,
+                          spreadRadius: 3.0,
+                          blurRadius: 6.0,
                         ),
                       ]
                     ),
@@ -428,7 +428,6 @@ class MenuItemWidget extends StatelessWidget {
                     ),
                   ),
                 )
-
               ],
             ),
 
