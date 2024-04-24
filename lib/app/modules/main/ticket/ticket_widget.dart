@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/dash_line_widget.dart';
@@ -30,7 +28,6 @@ class TicketListWidget extends StatelessWidget {
     );
   }
 }
-
 
 class TicketItemWidget extends StatelessWidget {
   const TicketItemWidget({super.key,

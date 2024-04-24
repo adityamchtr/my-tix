@@ -12,6 +12,7 @@ import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/intro/login/login_page.dart';
+import 'package:mytix/app/modules/main/event/event_page.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
 import 'package:mytix/app/modules/main/notication/notification_page.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -276,7 +277,6 @@ class LocationWidget extends StatelessWidget {
                   isSelected: isSelected,
                   onSelected: (value) {
                     homeController.categorySelected.value = e["id"];
-                    homeController.fetchData();
                   },
                 ),
               );
@@ -342,7 +342,7 @@ class MenuItemWidget extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          
+          Get.toNamed(EventPage.routeName);
         },
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppValues.radius),
@@ -536,170 +536,6 @@ class MenuItemWidget extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class EventItemWidget extends StatelessWidget {
-  const EventItemWidget({super.key,
-    this.isEnded= false,
-  });
-
-  final bool isEnded;
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: AppValues.padding,
-        right: AppValues.padding,
-        bottom: AppValues.padding
-      ),
-      child: InkWell(
-        onTap: () {
-
-        },
-        borderRadius: BorderRadius.circular(AppValues.smallRadius),
-        child: Ink(
-          padding: const EdgeInsets.all(AppValues.halfPadding),
-          decoration: BoxDecoration(
-            color: isEnded ? theme.dividerColor : null,
-            borderRadius: BorderRadius.circular(AppValues.smallRadius)
-          ),
-          child: IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
-                //Image
-                Stack(
-                  children: [
-                    Skeleton.replace(
-                      width: 100.0,
-                      height: 120.0,
-                      replacement: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.background,
-                          borderRadius: BorderRadius.circular(AppValues.radius_6),
-                        ),
-                      ),
-                      child: Ink(
-                        width: 100.0,
-                        height: 120.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(AppValues.radius_6),
-                          image: const DecorationImage(
-                            image: AssetImage(imBannerEvent),
-                            fit: BoxFit.cover
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.colorPurple.withOpacity(0.3),
-                              spreadRadius: 10,
-                              blurRadius: 16,
-                            ),
-                          ]
-                        ),
-                      ),
-                    ),
-
-                    Positioned(
-                      left: AppValues.extraSmallPadding,
-                      right: AppValues.extraSmallPadding,
-                      bottom: AppValues.extraSmallPadding,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
-                        child: ClipRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 5.0,
-                              sigmaY: 5.0
-                            ),
-                            child: Ink(
-                              padding: const EdgeInsets.all(AppValues.extraSmallPadding),
-                              decoration: BoxDecoration(
-                                color: isEnded ? const Color(0xCCF04438) : const Color(0xCC12A92A),
-                                borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    isEnded ? const Color(0xCCF04438) : const Color(0xCC12A92A),
-                                    isEnded ? const Color(0xCCE85B50) : const Color(0xCC087C1A)
-                                  ]
-                                )
-                              ),
-                              child: Text(isEnded ? "Berakhir" : "Berlangsung",
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  color: Colors.white
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-
-                //Body
-                Flexible(
-                  child: Ink(
-                    padding: const EdgeInsets.only(
-                      left: AppValues.padding
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text("Karawang Anicosmic 2024",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: AppValues.halfPadding
-                          ),
-                          child: RichText(
-                            text: TextSpan(
-                              style: TextStyle(
-                                color: theme.disabledColor,
-                              ),
-                              children: const [
-                                TextSpan(
-                                  text: "Menghadirkan kembali acara japan di karawa..",
-                                ),
-                                TextSpan(
-                                  text: "Selengkapnya",
-                                  style: TextStyle(
-                                    color: AppColors.colorBlue
-                                  )
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        const Spacer(),
-
-                        const Text("Rp. 35.000",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
         ),
       ),
     );

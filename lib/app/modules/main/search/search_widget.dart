@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/modules/main/home/home_widget.dart';
+import 'package:mytix/app/modules/main/event/event_widget.dart';
 
 class SearchListWidget extends StatelessWidget {
   const SearchListWidget({super.key,

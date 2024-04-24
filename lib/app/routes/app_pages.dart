@@ -5,6 +5,8 @@ import 'package:mytix/app/modules/intro/login/login_page.dart';
 import 'package:mytix/app/modules/intro/register/register_page.dart';
 import 'package:mytix/app/modules/intro/verification/verification_complete_page.dart';
 import 'package:mytix/app/modules/intro/verification/verification_page.dart';
+import 'package:mytix/app/modules/main/event/event_page.dart';
+import 'package:mytix/app/modules/main/event/event_review_page.dart';
 import 'package:mytix/app/modules/main/main_page.dart';
 import 'package:mytix/app/modules/main/notication/notification_page.dart';
 
@@ -42,6 +44,14 @@ class AppPages {
     GetPage(
       name: NotificationPage.routeName,
       page: () => const NotificationPage(),
+    ),
+    GetPage(
+      name: EventPage.routeName,
+      page: () => const EventPage(),
+    ),
+    GetPage(
+      name: EventReviewPage.routeName,
+      page: () => const EventReviewPage(),
     ),
   ];
 }

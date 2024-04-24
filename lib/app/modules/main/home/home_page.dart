@@ -4,6 +4,7 @@ import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
+import 'package:mytix/app/modules/main/event/event_widget.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
 import 'package:mytix/app/modules/main/home/home_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';

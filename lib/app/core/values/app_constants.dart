@@ -23,6 +23,11 @@ const icProfileLogout = "assets/icons/profile_logout.svg";
 const icProfilePassword = "assets/icons/profile_password.svg";
 const icProfileTicket = "assets/icons/profile_ticket.svg";
 const icProfileTransaction = "assets/icons/profile_transaction.svg";
+const icShare= "assets/icons/share.svg";
+const icLike = "assets/icons/like.svg";
+const icLiked = "assets/icons/liked.svg";
+const icEventLocation = "assets/icons/event_location.svg";
+const icEventDate = "assets/icons/event_date.svg";
 
 //Images
 const imBoarding1 = "assets/images/boarding1.png";
@@ -34,6 +39,9 @@ const imAvatar = "assets/images/avatar.svg";
 const imBanner = "assets/images/banner.png";
 const imBannerEvent = "assets/images/banner_event.png";
 const ilNotification = "assets/images/il_notification.svg";
+const ilReview = "assets/images/il_review.svg";
+const imEventMaker = "assets/images/event_maker.png";
+const imEventMap = "assets/images/event_map.png";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";
