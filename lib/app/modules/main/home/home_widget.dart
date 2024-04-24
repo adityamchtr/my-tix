@@ -334,6 +334,7 @@ class MenuItemWidget extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     double width = 260.0 - AppValues.padding;
+    bool isLike = false;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -381,8 +382,8 @@ class MenuItemWidget extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: AppColors.colorPurple.withOpacity(0.3),
-                          spreadRadius: 8,
-                          blurRadius: 16,
+                          spreadRadius: 5.0,
+                          blurRadius: 10.0,
                         ),
                       ]
                     ),
@@ -507,27 +508,52 @@ class MenuItemWidget extends StatelessWidget {
                   Container(
                     width: width,
                     padding: const EdgeInsets.all(AppValues.padding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text("Mulai Dari",
-                          style: TextStyle(
-                            color: theme.disabledColor,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w500
-                          ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Mulai Dari",
+                              style: TextStyle(
+                                color: theme.disabledColor,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w500
+                              ),
+                            ),
+
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                top: AppValues.halfPadding
+                              ),
+                              child: Text("Rp. 40.000",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            )
+                          ],
                         ),
 
-                        const Padding(
-                          padding: EdgeInsets.only(
-                            top: AppValues.halfPadding
-                          ),
-                          child: Text("Rp. 40.000",
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
+                        if (SessionManager.getAccessToken() != null) StatefulBuilder(
+                          builder: (context, setState) {
+                            return IconButton(
+                              icon: SvgPicture.asset(isLike ? icLiked : icLike),
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(
+                                minHeight: 40.0,
+                                minWidth: 40.0
+                              ),
+                              splashRadius: AppValues.splashRadius,
+                              onPressed: () {
+                                setState(() {
+                                  isLike = !isLike;
+                                });
+                              },
+                            );
+                          }
                         )
                       ],
                     ),

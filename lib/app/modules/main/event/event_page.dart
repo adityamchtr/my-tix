@@ -26,6 +26,8 @@ class EventPage extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final EventController eventController = Get.put(EventController());
 
+    bool isLike = false;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -140,17 +142,23 @@ class EventPage extends StatelessWidget {
                       },
                     ),
 
-                    if (SessionManager.getAccessToken() != null) IconButton(
-                      icon: SvgPicture.asset(icLike),
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(
-                        minHeight: 40.0,
-                        minWidth: 40.0
-                      ),
-                      splashRadius: AppValues.splashRadius,
-                      onPressed: () {
-
-                      },
+                    if (SessionManager.getAccessToken() != null) if (SessionManager.getAccessToken() != null) StatefulBuilder(
+                      builder: (context, setState) {
+                        return IconButton(
+                          icon: SvgPicture.asset(isLike ? icLiked : icLike),
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(
+                            minHeight: 40.0,
+                            minWidth: 40.0
+                          ),
+                          splashRadius: AppValues.splashRadius,
+                          onPressed: () {
+                            setState(() {
+                              isLike = !isLike;
+                            });
+                          },
+                        );
+                      }
                     )
                   ],
                 ),

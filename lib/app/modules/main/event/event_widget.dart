@@ -25,6 +25,8 @@ class EventItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
+    bool isLike = false;
+
     return Padding(
       padding: const EdgeInsets.only(
         left: AppValues.padding,
@@ -73,8 +75,8 @@ class EventItemWidget extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               color: AppColors.colorPurple.withOpacity(0.3),
-                              spreadRadius: 10,
-                              blurRadius: 16,
+                              spreadRadius: 5.0,
+                              blurRadius: 10.0,
                             ),
                           ]
                         ),
@@ -172,17 +174,23 @@ class EventItemWidget extends StatelessWidget {
                               ),
                             ),
 
-                            if (SessionManager.getAccessToken() != null && showLike) IconButton(
-                              icon: SvgPicture.asset(icLike),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(
-                                minHeight: 40.0,
-                                minWidth: 40.0
-                              ),
-                              splashRadius: AppValues.splashRadius,
-                              onPressed: () {
-
-                              },
+                            if (SessionManager.getAccessToken() != null && showLike) StatefulBuilder(
+                              builder: (context, setState) {
+                                return IconButton(
+                                  icon: SvgPicture.asset(isLike ? icLiked : icLike),
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(
+                                    minHeight: 40.0,
+                                    minWidth: 40.0
+                                  ),
+                                  splashRadius: AppValues.splashRadius,
+                                  onPressed: () {
+                                    setState(() {
+                                      isLike = !isLike;
+                                    });
+                                  },
+                                );
+                              }
                             )
                           ],
                         )
