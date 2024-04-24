@@ -6,15 +6,20 @@ import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/main/event/event_page.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class EventItemWidget extends StatelessWidget {
   const EventItemWidget({super.key,
-    this.isEnded= false,
+    this.isEnded = false,
+    this.showBadge = true,
+    this.showLike = true,
   });
 
   final bool isEnded;
+  final bool showBadge;
+  final bool showLike;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +81,7 @@ class EventItemWidget extends StatelessWidget {
                       ),
                     ),
 
-                    Positioned(
+                    if (showBadge) Positioned(
                       left: AppValues.extraSmallPadding,
                       right: AppValues.extraSmallPadding,
                       bottom: AppValues.extraSmallPadding,
@@ -156,11 +161,30 @@ class EventItemWidget extends StatelessWidget {
 
                         const Spacer(),
 
-                        const Text("Rp. 35.000",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const Text("Rp. 35.000",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+
+                            if (SessionManager.getAccessToken() != null && showLike) IconButton(
+                              icon: SvgPicture.asset(icLike),
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(
+                                minHeight: 40.0,
+                                minWidth: 40.0
+                              ),
+                              splashRadius: AppValues.splashRadius,
+                              onPressed: () {
+
+                              },
+                            )
+                          ],
                         )
                       ],
                     ),

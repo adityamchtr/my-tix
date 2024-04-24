@@ -11,6 +11,7 @@ import 'package:mytix/app/modules/main/main_controller.dart';
 import 'package:mytix/app/modules/main/profile/profile_page.dart';
 import 'package:mytix/app/modules/main/search/search_page.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_page.dart';
+import 'package:mytix/app/modules/main/watchlist/watchlist_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -43,7 +44,7 @@ class MainPage extends StatelessWidget {
               destinations: [
                 _navigationDestination(icMainHome, icMainHomeSelected, "Home"),
                 _navigationDestination(icMainSearch, icMainSearchSelected, "Pencarian"),
-                _navigationDestination(icMainWatchlist, icMainWatchlistSelected, "Watchlist"),
+                _navigationDestination(icMainWatchlist, icMainWatchlistSelected, "Keinginan"),
                 _navigationDestination(icMainTicket, icMainTicketSelected, "Ticket"),
                 _navigationDestination(icMainProfile, icMainProfileSelected, "Profile"),
               ],
@@ -68,7 +69,7 @@ class MainPage extends StatelessWidget {
 List<Widget> _pages = [
   const HomePage(),
   const SearchPage(),
-  const SizedBox(),
+  const WatchlistPage(),
   const TicketPage(),
   const ProfilePage(),
 ];

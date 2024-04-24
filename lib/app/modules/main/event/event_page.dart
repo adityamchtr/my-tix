@@ -8,6 +8,8 @@ import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/data/preference/session_manager.dart';
+import 'package:mytix/app/modules/intro/login/login_page.dart';
 import 'package:mytix/app/modules/main/event/event_controller.dart';
 import 'package:mytix/app/modules/main/event/event_review_page.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
@@ -138,8 +140,13 @@ class EventPage extends StatelessWidget {
                       },
                     ),
 
-                    IconButton(
-                      icon: SvgPicture.asset(icLiked),
+                    if (SessionManager.getAccessToken() != null) IconButton(
+                      icon: SvgPicture.asset(icLike),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(
+                        minHeight: 40.0,
+                        minWidth: 40.0
+                      ),
                       splashRadius: AppValues.splashRadius,
                       onPressed: () {
 
@@ -353,7 +360,11 @@ class EventPage extends StatelessWidget {
                         fontSize: 16.0
                       ),
                       onPressed: () {
+                        if (SessionManager.getAccessToken() != null) {
 
+                        } else {
+                          Get.toNamed(LoginPage.routeName);
+                        }
                       },
                     ),
                   ),
