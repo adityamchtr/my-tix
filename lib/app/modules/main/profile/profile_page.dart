@@ -107,8 +107,7 @@ class ProfilePage extends StatelessWidget {
                       icon: icProfileLogout,
                       title: "Keluar Akun",
                       onTap: () async {
-                        await SessionManager.removeAccessToken();
-                        Get.offNamed(LoginPage.routeName);
+                        Get.dialog(const DialogLogoutWidget());
                       },
                     )
                   ],

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
@@ -155,4 +157,90 @@ class ProfileItemWidget extends StatelessWidget {
     );
   }
 }
+
+class DialogLogoutWidget extends StatelessWidget {
+  const DialogLogoutWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    return SimpleDialog(
+      contentPadding: const EdgeInsets.all(AppValues.padding),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppValues.radius)
+      ),
+      children: [
+
+        //Icon
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: Icon(Icons.info_outline_rounded,
+            size: AppValues.iconLargeSize,
+            color: AppColors.colorRed,
+          )
+        ),
+
+        //Title
+        const Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: AppValues.padding
+          ),
+          child: Text("Anda Akan Keluar",
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+
+        //Subtitle
+        const Text("Apakah anda yakin mau keluar akun?",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w300
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.only(
+            top: AppValues.padding
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: ButtonPrimaryWidget(
+                  height: 40,
+                  backgroundColor: theme.disabledColor,
+                  title: "Kembali",
+                  isOutlined: true,
+                  onPressed: () {
+                    Get.back();
+                  },
+                ),
+              ),
+
+              const SizedBox(
+                width: AppValues.padding,
+              ),
+
+              Expanded(
+                child: ButtonPrimaryWidget(
+                  height: 40,
+                  backgroundColor: AppColors.colorRed,
+                  title: "Ya, Keluar",
+                  onPressed: () async {
+                    await SessionManager.removeAccessToken();
+                    Get.offNamed(LoginPage.routeName);
+                  },
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
+
 
