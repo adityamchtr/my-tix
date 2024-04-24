@@ -16,6 +16,7 @@ import 'package:mytix/app/modules/main/event/event_widget.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_checkout_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EventPage extends StatelessWidget {
   const EventPage({super.key});
@@ -296,7 +297,18 @@ class EventPage extends StatelessWidget {
               Skeletonizer(
                 enabled: eventController.isLoading.value,
                 effect: shimmerEffect(),
-                child: Image.asset(imEventMap)
+                child: InkWell(
+                  onTap: () async {
+                    Uri googleUrl = Uri.parse("https://www.google.com/maps/search/?api=1&query=-6.200000,106.816666");
+                    if (!await launchUrl(googleUrl)) {
+                      throw 'Could not open the map.';
+                    }
+                  },
+                  borderRadius: BorderRadius.circular(AppValues.smallRadius),
+                  child: Ink(
+                      child: Image.asset(imEventMap)
+                  )
+                )
               ),
 
             ],
