@@ -258,13 +258,17 @@ class TicketParentItemWidget extends StatelessWidget {
             isExpanded: ticketOptionItemController.isExpanded.value,
             onExpansionChanged: (value) {
               ticketOptionItemController.isExpanded.value = value;
+
               for (TicketChildItemModel ticketChildItem in ticketParentItemModel.ticketChild) {
                 if (Get.isRegistered<TicketChildItemController>(
                   tag: ticketChildItem.id
                 )) {
                   TicketChildItemController.to(ticketChildItem.id).showQty.value = false;
+                  TicketChildItemController.to(ticketChildItem.id).ticketChildItem.qty = 0;
                 }
               }
+
+              if (!value) TicketCheckoutController.to.calculateTotalPrice();
             },
             children: [
               
@@ -333,7 +337,7 @@ class TicketChildItemWidget extends StatelessWidget {
         vertical: AppValues.padding
       ),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: ticketChildItemModel.status ? theme.colorScheme.background : theme.disabledColor,
         borderRadius: BorderRadius.circular(AppValues.smallRadius),
       ),
       child: Column(
@@ -488,16 +492,14 @@ class TicketChildItemWidget extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(
-            height: AppValues.halfPadding,
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: AppValues.halfPadding
+            ),
+            child: DividerCutterWidget(),
           ),
 
-          const DividerCutterWidget(),
-
-          const SizedBox(
-            height: AppValues.halfPadding,
-          ),
-          
+          //Price & QTY
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppValues.padding
@@ -524,7 +526,7 @@ class TicketChildItemWidget extends StatelessWidget {
                   child: Column(
                     children: [
 
-                      const Text("Max 5 tiket",
+                      if (ticketChildItemModel.status) const Text("Max 5 tiket",
                         style: TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w500
@@ -543,12 +545,15 @@ class TicketChildItemWidget extends StatelessWidget {
                         }
 
                         return ButtonPrimaryWidget(
+                          backgroundColor: ticketChildItemModel.status ? null : AppColors.colorRed,
+                          disabledBackgroundColor: ticketChildItemModel.status ? null : AppColors.colorRed,
+                          disabledForegroundColor: Colors.white,
                           height: 32.0,
-                          title: "Beli",
+                          title: ticketChildItemModel.status ? "Beli" : "Habis",
                           textStyle: const TextStyle(),
-                          onPressed: () {
+                          onPressed: ticketChildItemModel.status ? () {
                             ticketChildItemController.showQty.value = true;
-                          },
+                          } : null,
                         );
                       })
                     ],
@@ -557,7 +562,6 @@ class TicketChildItemWidget extends StatelessWidget {
               ],
             ),
           )
-
         ],
       ),
     );

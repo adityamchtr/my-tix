@@ -36,6 +36,8 @@ class ButtonPrimaryWidget extends StatelessWidget {
     this.onPressed,
     this.icon,
     this.backgroundColor,
+    this.disabledForegroundColor,
+    this.disabledBackgroundColor,
     this.isOutlined = false,
     this.textStyle,
   });
@@ -45,6 +47,8 @@ class ButtonPrimaryWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget? icon;
   final Color? backgroundColor;
+  final Color? disabledForegroundColor;
+  final Color? disabledBackgroundColor;
   final bool isOutlined;
   final TextStyle? textStyle;
 
@@ -62,7 +66,8 @@ class ButtonPrimaryWidget extends StatelessWidget {
           ),
           foregroundColor: isOutlined ? (backgroundColor ?? theme.colorScheme.primary) : Colors.white,
           backgroundColor: isOutlined ? theme.colorScheme.background : backgroundColor ?? theme.colorScheme.primary,
-          disabledBackgroundColor: isOutlined ? null : theme.dividerColor,
+          disabledForegroundColor: disabledForegroundColor,
+          disabledBackgroundColor: isOutlined ? null : disabledBackgroundColor ?? theme.dividerColor,
           textStyle: textStyle ?? const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 18.0
