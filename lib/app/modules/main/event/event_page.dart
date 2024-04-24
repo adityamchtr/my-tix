@@ -131,7 +131,6 @@ class EventPage extends StatelessWidget {
                       ),
                     ),
 
-
                     IconButton(
                       icon: SvgPicture.asset(icShare),
                       constraints: const BoxConstraints(),
@@ -143,7 +142,7 @@ class EventPage extends StatelessWidget {
                       },
                     ),
 
-                    if (SessionManager.getAccessToken() != null) if (SessionManager.getAccessToken() != null) StatefulBuilder(
+                    if (SessionManager.getAccessToken() != null && !eventController.isEnded) StatefulBuilder(
                       builder: (context, setState) {
                         return IconButton(
                           icon: SvgPicture.asset(isLike ? icLiked : icLike),
@@ -206,42 +205,58 @@ class EventPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(AppValues.smallRadius)
                   ),
                   child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: AppValues.halfPadding,
+                      horizontal: AppValues.padding
+                    ),
                     leading: const CircleAvatar(
                       radius: 25,
                       foregroundImage: AssetImage(imEventMaker),
                     ),
-                    title: const Row(
+                    title: Column(
                       children: [
-                        Text("Kwf Production",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600
-                          ),
+
+                        //Title
+                        const Row(
+                          children: [
+                            Text("Kwf Production",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w600
+                              ),
+                            ),
+
+                            SizedBox(
+                              width: AppValues.extraSmallPadding,
+                            ),
+
+                            Icon(Icons.check_circle_rounded,
+                              size: AppValues.iconSize_18,
+                              color: AppColors.colorBlue,
+                            )
+                          ],
                         ),
 
-                        SizedBox(
-                          width: AppValues.extraSmallPadding,
+                        const SizedBox(
+                          height: AppValues.halfPadding,
                         ),
 
-                        Icon(Icons.check_circle_rounded,
-                          size: AppValues.iconSize_18,
-                          color: AppColors.colorBlue,
+                        //Sub
+                        Row(
+                          children: [
+                            const Text("Jumlah Acara : ",
+                              style: TextStyle(
+                                fontSize: 16.0
+                              ),
+                            ),
+                            Text("4",
+                              style: TextStyle(
+                                color: theme.iconTheme.color,
+                                fontSize: 16.0
+                              ),
+                            ),
+                          ],
                         )
-                      ],
-                    ),
-                    subtitle: Row(
-                      children: [
-                        const Text("Jumlah Acara : ",
-                          style: TextStyle(
-                            fontSize: 16.0
-                          ),
-                        ),
-                        Text("4",
-                          style: TextStyle(
-                            color: theme.iconTheme.color,
-                            fontSize: 16.0
-                          ),
-                        ),
                       ],
                     ),
                   ),

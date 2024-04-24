@@ -176,7 +176,7 @@ class EventItemWidget extends StatelessWidget {
                               ),
                             ),
 
-                            if (SessionManager.getAccessToken() != null && showLike) StatefulBuilder(
+                            if (SessionManager.getAccessToken() != null && !isEnded && showLike) StatefulBuilder(
                               builder: (context, setState) {
                                 return IconButton(
                                   icon: SvgPicture.asset(isLike ? icLiked : icLike),
