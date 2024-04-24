@@ -6,6 +6,7 @@ import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/modules/main/event/event_model.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_controller.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_widget.dart';
@@ -37,6 +38,11 @@ class TicketCheckoutPage extends StatelessWidget {
           children: [
 
             EventItemWidget(
+              eventItem: EventItemModel(
+                id: "1",
+                title: "Karawang Anicosmic 2023",
+                isLiked: true,
+              ),
               showLike: false,
               showBadge: false,
               onTap: () {

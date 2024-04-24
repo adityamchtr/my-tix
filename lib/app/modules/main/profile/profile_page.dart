@@ -5,7 +5,6 @@ import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
-import 'package:mytix/app/modules/intro/login/login_page.dart';
 import 'package:mytix/app/modules/main/profile/profile_widget.dart';
 
 class ProfilePage extends StatelessWidget {

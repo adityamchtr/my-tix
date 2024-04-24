@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/modules/main/event/event_model.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
 
 class SearchListWidget extends StatelessWidget {
@@ -15,10 +17,11 @@ class SearchListWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         top: AppValues.padding
       ),
-      itemCount: 3,
+      itemCount: isEnded ? eventEndedDummies.length : eventDummies.length,
       itemBuilder: (context, index) {
+        EventItemModel eventItem = isEnded ? eventEndedDummies[index] : eventDummies[index];
         return EventItemWidget(
-          isEnded: isEnded,
+          eventItem: eventItem,
         );
       },
     );

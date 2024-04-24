@@ -20,3 +20,17 @@ class EventController extends GetxController {
     isLoading.value = false;
   }
 }
+
+class EventItemController extends GetxController {
+  EventItemController({required bool isLiked}) : _isLiked = isLiked;
+
+  final bool _isLiked;
+  var isLike = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    isLike.value = _isLiked;
+  }
+}

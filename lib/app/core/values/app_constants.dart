@@ -1,5 +1,7 @@
 
 //Icons
+import 'package:mytix/app/modules/main/event/event_model.dart';
+
 const icMainHome = "assets/icons/main_home.svg";
 const icMainHomeSelected = "assets/icons/main_home_selected.svg";
 const icMainSearch = "assets/icons/main_search.svg";
@@ -44,8 +46,45 @@ const imBanner = "assets/images/banner.png";
 const imBannerEvent = "assets/images/banner_event.png";
 const ilNotification = "assets/images/il_notification.svg";
 const ilReview = "assets/images/il_review.svg";
+const ilEmpty = "assets/images/il_empty.svg";
 const imEventMaker = "assets/images/event_maker.png";
 const imEventMap = "assets/images/event_map.png";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";
+
+final List<EventItemModel> eventDummies = [
+  EventItemModel(
+    id: "1",
+    title: "Karawang Anicosmic 2023",
+    isLiked: true,
+  ),
+  EventItemModel(
+    id: "2",
+    title: "Bandung Java 2024",
+    isLiked: true,
+  ),
+  EventItemModel(
+    id: "3",
+    title: "Jakarta Festival 2024",
+    isLiked: true,
+  ),
+];
+
+final List<EventItemModel> eventEndedDummies = [
+  EventItemModel(
+    id: "4",
+    title: "Karawang Anicosmic 2023",
+    isEnded: true,
+  ),
+  EventItemModel(
+    id: "5",
+    title: "Bandung Java 2024",
+    isEnded: true,
+  ),
+  EventItemModel(
+    id: "6",
+    title: "Jakarta Festival 2024",
+    isEnded: true,
+  ),
+];

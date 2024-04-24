@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/search_widget.dart';
@@ -105,9 +106,11 @@ class HomePage extends StatelessWidget {
                   enabled: homeController.isLoading.value,
                   effect: shimmerEffect(),
                   child: Row(
-                    children: List.generate(3, (index) {
-                      return const MenuItemWidget();
-                    }),
+                    children: eventDummies.map((e) {
+                      return MenuItemWidget(
+                        eventItem: e,
+                      );
+                    }).toList(),
                   ),
                 );
               }),
@@ -135,11 +138,11 @@ class HomePage extends StatelessWidget {
                 enabled: homeController.isLoading.value,
                 effect: shimmerEffect(),
                 child: Column(
-                  children: List.generate(3, (index) {
-                    return const EventItemWidget(
-                      isEnded: true,
+                  children: eventEndedDummies.map((e) {
+                    return EventItemWidget(
+                      eventItem: e,
                     );
-                  }),
+                  }).toList(),
                 ),
               );
             })

@@ -12,9 +12,12 @@ import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/intro/login/login_page.dart';
+import 'package:mytix/app/modules/main/event/event_controller.dart';
+import 'package:mytix/app/modules/main/event/event_model.dart';
 import 'package:mytix/app/modules/main/event/event_page.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
 import 'package:mytix/app/modules/main/notication/notification_page.dart';
+import 'package:mytix/app/modules/main/watchlist/watchlist_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -327,14 +330,22 @@ class LabelMoreWidget extends StatelessWidget {
 }
 
 class MenuItemWidget extends StatelessWidget {
-  const MenuItemWidget({super.key});
+  const MenuItemWidget({super.key,
+    required this.eventItem,
+  });
+
+  final EventItemModel eventItem;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final EventItemController eventItemController = Get.put(EventItemController(
+      isLiked: eventItem.isLiked
+    ),
+      tag: eventItem.id
+    );
 
     double width = 260.0 - AppValues.padding;
-    bool isLike = false;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -469,8 +480,8 @@ class MenuItemWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Karawang Anicosmic 2024",
-                          style: TextStyle(
+                        Text(eventItem.title,
+                          style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold
                           ),
@@ -536,24 +547,28 @@ class MenuItemWidget extends StatelessWidget {
                           ],
                         ),
 
-                        if (SessionManager.getAccessToken() != null) StatefulBuilder(
-                          builder: (context, setState) {
-                            return IconButton(
-                              icon: SvgPicture.asset(isLike ? icLiked : icLike),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(
-                                minHeight: 40.0,
-                                minWidth: 40.0
-                              ),
-                              splashRadius: AppValues.splashRadius,
-                              onPressed: () {
-                                setState(() {
-                                  isLike = !isLike;
-                                });
-                              },
-                            );
-                          }
-                        )
+                        if (SessionManager.getAccessToken() != null) Obx(() {
+                          return IconButton(
+                            icon: SvgPicture.asset(eventItemController.isLike.value ? icLiked : icLike),
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(
+                              minHeight: 40.0,
+                              minWidth: 40.0
+                            ),
+                            splashRadius: AppValues.splashRadius,
+                            onPressed: () {
+                              eventItemController.isLike.value = !eventItemController.isLike.value;
+
+                              if (Get.isRegistered<WatchlistController>()) {
+                                if (eventItemController.isLike.value) {
+                                  WatchlistController.to.watchlistItems.add(eventItem);
+                                } else {
+                                  WatchlistController.to.watchlistItems.remove(eventItem);
+                                }
+                              }
+                            },
+                          );
+                        })
                       ],
                     ),
                   )
