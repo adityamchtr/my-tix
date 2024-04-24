@@ -1,11 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:mytix/app/core/utils/tools.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/core/widgets/counter_widget.dart';
 import 'package:mytix/app/core/widgets/dash_line_widget.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/modules/main/ticket/ticket_controller.dart';
+import 'package:mytix/app/modules/main/ticket/ticket_model.dart';
 
 class TicketListWidget extends StatelessWidget {
   const TicketListWidget({super.key,
@@ -220,6 +226,338 @@ class TicketItemWidget extends StatelessWidget {
               )
             ],
           )
+        ],
+      ),
+    );
+  }
+}
+
+class TicketParentItemWidget extends StatelessWidget {
+  const TicketParentItemWidget({super.key,
+    required this.ticketParentItemModel,
+  });
+
+  final TicketParentItemModel ticketParentItemModel;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final TicketParentItemController ticketOptionItemController = Get.put(TicketParentItemController(),
+      tag: ticketParentItemModel.id
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: AppValues.padding
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppValues.smallRadius),
+        child: Obx(() {
+          return ExpansionWidget(
+            title: ticketParentItemModel.title,
+            isExpanded: ticketOptionItemController.isExpanded.value,
+            onExpansionChanged: (value) {
+              ticketOptionItemController.isExpanded.value = value;
+              for (TicketChildItemModel ticketChildItem in ticketParentItemModel.ticketChild) {
+                if (Get.isRegistered<TicketChildItemController>(
+                  tag: ticketChildItem.id
+                )) {
+                  TicketChildItemController.to(ticketChildItem.id).showQty.value = false;
+                }
+              }
+            },
+            children: [
+              
+              if (ticketParentItemModel.ticketChild.isNotEmpty) ...ticketParentItemModel.ticketChild.map((e) {
+                return TicketChildItemWidget(
+                  ticketChildItemModel: e,
+                );
+              })
+              
+              else Padding(
+                padding: const EdgeInsets.only(
+                  left: AppValues.padding,
+                  right: AppValues.padding,
+                  bottom: AppValues.padding
+                ),
+                child: Column(
+                  children: [
+                    const Text("Tiket Tidak Tersedia",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18.0
+                      ),
+                    ),
+                    const SizedBox(
+                      height: AppValues.halfPadding,
+                    ),
+                    Text("Saat ini, tiket untuk presale belum tersedia, silahkan menunggu info update dari acara tersebut",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: theme.disabledColor
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class TicketChildItemWidget extends StatelessWidget {
+  const TicketChildItemWidget({super.key,
+    required this.ticketChildItemModel,
+  });
+
+  final TicketChildItemModel ticketChildItemModel;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final TicketChildItemController ticketChildItemController = Get.put(TicketChildItemController(
+      ticketChildItem: ticketChildItemModel
+    ),
+      tag: ticketChildItemModel.id
+    );
+
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: AppValues.padding,
+        vertical: AppValues.halfPadding
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: AppValues.padding
+      ),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.background,
+        borderRadius: BorderRadius.circular(AppValues.smallRadius),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          //Info
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppValues.padding
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+
+                SvgPicture.asset(icMainTicket),
+
+                //Button Info
+                IconButton(
+                  icon: SvgPicture.asset(icInfo),
+                  constraints: const BoxConstraints(),
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    Get.dialog(
+                      SimpleDialog(
+                        contentPadding: const EdgeInsets.all(AppValues.padding),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppValues.smallRadius)
+                        ),
+                        children: [
+
+                          Row(
+                            children: [
+                              SvgPicture.asset(icInfo),
+
+                              const SizedBox(
+                                width: AppValues.halfPadding,
+                              ),
+
+                              const Text("Rincian Benefit",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w600
+                                ),
+                              ),
+
+                              const Spacer(),
+
+                              IconButton(
+                                icon: const Icon(Icons.close_rounded),
+                                color: theme.disabledColor,
+                                padding: EdgeInsets.zero,
+                                splashRadius: AppValues.splashRadius,
+                                constraints: const BoxConstraints(),
+                                onPressed: () {
+                                  Get.back();
+                                },
+                              )
+                            ],
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: AppValues.halfPadding
+                            ),
+                            child: Text("Kamu akan mendapatkan hak ekslusif tiket berupa:",
+                              style: TextStyle(
+                                color: theme.disabledColor,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                          
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              const Text("Freebies",
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                )
+                              ),
+
+                              Text("x1",
+                                style: TextStyle(
+                                  color: theme.disabledColor,
+                                  fontSize: 16.0,
+                                )
+                              ),
+                              
+                            ],
+                          ),
+
+                          const SizedBox(
+                            height: AppValues.halfPadding,
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              const Text("Komik",
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                )
+                              ),
+
+                              Text("x1",
+                                style: TextStyle(
+                                  color: theme.disabledColor,
+                                  fontSize: 16.0,
+                                )
+                              ),
+
+                            ],
+                          )
+                        ],
+                      )
+                    );
+                  },
+                )
+              ],
+            ),
+          ),
+
+          const SizedBox(
+            height: AppValues.halfPadding,
+          ),
+
+          //Title
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppValues.padding
+            ),
+            child: Text(ticketChildItemModel.name,
+              style: const TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w600
+              ),
+            ),
+          ),
+
+          //Date
+          Padding(
+            padding: const EdgeInsets.symmetric(
+             horizontal: AppValues.padding
+            ),
+            child: Text(ticketChildItemModel.date,
+              style: TextStyle(
+                color: theme.disabledColor
+              ),
+            ),
+          ),
+
+          const SizedBox(
+            height: AppValues.halfPadding,
+          ),
+
+          const DividerCutterWidget(),
+
+          const SizedBox(
+            height: AppValues.halfPadding,
+          ),
+          
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppValues.padding
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+
+                Expanded(
+                  flex: 4,
+                  child: Text(convertToIdr(ticketChildItemModel.price,
+                    showSymbol: true
+                  ),
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600
+                    ),
+                  ),
+                ),
+
+                Flexible(
+                  flex: 3,
+                  child: Column(
+                    children: [
+
+                      const Text("Max 5 tiket",
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w500
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: AppValues.padding_2,
+                      ),
+
+                      Obx(() {
+                        if (ticketChildItemController.showQty.value) {
+                          return CounterWidget(
+                            textEditingController: ticketChildItemController.counterTextController
+                          );
+                        }
+
+                        return ButtonPrimaryWidget(
+                          height: 32.0,
+                          title: "Beli",
+                          textStyle: const TextStyle(),
+                          onPressed: () {
+                            ticketChildItemController.showQty.value = true;
+                          },
+                        );
+                      })
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )
+
         ],
       ),
     );

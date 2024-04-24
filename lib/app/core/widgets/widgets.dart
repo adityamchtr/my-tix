@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/core/widgets/dash_line_widget.dart';
 
 class SystemUiOverlayWidget extends StatelessWidget {
   const SystemUiOverlayWidget({super.key,
@@ -199,6 +202,102 @@ class FilterChipWidget extends StatelessWidget {
         selected: isSelected,
         onSelected: onSelected,
       ),
+    );
+  }
+}
+
+class ExpansionWidget extends StatelessWidget {
+  const ExpansionWidget({super.key,
+    required this.title,
+    required this.children,
+    this.backgroundColor,
+    this.isExpanded = false,
+    this.onExpansionChanged,
+  });
+
+  final String title;
+  final bool isExpanded;
+  final Color? backgroundColor;
+  final ValueChanged<bool>? onExpansionChanged;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    return ExpansionTile(
+      title: Text(title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 18.0
+        ),
+      ),
+      trailing: SvgPicture.asset(isExpanded ? icRadioOn : icRadioOff),
+      backgroundColor: backgroundColor ?? theme.scaffoldBackgroundColor,
+      collapsedBackgroundColor: backgroundColor ?? theme.scaffoldBackgroundColor,
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppValues.smallRadius),
+        borderSide: BorderSide(
+          width: 1.0,
+          color: theme.dividerColor
+        )
+      ),
+      collapsedShape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppValues.smallRadius),
+        borderSide: BorderSide(
+          width: 1.0,
+          color: theme.dividerColor
+        )
+      ),
+      onExpansionChanged: onExpansionChanged,
+      childrenPadding: const EdgeInsets.only(
+        bottom: AppValues.halfPadding
+      ),
+      children: children,
+    );
+  }
+}
+
+class DividerCutterWidget extends StatelessWidget {
+  const DividerCutterWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(24.0),
+              bottomRight: Radius.circular(24.0)
+            ),
+            color: theme.scaffoldBackgroundColor,
+          ),
+          child: const SizedBox(
+            width: 12.0,
+            height: 24.0,
+          ),
+        ),
+        const Expanded(
+          child: DashLineWidget()
+        ),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(24.0),
+              bottomLeft: Radius.circular(24.0)
+            ),
+            color: theme.scaffoldBackgroundColor,
+          ),
+          child: const SizedBox(
+            width: 12.0,
+            height: 24.0,
+          ),
+        )
+      ],
     );
   }
 }

@@ -28,6 +28,10 @@ const icLike = "assets/icons/like.svg";
 const icLiked = "assets/icons/liked.svg";
 const icEventLocation = "assets/icons/event_location.svg";
 const icEventDate = "assets/icons/event_date.svg";
+const icTicket = "assets/icons/ticket.svg";
+const icRadioOff = "assets/icons/radio_off.svg";
+const icRadioOn = "assets/icons/radio_on.svg";
+const icInfo = "assets/icons/info.svg";
 
 //Images
 const imBoarding1 = "assets/images/boarding1.png";

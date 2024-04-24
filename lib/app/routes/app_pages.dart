@@ -9,6 +9,7 @@ import 'package:mytix/app/modules/main/event/event_page.dart';
 import 'package:mytix/app/modules/main/event/event_review_page.dart';
 import 'package:mytix/app/modules/main/main_page.dart';
 import 'package:mytix/app/modules/main/notication/notification_page.dart';
+import 'package:mytix/app/modules/main/ticket/ticket_checkout_page.dart';
 
 class AppPages {
 
@@ -52,6 +53,10 @@ class AppPages {
     GetPage(
       name: EventReviewPage.routeName,
       page: () => const EventReviewPage(),
+    ),
+    GetPage(
+      name: TicketCheckoutPage.routeName,
+      page: () => const TicketCheckoutPage(),
     ),
   ];
 }

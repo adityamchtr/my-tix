@@ -15,11 +15,13 @@ class EventItemWidget extends StatelessWidget {
     this.isEnded = false,
     this.showBadge = true,
     this.showLike = true,
+    this.onTap,
   });
 
   final bool isEnded;
   final bool showBadge;
   final bool showLike;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class EventItemWidget extends StatelessWidget {
         bottom: AppValues.padding
       ),
       child: InkWell(
-        onTap: () {
+        onTap: onTap ?? () {
           Get.toNamed(EventPage.routeName,
             arguments: isEnded
           );

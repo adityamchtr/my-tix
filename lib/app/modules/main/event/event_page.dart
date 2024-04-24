@@ -13,6 +13,7 @@ import 'package:mytix/app/modules/intro/login/login_page.dart';
 import 'package:mytix/app/modules/main/event/event_controller.dart';
 import 'package:mytix/app/modules/main/event/event_review_page.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
+import 'package:mytix/app/modules/main/ticket/ticket_checkout_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -369,7 +370,7 @@ class EventPage extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (SessionManager.getAccessToken() != null) {
-
+                          Get.toNamed(TicketCheckoutPage.routeName);
                         } else {
                           Get.toNamed(LoginPage.routeName);
                         }
