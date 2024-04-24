@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mytix/app/core/values/app_colors.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/dash_line_widget.dart';
@@ -70,7 +71,7 @@ class TicketItemWidget extends StatelessWidget {
                 Stack(
                   children: [
                     Container(
-                      width: 120.0,
+                      width: 100.0,
                       height: 110.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppValues.radius_6),
@@ -78,15 +79,22 @@ class TicketItemWidget extends StatelessWidget {
                           image: AssetImage(imBannerEvent),
                           fit: BoxFit.cover
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.colorPurple.withOpacity(0.3),
+                            spreadRadius: 5.0,
+                            blurRadius: 10.0,
+                          ),
+                        ]
                       ),
                     ),
 
                     Positioned(
-                      left: AppValues.smallPadding,
-                      right: AppValues.smallPadding,
-                      bottom: AppValues.smallPadding,
+                      left: AppValues.extraSmallPadding,
+                      right: AppValues.extraSmallPadding,
+                      bottom: AppValues.extraSmallPadding,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(AppValues.extraLargeRadius),
+                        borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
                         child: ClipRect(
                           child: BackdropFilter(
                             filter: ImageFilter.blur(
@@ -96,8 +104,14 @@ class TicketItemWidget extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.all(AppValues.extraSmallPadding),
                               decoration: BoxDecoration(
-                                color: isEnded ? const Color(0x80F04438) : const Color(0x8012B76A),
+                                color: isEnded ? const Color(0xCCF04438) : const Color(0xCC12A92A),
                                 borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    isEnded ? const Color(0xCCF04438) : const Color(0xCC12A92A),
+                                    isEnded ? const Color(0xCCE85B50) : const Color(0xCC087C1A)
+                                  ]
+                                )
                               ),
                               child: Text(isEnded ? "Selesai" : "Berlangsung",
                                 textAlign: TextAlign.center,
