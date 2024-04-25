@@ -232,6 +232,7 @@ class TicketItemWidget extends StatelessWidget {
   }
 }
 
+//Untuk item ticket checkout
 class TicketParentItemWidget extends StatelessWidget {
   const TicketParentItemWidget({super.key,
     required this.ticketParentItemModel,
@@ -295,7 +296,7 @@ class TicketParentItemWidget extends StatelessWidget {
                     const SizedBox(
                       height: AppValues.halfPadding,
                     ),
-                    Text("Saat ini, tiket untuk presale belum tersedia, silahkan menunggu info update dari acara tersebut",
+                    Text("Saat ini, tiket untuk ${ticketParentItemModel.title.toLowerCase()} belum tersedia, silahkan menunggu info update dari acara tersebut",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: theme.disabledColor

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_model.dart';
 
 class TicketCheckoutController extends GetxController {
@@ -14,50 +15,17 @@ class TicketCheckoutController extends GetxController {
   void onInit() {
     super.onInit();
 
-    ticketParents.addAll([
-      TicketParentItemModel(
-        id: "early",
-        title: "Early Bird Tiket",
-        ticketChild: [
-          TicketChildItemModel(
-            id: "1",
-            name: "Early Bird - Day 1",
-            date: "Minggu, 28 Januari 2024",
-            price: 45000
-          ),
-          TicketChildItemModel(
-            id: "2",
-            name: "Early Bird - Day 2",
-            date: "Minggu, 29 Januari 2024",
-            price: 45000
-          )
-        ]
-      ),
-      TicketParentItemModel(
-        id: "regular",
-        title: "Regular",
-        ticketChild: [
-          TicketChildItemModel(
-            id: "3",
-            name: "Regular - Day 1",
-            date: "Minggu, 28 Januari 2024",
-            status: false,
-            price: 40000
-          ),
-          TicketChildItemModel(
-            id: "4",
-            name: "Regular - Day 2",
-            date: "Minggu, 29 Januari 2024",
-            price: 40000
-          )
-        ]
-      ),
-      TicketParentItemModel(
-        id: "presale",
-        title: "Presale",
-        ticketChild: []
-      )
-    ]);
+    fetchTicket();
+  }
+
+  void fetchTicket() {
+    List<TicketParentItemModel> data = List<TicketParentItemModel>.from(
+      ticketDummies["data"]!.map((item) {
+        return TicketParentItemModel.fromMap(item);
+      })
+    );
+
+    ticketParents.addAll(data);
   }
 
   void calculateTotalPrice() {
@@ -77,9 +45,7 @@ class TicketCheckoutController extends GetxController {
 }
 
 class TicketParentItemController extends GetxController {
-
   var isExpanded = false.obs;
-
 }
 
 class TicketChildItemController extends GetxController {

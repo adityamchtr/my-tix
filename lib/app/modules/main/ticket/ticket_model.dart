@@ -8,6 +8,22 @@ class TicketParentItemModel {
     this.title = "",
     required this.ticketChild,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'ticketChild': ticketChild.map((e) => e.toMap()).toList(),
+    };
+  }
+
+  factory TicketParentItemModel.fromMap(Map<String, dynamic> map) {
+    return TicketParentItemModel(
+      id: map['id'],
+      title: map['title'],
+      ticketChild: List<TicketChildItemModel>.from(map["ticketChild"].map((e) => TicketChildItemModel.fromMap(e))),
+    );
+  }
 }
 
 class TicketChildItemModel {
@@ -26,4 +42,24 @@ class TicketChildItemModel {
     this.price = 0,
     this.qty = 0,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'date': date,
+      'status': status,
+      'price': price,
+    };
+  }
+
+  factory TicketChildItemModel.fromMap(Map<String, dynamic> map) {
+    return TicketChildItemModel(
+      id: map['id'],
+      name: map['name'],
+      date: map['date'],
+      status: map['status'],
+      price: map['price'],
+    );
+  }
 }

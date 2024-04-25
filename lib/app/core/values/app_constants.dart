@@ -53,6 +53,56 @@ const imEventMap = "assets/images/event_map.png";
 //Lottie
 const loComplete = "assets/lottie/complete.json";
 
+const ticketDummies = {
+  "data": [
+    {
+      "id": "early",
+      "title": "Early Bird Tiket",
+      "ticketChild": [
+        {
+          "id": "1",
+          "name": "Early Bird - Day 1",
+          "date": "Minggu, 28 Januari 2024",
+          "status": true,
+          "price": 45000.0,
+        },
+        {
+          "id": "2",
+          "name": "Early Bird - Day 2",
+          "date": "Minggu, 29 Januari 2024",
+          "status": true,
+          "price": 45000.0,
+        }
+      ],
+    },
+    {
+      "id": "regular",
+      "title": "Regular",
+      "ticketChild": [
+        {
+          "id": "3",
+          "name": "Regular - Day 1",
+          "date": "Minggu, 28 Januari 2024",
+          "status": false,
+          "price": 45000.0,
+        },
+        {
+          "id": "4",
+          "name": "Regular - Day 2",
+          "date": "Minggu, 29 Januari 2024",
+          "status": true,
+          "price": 45000.0,
+        }
+      ],
+    },
+    {
+      "id": "presale",
+      "title": "Presale",
+      "ticketChild": [],
+    }
+  ]
+};
+
 final List<EventItemModel> eventDummies = [
   EventItemModel(
     id: "1",
