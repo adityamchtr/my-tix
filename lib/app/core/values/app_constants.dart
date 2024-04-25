@@ -49,6 +49,7 @@ const imBannerTicket = "assets/images/banner_ticket.png";
 const ilNotification = "assets/images/il_notification.svg";
 const ilReview = "assets/images/il_review.svg";
 const ilEmpty = "assets/images/il_empty.svg";
+const ilSearch = "assets/images/il_search.svg";
 const imEventMaker = "assets/images/event_maker.png";
 const imEventMap = "assets/images/event_map.png";
 const imPaymentBni = "assets/images/payment_bni.png";

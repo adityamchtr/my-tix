@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/search_widget.dart';
+import 'package:mytix/app/modules/main/search/search_page_controller.dart';
 import 'package:mytix/app/modules/main/search/search_widget.dart';
 
 class SearchPage extends StatelessWidget {
@@ -10,6 +12,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final SearchPageController searchPageController = Get.put(SearchPageController());
 
     return DefaultTabController(
       length: 2,
@@ -36,6 +39,12 @@ class SearchPage extends StatelessWidget {
                     hintText: "Cari disini",
                     onChanged: (value) {
 
+                    },
+                    onSubmitted: (value) {
+                      searchPageController.showEmpty.value = value.isNotEmpty;
+                    },
+                    onPressedClear: () {
+                      searchPageController.showEmpty.value = false;
                     },
                   ),
                 ),
