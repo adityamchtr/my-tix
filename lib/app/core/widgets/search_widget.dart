@@ -7,6 +7,7 @@ class SearchWidget extends StatefulWidget {
   const SearchWidget({super.key,
     this.controller,
     this.hintText,
+    this.showSearchIcon = true,
     this.onChanged,
     this.onSubmitted,
     this.onPressedClear,
@@ -14,6 +15,7 @@ class SearchWidget extends StatefulWidget {
 
   final TextEditingController? controller;
   final String? hintText;
+  final bool showSearchIcon;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final VoidCallback? onPressedClear;
@@ -69,10 +71,10 @@ class _SearchWidgetState extends State<SearchWidget> {
                 )
               ),
               isDense: true,
-              contentPadding: EdgeInsets.zero,
-              prefixIcon: SvgPicture.asset(icSearch,
+              contentPadding: widget.showSearchIcon ? EdgeInsets.zero : null,
+              prefixIcon: widget.showSearchIcon ? SvgPicture.asset(icSearch,
                 fit: BoxFit.scaleDown,
-              ),
+              ) : null,
               suffixIcon: searchTextController.text.isNotEmpty ? IconButton(
                 onPressed: () {
                   setState(() {

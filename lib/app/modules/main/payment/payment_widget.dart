@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -364,5 +365,146 @@ class PaymentProvisionWidget extends StatelessWidget {
   }
 }
 
+class VoucherItemWidget extends StatelessWidget {
+  const VoucherItemWidget({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final PaymentVoucherController paymentVoucherController = Get.find();
+    
+    return Padding(
+      padding: const EdgeInsets.only(
+        right: AppValues.padding
+      ),
+      child: Ink(
+        width: 250.0,
+        padding: const EdgeInsets.symmetric(
+          vertical: AppValues.padding
+        ),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.background,
+          borderRadius: BorderRadius.circular(AppValues.radius),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
 
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppValues.padding
+              ),
+              child: Text("Kolaborasi Amegi X SJC",
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: theme.disabledColor
+                ),
+              ),
+            ),
+
+            Container(
+              padding: const EdgeInsets.all(AppValues.halfPadding),
+              margin: const EdgeInsets.only(
+                top: AppValues.padding,
+                left: AppValues.padding,
+                right: AppValues.padding
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppValues.smallRadius),
+                border: Border.all(
+                  width: 1.0,
+                  color: theme.disabledColor
+                )
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Diskon Voucher",
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.colorBlue,
+                        ),
+                      ),
+
+                      IconButton(
+                        icon: Icon(Icons.info_outline_rounded,
+                          size: 15.0,
+                          color: theme.disabledColor,
+                        ),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        splashRadius: AppValues.radius,
+                        onPressed: () {
+
+                        },
+                      )
+                    ],
+                  ),
+
+                  const Text("Diskon Rp. 15.000"),
+
+                ],
+              ),
+            ),
+
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: AppValues.radius
+              ),
+              child: DividerCutterWidget(),
+            ),
+
+            const Padding(
+              padding: EdgeInsets.only(
+                left: AppValues.padding,
+                right: AppValues.padding,
+                bottom: AppValues.halfPadding
+              ),
+              child: Text("Kode Voucher",
+                style: TextStyle(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.colorBlue,
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppValues.padding
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("KWFXSJC",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+
+                  InkWell(
+                    onTap: () {
+                      paymentVoucherController.searchTextController.text = "KWFXSJC";
+                    },
+                    child: const Text("Salin",
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.colorBlue,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

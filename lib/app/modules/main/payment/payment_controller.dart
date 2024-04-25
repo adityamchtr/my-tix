@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/modules/main/payment/payment_model.dart';
@@ -46,4 +47,21 @@ class PaymentMethodController extends GetxController {
 
     paymentMethods.addAll(data);
   }
+}
+
+class PaymentVoucherController extends GetxController {
+
+  final TextEditingController searchTextController = TextEditingController();
+
+  var isCopied = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    searchTextController.addListener(() {
+      isCopied.value = searchTextController.text.isNotEmpty;
+    });
+  }
+
 }
