@@ -8,6 +8,7 @@ import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/modules/main/event/event_model.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
+import 'package:mytix/app/modules/main/payment/payment_page.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_controller.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_widget.dart';
 
@@ -50,50 +51,47 @@ class TicketCheckoutPage extends StatelessWidget {
               },
             ),
 
-            Material(
-              child: Container(
-                padding: const EdgeInsets.all(AppValues.padding),
-                margin: const EdgeInsets.symmetric(
-                  horizontal: AppValues.padding
-                ),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.background,
-                  borderRadius: BorderRadius.circular(AppValues.smallRadius)
-                ),
-                child: Column(
-                  children: [
+            Container(
+              padding: const EdgeInsets.all(AppValues.padding),
+              margin: const EdgeInsets.symmetric(
+                horizontal: AppValues.padding
+              ),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.background,
+                borderRadius: BorderRadius.circular(AppValues.smallRadius)
+              ),
+              child: Column(
+                children: [
 
-                    //Title
-                    Row(
-                      children: [
+                  //Title
+                  Row(
+                    children: [
 
-                        SvgPicture.asset(icTicket),
+                      SvgPicture.asset(icTicket),
 
-                        const SizedBox(
-                          width: AppValues.padding,
+                      const SizedBox(
+                        width: AppValues.padding,
+                      ),
+
+                      const Text("Pilihan Tiket",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
                         ),
+                      )
 
-                        const Text("Pilihan Tiket",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        )
+                    ],
+                  ),
 
-                      ],
-                    ),
+                  ...ticketCheckoutController.ticketParents.map((e) {
+                    return TicketParentItemWidget(
+                      ticketParentItemModel: e,
+                    );
+                  }),
 
-                    ...ticketCheckoutController.ticketParents.map((e) {
-                      return TicketParentItemWidget(
-                        ticketParentItemModel: e,
-                      );
-                    }),
-
-                  ],
-                ),
+                ],
               ),
             )
-
           ],
         ),
       ),
@@ -143,17 +141,24 @@ class TicketCheckoutPage extends StatelessWidget {
 
             SizedBox(
               width: 140.0,
-              child: ButtonPrimaryWidget(
-                height: 40.0,
-                title: "Bayar Skarang",
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.0
-                ),
-                onPressed: () {
-
-                },
-              ),
+              child: Obx(() {
+                return ButtonPrimaryWidget(
+                  height: 40.0,
+                  title: "Bayar Sekarang",
+                  textStyle: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.0
+                  ),
+                  onPressed: ticketCheckoutController.totalPrice.value != 0 ? () {
+                    Get.toNamed(PaymentPage.routeName,
+                      arguments: [
+                        ticketCheckoutController.getTicketSelected(),
+                        ticketCheckoutController.totalPrice.value
+                      ]
+                    );
+                  } : null,
+                );
+              }),
             )
           ],
         ),

@@ -42,6 +42,19 @@ class TicketCheckoutController extends GetxController {
     });
   }
 
+  List<TicketChildItemModel> getTicketSelected() {
+    List<TicketChildItemModel> ticket = [];
+
+    for (TicketParentItemModel ticketParent in ticketParents) {
+      for (TicketChildItemModel ticketChild in ticketParent.ticketChild) {
+        if (ticketChild.qty > 0) {
+          ticket.add(ticketChild);
+        }
+      }
+    }
+
+    return ticket;
+  }
 }
 
 class TicketParentItemController extends GetxController {

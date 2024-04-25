@@ -215,22 +215,27 @@ class ExpansionWidget extends StatelessWidget {
   const ExpansionWidget({super.key,
     required this.title,
     required this.children,
-    this.backgroundColor,
     this.isExpanded = false,
+    this.initiallyExpanded = false,
+    this.backgroundColor,
     this.onExpansionChanged,
+    this.controller,
   });
 
   final String title;
   final bool isExpanded;
+  final bool initiallyExpanded;
   final Color? backgroundColor;
   final ValueChanged<bool>? onExpansionChanged;
   final List<Widget> children;
+  final ExpansionTileController? controller;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
     return ExpansionTile(
+      controller: controller,
       title: Text(title,
         style: const TextStyle(
           fontWeight: FontWeight.w600,
@@ -238,6 +243,7 @@ class ExpansionWidget extends StatelessWidget {
         ),
       ),
       trailing: SvgPicture.asset(isExpanded ? icRadioOn : icRadioOff),
+      initiallyExpanded: initiallyExpanded,
       backgroundColor: backgroundColor ?? theme.scaffoldBackgroundColor,
       collapsedBackgroundColor: backgroundColor ?? theme.scaffoldBackgroundColor,
       shape: OutlineInputBorder(

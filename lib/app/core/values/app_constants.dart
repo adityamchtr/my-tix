@@ -31,6 +31,7 @@ const icLiked = "assets/icons/liked.svg";
 const icEventLocation = "assets/icons/event_location.svg";
 const icEventDate = "assets/icons/event_date.svg";
 const icTicket = "assets/icons/ticket.svg";
+const icVoucher = "assets/icons/voucher.svg";
 const icRadioOff = "assets/icons/radio_off.svg";
 const icRadioOn = "assets/icons/radio_on.svg";
 const icInfo = "assets/icons/info.svg";
@@ -44,11 +45,21 @@ const imSuccess = "assets/images/success.svg";
 const imAvatar = "assets/images/avatar.svg";
 const imBanner = "assets/images/banner.png";
 const imBannerEvent = "assets/images/banner_event.png";
+const imBannerTicket = "assets/images/banner_ticket.png";
 const ilNotification = "assets/images/il_notification.svg";
 const ilReview = "assets/images/il_review.svg";
 const ilEmpty = "assets/images/il_empty.svg";
 const imEventMaker = "assets/images/event_maker.png";
 const imEventMap = "assets/images/event_map.png";
+const imPaymentBni = "assets/images/payment_bni.png";
+const imPaymentDana = "assets/images/payment_dana.png";
+const imPaymentGopay = "assets/images/payment_gopay.png";
+const imPaymentIndomaret = "assets/images/payment_indomaret.png";
+const imPaymentLinkaja = "assets/images/payment_linkaja.png";
+const imPaymentMandiri = "assets/images/payment_mandiri.png";
+const imPaymentOvo = "assets/images/payment_ovo.png";
+const imPaymentQris = "assets/images/payment_qris.png";
+const imPaymentShopeepay = "assets/images/payment_shopeepay.png";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";
@@ -102,6 +113,104 @@ const ticketDummies = {
     }
   ]
 };
+
+const paymentMethodDummies = {
+  "data": [
+    {
+      "id": "va",
+      "title": "Virtual Account",
+      "paymentChild": [
+        {
+          "id": "1",
+          "headerId": "va",
+          "headerTitle": "Virtual Account",
+          "name": "Bank BNI",
+          "logo": imPaymentBni,
+        },
+        {
+          "id": "2",
+          "headerId": "va",
+          "headerTitle": "Virtual Account",
+          "name": "Bank Mandiri",
+          "logo": imPaymentMandiri,
+        },
+      ],
+    },
+    {
+      "id": "cashless",
+      "title": "Uang elektronik",
+      "paymentChild": [
+        {
+          "id": "3",
+          "headerId": "cashless",
+          "headerTitle": "Uang elektronik",
+          "name": "Gopay",
+          "logo": imPaymentGopay,
+        },
+        {
+          "id": "4",
+          "headerId": "cashless",
+          "headerTitle": "Uang elektronik",
+          "name": "OVO",
+          "logo": imPaymentOvo,
+        },
+        {
+          "id": "5",
+          "headerId": "cashless",
+          "headerTitle": "Uang elektronik",
+          "name": "LinkAja",
+          "logo": imPaymentLinkaja,
+        },
+        {
+          "id": "6",
+          "headerId": "cashless",
+          "headerTitle": "Uang elektronik",
+          "name": "ShoopePay",
+          "logo": imPaymentShopeepay,
+        },
+        {
+          "id": "7",
+          "headerId": "cashless",
+          "headerTitle": "Uang elektronik",
+          "name": "Dana",
+          "logo": imPaymentDana,
+        },
+      ],
+    },
+    {
+      "id": "cash",
+      "title": "Bayar Di Gerai",
+      "paymentChild": [
+        {
+          "id": "8",
+          "headerId": "cash",
+          "headerTitle": "Bayar Di Gerai",
+          "name": "Indomaret",
+          "logo": imPaymentIndomaret,
+        },
+      ],
+    },
+    {
+      "id": "scan",
+      "title": "Scan QRIS",
+      "paymentChild": [
+        {
+          "id": "9",
+          "headerId": "scan",
+          "headerTitle": "Scan QRIS",
+          "name": "QRIS",
+          "logo": imPaymentQris,
+        },
+      ],
+    },
+  ]
+};
+
+const paymentProvision = [
+  "Pembayaran hanya dapat dilakukan oleh nasabah Bank Mandiri melalui ATM, MBanking dll.",
+  "Mohon selesaikan pembayaran sebelum batas waktu berakhir untuk menghindari gagal bayar.",
+  "Setelah proses berhasil, pesanan kamu akan diproses.",
+];
 
 final List<EventItemModel> eventDummies = [
   EventItemModel(
