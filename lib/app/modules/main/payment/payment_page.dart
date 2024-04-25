@@ -68,7 +68,12 @@ class PaymentPage extends StatelessWidget {
               subtitle: "Hemat dengan voucher",
               isVoucher: true,
               onTap: () {
-                Get.toNamed(PaymentVoucherPage.routeName);
+                Get.toNamed(PaymentVoucherPage.routeName)!.then((value) {
+                  if (value != null) paymentController.isUsedVoucher.value = value;
+                });
+              },
+              onTapChange: () {
+                paymentController.isUsedVoucher.value = false;
               },
             ),
             
@@ -186,10 +191,12 @@ class PaymentPage extends StatelessWidget {
                   ),
 
                   //Voucher Potongan
-                  const PaymentLabelWidget(
-                    title: "Voucher Potongan",
-                    value: 15500,
-                  ),
+                  Obx(() {
+                    return PaymentLabelWidget(
+                      title: "Voucher Potongan",
+                      value: paymentController.isUsedVoucher.value ? 15000 : 0,
+                    );
+                  }),
 
                   //Divider
                   const Padding(
@@ -200,11 +207,27 @@ class PaymentPage extends StatelessWidget {
                   ),
 
                   //Total Bayar
-                  PaymentLabelWidget(
-                    title: "Total Bayar",
-                    value: paymentController.totalPrice + 5000 + 15500,
-                    isTotal: true,
-                  ),
+                  Obx(() {
+                    return Column(
+                      children: [
+
+                        //Total before discount
+                        if (paymentController.isUsedVoucher.value) PaymentLabelWidget(
+                          title: "Total Bayar",
+                          value: paymentController.totalPrice + 5000,
+                          isTotal: true,
+                          isDiscount: true,
+                        ),
+
+                        //Total after discount
+                        PaymentLabelWidget(
+                          title: paymentController.isUsedVoucher.value ? "" : "Total Bayar",
+                          value: paymentController.totalPrice + 5000 - (paymentController.isUsedVoucher.value ? 15000 : 0),
+                          isTotal: true,
+                        ),
+                      ],
+                    );
+                  })
 
                 ],
               ),
@@ -216,17 +239,19 @@ class PaymentPage extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(AppValues.padding),
-        child: ButtonPrimaryWidget(
-          height: 40.0,
-          title: "Bayar Sekarang",
-          textStyle: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 18.0
-          ),
-          onPressed: () {
+        child: Obx(() {
+          return ButtonPrimaryWidget(
+            height: 40.0,
+            title: "Bayar Sekarang",
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 18.0
+            ),
+            onPressed: paymentController.childSelected.value != null ? () {
 
-          },
-        ),
+            } : null,
+          );
+        }),
       ),
     );
   }

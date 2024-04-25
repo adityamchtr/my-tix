@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -136,6 +135,68 @@ class PaymentVoucherWidget extends StatelessWidget {
                 );
               }
 
+              else if (paymentController.isUsedVoucher.value && isVoucher) {
+                return Container(
+                  padding: const EdgeInsets.all(AppValues.padding),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF1ECFD),
+                    borderRadius: BorderRadius.circular(AppValues.smallRadius),
+                    border: Border.all(
+                      width: 1.0,
+                      color: AppColors.colorBlue
+                    )
+                  ),
+                  child: Row(
+                    children: [
+
+                      CircleAvatar(
+                        radius: 15.0,
+                        backgroundColor: theme.colorScheme.background,
+                        child: const Icon(Icons.check_circle_rounded),
+                      ),
+
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppValues.halfPadding
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Kode Berhasil Terpasang",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              const SizedBox(
+                                height: AppValues.extraSmallPadding,
+                              ),
+
+                              Text("x1",
+                                style: TextStyle(
+                                  color: theme.disabledColor,
+                                  fontWeight: FontWeight.w500
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      InkWell(
+                        onTap: onTapChange,
+                        child: const Text("Hapus",
+                          style: TextStyle(
+                            color: AppColors.colorRed
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
+
               //Not Selected
               return InkWell(
                 onTap: onTap,
@@ -193,11 +254,13 @@ class PaymentLabelWidget extends StatelessWidget {
     required this.title,
     required this.value,
     this.isTotal = false,
+    this.isDiscount = false,
   });
 
   final String title;
   final double value;
   final bool isTotal;
+  final bool isDiscount;
 
   @override
   Widget build(BuildContext context) {
@@ -219,9 +282,11 @@ class PaymentLabelWidget extends StatelessWidget {
           ),
 
           Text(convertToIdr(value, showSymbol: true),
-            style: const TextStyle(
+            style: TextStyle(
+              color: isDiscount ? AppColors.colorRed : null,
               fontSize: 16.0,
-              fontWeight: FontWeight.w600
+              fontWeight: FontWeight.w600,
+              decoration: isDiscount ? TextDecoration.lineThrough : null,
             ),
           )
         ],
@@ -319,35 +384,34 @@ class PaymentProvisionWidget extends StatelessWidget {
             height: AppValues.padding,
           ),
 
-          SizedBox(
-            height: 100,
-            child: ListView(
-              children: paymentProvision.map((e) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: AppValues.halfPadding
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("• ",
+          ListView(
+            shrinkWrap: true,
+            primary: false,
+            children: paymentProvision.map((e) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                  bottom: AppValues.halfPadding
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("  •  ",
+                      style: TextStyle(
+                        color: theme.disabledColor
+                      )
+                    ),
+                    Flexible(
+                      child: Text(e,
+                        textAlign: TextAlign.justify,
                         style: TextStyle(
                           color: theme.disabledColor
-                        )
-                      ),
-                      Flexible(
-                        child: Text(e,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            color: theme.disabledColor
-                          ),
                         ),
                       ),
-                    ],
-                  ),
-                );
-              }).toList(),
-            ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
 
           const Spacer(),
@@ -440,7 +504,10 @@ class VoucherItemWidget extends StatelessWidget {
                         constraints: const BoxConstraints(),
                         splashRadius: AppValues.radius,
                         onPressed: () {
-
+                          Get.bottomSheet(
+                            const VoucherProvisionWidget(),
+                            isScrollControlled: true
+                          );
                         },
                       )
                     ],
@@ -508,3 +575,101 @@ class VoucherItemWidget extends StatelessWidget {
     );
   }
 }
+
+class VoucherProvisionWidget extends StatelessWidget {
+  const VoucherProvisionWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    return Container(
+      padding: const EdgeInsets.all(AppValues.padding),
+      decoration: BoxDecoration(
+        color: theme.scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(AppValues.smallRadius),
+          topRight: Radius.circular(AppValues.smallRadius)
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+
+          //Title
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+              const Text("Ketentuan Voucher",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18.0
+                ),
+              ),
+
+              IconButton(
+                icon: const Icon(Icons.close_rounded),
+                color: theme.disabledColor,
+                padding: EdgeInsets.zero,
+                splashRadius: AppValues.splashRadius,
+                constraints: const BoxConstraints(),
+                onPressed: () {
+                  Get.back();
+                },
+              )
+            ],
+          ),
+
+          Divider(
+            height: AppValues.extraLargePadding,
+            color: theme.colorScheme.primary,
+          ),
+
+          const Text("Ketentuan:",
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 18.0
+            ),
+          ),
+
+          const SizedBox(
+            height: AppValues.padding,
+          ),
+
+          ListView(
+            primary: false,
+            shrinkWrap: true,
+            children: voucherProvision.map((e) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                  bottom: AppValues.halfPadding
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("  •  ",
+                      style: TextStyle(
+                        color: theme.disabledColor
+                      )
+                    ),
+                    Flexible(
+                      child: Text(e,
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                            color: theme.disabledColor
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

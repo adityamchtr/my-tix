@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
@@ -90,9 +89,9 @@ class PaymentVoucherPage extends StatelessWidget {
               fontSize: 16.0,
               fontWeight: FontWeight.w500
             ),
-            onPressed: paymentVoucherController.isCopied.value ? () {
+            onPressed: paymentVoucherController.isUsedVoucher.value ? () {
               Get.back(
-                  result: paymentVoucherController.searchTextController.text
+                result: paymentVoucherController.isUsedVoucher.value
               );
             } : null,
           );

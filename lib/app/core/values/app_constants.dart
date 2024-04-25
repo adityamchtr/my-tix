@@ -213,6 +213,12 @@ const paymentProvision = [
   "Setelah proses berhasil, pesanan kamu akan diproses.",
 ];
 
+const voucherProvision = [
+  "Kode voucher dapat digunakan hanya 1x per akun, dan tidak dapat digunakan kembali setelah digunakan.",
+  "Kode voucher terbatas bagi 100 orang pertama, jika kode voucher tidak dapat digunakan, maka voucher telah habis.",
+  "Kode voucher dapat ditumpuk jika memang ada voucher lain yang tersedia.",
+];
+
 final List<EventItemModel> eventDummies = [
   EventItemModel(
     id: "1",

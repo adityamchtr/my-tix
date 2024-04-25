@@ -553,6 +553,7 @@ class TicketChildItemWidget extends StatelessWidget {
                           title: ticketChildItemModel.status ? "Beli" : "Habis",
                           textStyle: const TextStyle(),
                           onPressed: ticketChildItemModel.status ? () {
+                            ticketChildItemController.ticketChildItem.qty = 1;
                             ticketChildItemController.showQty.value = true;
                           } : null,
                         );

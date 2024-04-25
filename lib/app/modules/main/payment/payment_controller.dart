@@ -10,6 +10,7 @@ class PaymentController extends GetxController {
   double totalPrice = 0.0;
 
   var childSelected = Rxn<PaymentChildItemModel>();
+  var isUsedVoucher = false.obs;
 
   @override
   void onInit() {
@@ -53,14 +54,14 @@ class PaymentVoucherController extends GetxController {
 
   final TextEditingController searchTextController = TextEditingController();
 
-  var isCopied = false.obs;
+  var isUsedVoucher = false.obs;
 
   @override
   void onInit() {
     super.onInit();
 
     searchTextController.addListener(() {
-      isCopied.value = searchTextController.text.isNotEmpty;
+      isUsedVoucher.value = searchTextController.text.isNotEmpty;
     });
   }
 
