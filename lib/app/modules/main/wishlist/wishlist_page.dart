@@ -6,15 +6,15 @@ import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/modules/main/event/event_model.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
-import 'package:mytix/app/modules/main/watchlist/watchlist_controller.dart';
+import 'package:mytix/app/modules/main/wishlist/wishlist_controller.dart';
 
-class WatchlistPage extends StatelessWidget {
-  const WatchlistPage({super.key});
+class WishlistPage extends StatelessWidget {
+  const WishlistPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final WatchlistController watchlistController = Get.put(WatchlistController());
+    final WishlistController wishlistController = Get.put(WishlistController());
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +26,7 @@ class WatchlistPage extends StatelessWidget {
         systemOverlayStyle: systemUiOverlayStyle(theme),
       ),
       body: Obx(() {
-        if (watchlistController.watchlistItems.isEmpty) {
+        if (wishlistController.wishlistItems.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -69,9 +69,9 @@ class WatchlistPage extends StatelessWidget {
           padding: const EdgeInsets.only(
             top: AppValues.padding
           ),
-          itemCount: watchlistController.watchlistItems.length,
+          itemCount: wishlistController.wishlistItems.length,
           itemBuilder: (context, index) {
-            EventItemModel eventItem = watchlistController.watchlistItems[index];
+            EventItemModel eventItem = wishlistController.wishlistItems[index];
             return EventItemWidget(
               eventItem: eventItem,
               showBadge: false,

@@ -17,7 +17,7 @@ import 'package:mytix/app/modules/main/event/event_model.dart';
 import 'package:mytix/app/modules/main/event/event_page.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
 import 'package:mytix/app/modules/main/notication/notification_page.dart';
-import 'package:mytix/app/modules/main/watchlist/watchlist_controller.dart';
+import 'package:mytix/app/modules/main/wishlist/wishlist_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -559,11 +559,11 @@ class MenuItemWidget extends StatelessWidget {
                             onPressed: () {
                               eventItemController.isLike.value = !eventItemController.isLike.value;
 
-                              if (Get.isRegistered<WatchlistController>()) {
+                              if (Get.isRegistered<WishlistController>()) {
                                 if (eventItemController.isLike.value) {
-                                  WatchlistController.to.watchlistItems.add(eventItem);
+                                  WishlistController.to.wishlistItems.add(eventItem);
                                 } else {
-                                  WatchlistController.to.watchlistItems.remove(eventItem);
+                                  WishlistController.to.wishlistItems.remove(eventItem);
                                 }
                               }
                             },

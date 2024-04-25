@@ -2,16 +2,16 @@ import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/modules/main/event/event_model.dart';
 
-class WatchlistController extends GetxController {
+class WishlistController extends GetxController {
 
-  static WatchlistController get to => Get.find();
+  static WishlistController get to => Get.find();
 
-  var watchlistItems = <EventItemModel>[].obs;
+  var wishlistItems = <EventItemModel>[].obs;
 
   @override
   void onInit() {
     super.onInit();
 
-    watchlistItems.addAll(eventDummies);
+    wishlistItems.addAll(eventDummies);
   }
 }

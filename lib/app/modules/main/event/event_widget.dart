@@ -10,7 +10,7 @@ import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/main/event/event_controller.dart';
 import 'package:mytix/app/modules/main/event/event_model.dart';
 import 'package:mytix/app/modules/main/event/event_page.dart';
-import 'package:mytix/app/modules/main/watchlist/watchlist_controller.dart';
+import 'package:mytix/app/modules/main/wishlist/wishlist_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class EventItemWidget extends StatelessWidget {
@@ -194,11 +194,11 @@ class EventItemWidget extends StatelessWidget {
                                 onPressed: () {
                                   eventItemController.isLike.value = !eventItemController.isLike.value;
 
-                                  if (Get.isRegistered<WatchlistController>()) {
+                                  if (Get.isRegistered<WishlistController>()) {
                                     if (eventItemController.isLike.value) {
-                                      WatchlistController.to.watchlistItems.add(eventItem);
+                                      WishlistController.to.wishlistItems.add(eventItem);
                                     } else {
-                                      WatchlistController.to.watchlistItems.remove(eventItem);
+                                      WishlistController.to.wishlistItems.remove(eventItem);
                                     }
                                   }
                                 },
