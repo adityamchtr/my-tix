@@ -66,3 +66,15 @@ class PaymentVoucherController extends GetxController {
   }
 
 }
+
+class PaymentDetailController extends GetxController {
+
+  String statusPayment = "waiting";
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    statusPayment = Get.arguments ?? "waiting";
+  }
+}

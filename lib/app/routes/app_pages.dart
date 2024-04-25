@@ -9,10 +9,13 @@ import 'package:mytix/app/modules/main/event/event_page.dart';
 import 'package:mytix/app/modules/main/event/event_review_page.dart';
 import 'package:mytix/app/modules/main/main_page.dart';
 import 'package:mytix/app/modules/main/notication/notification_page.dart';
+import 'package:mytix/app/modules/main/payment/payment_complete_page.dart';
+import 'package:mytix/app/modules/main/payment/payment_detail_page.dart';
 import 'package:mytix/app/modules/main/payment/payment_method_page.dart';
 import 'package:mytix/app/modules/main/payment/payment_page.dart';
 import 'package:mytix/app/modules/main/payment/payment_voucher_page.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_checkout_page.dart';
+import 'package:mytix/app/modules/main/transaction/transaction_page.dart';
 
 class AppPages {
 
@@ -72,6 +75,18 @@ class AppPages {
     GetPage(
       name: PaymentVoucherPage.routeName,
       page: () => const PaymentVoucherPage(),
+    ),
+    GetPage(
+      name: PaymentCompletePage.routeName,
+      page: () => const PaymentCompletePage(),
+    ),
+    GetPage(
+      name: PaymentDetailPage.routeName,
+      page: () => const PaymentDetailPage(),
+    ),
+    GetPage(
+      name: TransactionPage.routeName,
+      page: () => const TransactionPage(),
     ),
   ];
 }

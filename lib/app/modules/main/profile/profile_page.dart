@@ -6,6 +6,7 @@ import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/main/profile/profile_widget.dart';
+import 'package:mytix/app/modules/main/transaction/transaction_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -17,7 +18,9 @@ class ProfilePage extends StatelessWidget {
     final List<Map<String, dynamic>> menuList = [
       {"icon": icProfileAccount, "title": "Informasi Akun", "action": () {}},
       {"icon": icProfilePassword, "title": "Ubah Kata Sandi", "action": () {}},
-      {"icon": icProfileTransaction, "title": "Lihat Transaksi", "action": () {}},
+      {"icon": icProfileTransaction, "title": "Lihat Transaksi", "action": () {
+        Get.toNamed(TransactionPage.routeName);
+      }},
       {"icon": icProfileTicket, "title": "Lihat Tiket", "action": () {}},
       {"icon": icProfileAbout, "title": "Tentang Kami", "action": () {}},
       {"icon": icProfileContact, "title": "Kontak Kami", "action": () {}},

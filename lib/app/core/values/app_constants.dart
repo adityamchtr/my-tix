@@ -35,6 +35,7 @@ const icVoucher = "assets/icons/voucher.svg";
 const icRadioOff = "assets/icons/radio_off.svg";
 const icRadioOn = "assets/icons/radio_on.svg";
 const icInfo = "assets/icons/info.svg";
+const icCopy = "assets/icons/copy.svg";
 
 //Images
 const imBoarding1 = "assets/images/boarding1.png";
@@ -64,6 +65,7 @@ const imPaymentShopeepay = "assets/images/payment_shopeepay.png";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";
+const loPaymentComplete = "assets/lottie/payment_complete.json";
 
 const ticketDummies = {
   "data": [

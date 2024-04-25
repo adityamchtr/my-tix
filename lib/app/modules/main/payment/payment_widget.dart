@@ -258,7 +258,7 @@ class PaymentLabelWidget extends StatelessWidget {
   });
 
   final String title;
-  final double value;
+  final dynamic value;
   final bool isTotal;
   final bool isDiscount;
 
@@ -281,7 +281,7 @@ class PaymentLabelWidget extends StatelessWidget {
             ),
           ),
 
-          Text(convertToIdr(value, showSymbol: true),
+          Text(value is String ? value : convertToIdr(value, showSymbol: true),
             style: TextStyle(
               color: isDiscount ? AppColors.colorRed : null,
               fontSize: 16.0,
