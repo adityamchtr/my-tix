@@ -40,7 +40,7 @@ class PaymentDetailPage extends StatelessWidget {
       if (fromList) {
         Get.back();
       } else {
-        Get.offAllNamed(TransactionPage.routeName,
+        Get.toNamed(TransactionPage.routeName,
           arguments: "oke"
         );
       }

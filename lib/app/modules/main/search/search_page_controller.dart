@@ -15,11 +15,4 @@ class SearchPageController extends GetxController with GetSingleTickerProviderSt
 
     tabController = TabController(length: 2, vsync: this);
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-
-    tabController.dispose();
-  }
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/search_widget.dart';
+import 'package:mytix/app/modules/main/main_controller.dart';
 import 'package:mytix/app/modules/main/main_page.dart';
 import 'package:mytix/app/modules/main/transaction/transaction_widget.dart';
 
@@ -18,6 +19,7 @@ class TransactionPage extends StatelessWidget {
 
     void goto() async {
       if (isFromBooking) {
+        await Get.delete<MainController>();
         Get.offAllNamed(MainPage.routeName);
       } else {
         Get.back();
