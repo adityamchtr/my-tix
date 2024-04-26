@@ -481,6 +481,8 @@ class MenuItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(eventItem.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold
@@ -492,6 +494,8 @@ class MenuItemWidget extends StatelessWidget {
                             top: AppValues.halfPadding
                           ),
                           child: RichText(
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             text: TextSpan(
                               style: TextStyle(
                                 color: theme.disabledColor,
