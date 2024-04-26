@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
+import 'package:mytix/app/modules/main/event/event_model.dart';
 
 class EventController extends GetxController {
 
   var isLoading = true.obs;
-  bool isEnded = false;
+  late EventItemModel eventItem;
 
   @override
   void onInit() {
     super.onInit();
 
-    isEnded = Get.arguments ?? false;
+    eventItem = Get.arguments ?? false;
 
     fetchData();
   }

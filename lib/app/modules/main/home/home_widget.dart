@@ -354,7 +354,9 @@ class MenuItemWidget extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.toNamed(EventPage.routeName);
+          Get.toNamed(EventPage.routeName,
+            arguments: eventItem
+          );
         },
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppValues.radius),

@@ -49,7 +49,7 @@ class EventItemWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap ?? () {
           Get.toNamed(EventPage.routeName,
-            arguments: eventItem.isEnded
+            arguments: eventItem
           );
         },
         borderRadius: BorderRadius.circular(AppValues.smallRadius),

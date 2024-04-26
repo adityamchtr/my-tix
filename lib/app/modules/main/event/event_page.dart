@@ -14,6 +14,7 @@ import 'package:mytix/app/modules/main/event/event_controller.dart';
 import 'package:mytix/app/modules/main/event/event_review_page.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_checkout_page.dart';
+import 'package:mytix/app/modules/main/wishlist/wishlist_controller.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,8 +28,11 @@ class EventPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final EventController eventController = Get.put(EventController());
-
-    bool isLike = false;
+    final EventItemController eventItemController = Get.put(EventItemController(
+      isLiked: eventController.eventItem.isLiked
+    ),
+      tag: eventController.eventItem.id
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +70,7 @@ class EventPage extends StatelessWidget {
                       ),
                     ),
 
-                    if (eventController.isEnded) Skeleton.ignore(
+                    if (eventController.eventItem.isEnded) Skeleton.ignore(
                       child: Container(
                         width: double.infinity,
                         height: 200.0,
@@ -77,7 +81,7 @@ class EventPage extends StatelessWidget {
                       ),
                     ),
 
-                    if (eventController.isEnded) Skeleton.ignore(
+                    if (eventController.eventItem.isEnded) Skeleton.ignore(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(AppValues.radius - AppValues.halfPadding),
                         child: ClipRect(
@@ -143,24 +147,28 @@ class EventPage extends StatelessWidget {
                       },
                     ),
 
-                    if (SessionManager.getAccessToken() != null && !eventController.isEnded) StatefulBuilder(
-                      builder: (context, setState) {
-                        return IconButton(
-                          icon: SvgPicture.asset(isLike ? icLiked : icLike),
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(
+                    if (SessionManager.getAccessToken() != null && !eventController.eventItem.isEnded) Obx(() {
+                      return IconButton(
+                        icon: SvgPicture.asset(eventItemController.isLike.value ? icLiked : icLike),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(
                             minHeight: 40.0,
                             minWidth: 40.0
-                          ),
-                          splashRadius: AppValues.splashRadius,
-                          onPressed: () {
-                            setState(() {
-                              isLike = !isLike;
-                            });
-                          },
-                        );
-                      }
-                    )
+                        ),
+                        splashRadius: AppValues.splashRadius,
+                        onPressed: () {
+                          eventItemController.isLike.value = !eventItemController.isLike.value;
+
+                          if (Get.isRegistered<WishlistController>()) {
+                            if (eventItemController.isLike.value) {
+                              WishlistController.to.wishlistItems.add(eventController.eventItem);
+                            } else {
+                              WishlistController.to.wishlistItems.remove(eventController.eventItem);
+                            }
+                          }
+                        },
+                      );
+                    })
                   ],
                 ),
               ),
@@ -311,14 +319,13 @@ class EventPage extends StatelessWidget {
                   )
                 )
               ),
-
             ],
           );
         }),
       ),
       bottomNavigationBar: Obx(() {
 
-        if (eventController.isEnded) {
+        if (eventController.eventItem.isEnded) {
           return Skeletonizer(
             enabled: eventController.isLoading.value,
             effect: shimmerEffect(),
