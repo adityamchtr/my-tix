@@ -568,6 +568,10 @@ class MenuItemWidget extends StatelessWidget {
                               if (Get.isRegistered<WishlistController>()) {
                                 if (eventItemController.isLike.value) {
                                   WishlistController.to.wishlistItems.add(eventItem);
+                                  showSnackBar(
+                                    title: "Berhasil",
+                                    message: "Event berhasil ditambahkan ke wishlist"
+                                  );
                                 } else {
                                   WishlistController.to.wishlistItems.remove(eventItem);
                                 }

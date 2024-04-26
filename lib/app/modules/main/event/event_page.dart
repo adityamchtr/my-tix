@@ -152,8 +152,8 @@ class EventPage extends StatelessWidget {
                         icon: SvgPicture.asset(eventItemController.isLike.value ? icLiked : icLike),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(
-                            minHeight: 40.0,
-                            minWidth: 40.0
+                          minHeight: 40.0,
+                          minWidth: 40.0
                         ),
                         splashRadius: AppValues.splashRadius,
                         onPressed: () {
@@ -162,6 +162,10 @@ class EventPage extends StatelessWidget {
                           if (Get.isRegistered<WishlistController>()) {
                             if (eventItemController.isLike.value) {
                               WishlistController.to.wishlistItems.add(eventController.eventItem);
+                              showSnackBar(
+                                title: "Berhasil",
+                                message: "Event berhasil ditambahkan ke wishlist"
+                              );
                             } else {
                               WishlistController.to.wishlistItems.remove(eventController.eventItem);
                             }

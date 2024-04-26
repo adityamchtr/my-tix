@@ -205,6 +205,11 @@ class EventItemWidget extends StatelessWidget {
                                     if (!eventItemController.isLike.value) {
                                       WishlistController.to.wishlistItems.add(eventItem);
                                       eventItemController.isLike.value = !eventItemController.isLike.value;
+
+                                      showSnackBar(
+                                        title: "Berhasil",
+                                        message: "Event berhasil ditambahkan ke wishlist"
+                                      );
                                     } else {
                                       //From wishlist
                                       if (fromWishlist) {
