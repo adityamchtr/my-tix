@@ -31,6 +31,11 @@ class PaymentPage extends StatelessWidget {
       });
     }
 
+    double discount = 15000;
+    double fee = 2500;
+    double adminFee = 0;
+    int qty = 0;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -158,6 +163,9 @@ class PaymentPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: paymentController.ticket.map((e) {
+                            qty += e.qty;
+                            adminFee = qty * fee;
+
                             return Text("${e.name} (x${e.qty})",
                               textAlign: TextAlign.end,
                               style: const TextStyle(
@@ -186,16 +194,16 @@ class PaymentPage extends StatelessWidget {
                   ),
 
                   //Biaya Admin
-                  const PaymentLabelWidget(
+                  PaymentLabelWidget(
                     title: "Biaya Admin",
-                    value: 5000,
+                    value: adminFee,
                   ),
 
                   //Voucher Potongan
                   Obx(() {
                     return PaymentLabelWidget(
                       title: "Voucher Potongan",
-                      value: paymentController.isUsedVoucher.value ? 15000 : 0,
+                      value: paymentController.isUsedVoucher.value ? discount : 0,
                     );
                   }),
 
@@ -215,7 +223,7 @@ class PaymentPage extends StatelessWidget {
                         //Total before discount
                         if (paymentController.isUsedVoucher.value) PaymentLabelWidget(
                           title: "Total Bayar",
-                          value: paymentController.totalPrice + 5000,
+                          value: paymentController.totalPrice + adminFee,
                           isTotal: true,
                           isDiscount: true,
                         ),
@@ -223,7 +231,7 @@ class PaymentPage extends StatelessWidget {
                         //Total after discount
                         PaymentLabelWidget(
                           title: paymentController.isUsedVoucher.value ? "" : "Total Bayar",
-                          value: paymentController.totalPrice + 5000 - (paymentController.isUsedVoucher.value ? 15000 : 0),
+                          value: paymentController.totalPrice + adminFee - (paymentController.isUsedVoucher.value ? discount : 0),
                           isTotal: true,
                         ),
                       ],
@@ -233,8 +241,6 @@ class PaymentPage extends StatelessWidget {
                 ],
               ),
             )
-
-
           ],
         ),
       ),
