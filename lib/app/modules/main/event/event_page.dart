@@ -210,9 +210,10 @@ class EventPage extends StatelessWidget {
                       vertical: AppValues.halfPadding,
                       horizontal: AppValues.padding
                     ),
-                    leading: const CircleAvatar(
+                    leading: CircleAvatar(
                       radius: 25,
-                      foregroundImage: AssetImage(imEventMaker),
+                      backgroundColor: theme.scaffoldBackgroundColor,
+                      foregroundImage: const AssetImage(imEventMaker),
                     ),
                     title: Column(
                       children: [

@@ -36,6 +36,7 @@ const icRadioOff = "assets/icons/radio_off.svg";
 const icRadioOn = "assets/icons/radio_on.svg";
 const icInfo = "assets/icons/info.svg";
 const icCopy = "assets/icons/copy.svg";
+const icDownload = "assets/icons/download.svg";
 
 //Images
 const imBoarding1 = "assets/images/boarding1.png";
@@ -62,6 +63,8 @@ const imPaymentMandiri = "assets/images/payment_mandiri.png";
 const imPaymentOvo = "assets/images/payment_ovo.png";
 const imPaymentQris = "assets/images/payment_qris.png";
 const imPaymentShopeepay = "assets/images/payment_shopeepay.png";
+const imStampSuccess = "assets/images/stamp_success.png";
+const imStampFailed = "assets/images/stamp_failed.png";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";

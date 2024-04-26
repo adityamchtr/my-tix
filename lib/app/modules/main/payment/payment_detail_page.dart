@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
@@ -40,7 +42,9 @@ class PaymentDetailPage extends StatelessWidget {
       if (fromList) {
         Get.back();
       } else {
-        Get.offAllNamed(MainPage.routeName);
+        Get.offNamedUntil(MainPage.routeName,
+          ModalRoute.withName(MainPage.routeName),
+        );
         Get.toNamed(TransactionPage.routeName);
       }
     }
@@ -71,251 +75,274 @@ class PaymentDetailPage extends StatelessWidget {
               color: theme.colorScheme.background,
               borderRadius: BorderRadius.circular(AppValues.smallRadius)
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Stack(
               children: [
 
-                //Title
-                Text(isSuccess ? "Pembelian Berhasil!" : "Menunggu Pembayaran",
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600
-                  )
-                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                //Desc
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(AppValues.padding),
-                  margin: const EdgeInsets.symmetric(
-                    vertical: AppValues.padding
-                  ),
-                  decoration: BoxDecoration(
-                    color: isSuccess ? const Color(0xFFFBFEFA) : const Color(0xFFFBDFDF),
-                    borderRadius: BorderRadius.circular(AppValues.smallRadius),
-                    border: Border.all(
-                      color: isSuccess ? AppColors.colorGreen : AppColors.colorRed
-                    )
-                  ),
-                  child: Text(desc,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: isSuccess ? AppColors.colorGreen : AppColors.colorRed,
-                      fontWeight: FontWeight.w500
-                    )
-                  ),
-                ),
-
-                //Logo
-                Image.asset(imLogo,
-                  height: 40.0,
-                  width: 100.0,
-                ),
-
-                //Label Detail Pembayaran
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppValues.padding
-                  ),
-                  child: Text("Detail Pemesanan",
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w600
-                    ),
-                  ),
-                ),
-
-                //No Pesanan
-                const PaymentLabelWidget(
-                  title: "No Pesanan",
-                  value: "240104YOIVTYDV",
-                ),
-
-                //No Invoice
-                const PaymentLabelWidget(
-                  title: "No Invoice",
-                  value: "T2189913013458FKPGS",
-                ),
-
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppValues.padding
-                  ),
-                  child: DashLineWidget(),
-                ),
-
-                //Metode Pembayaran
-                const Text("Metode Pembayaran",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w500
-                  )
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppValues.halfPadding,
-                    bottom: AppValues.padding
-                  ),
-                  child: Image.asset(imPaymentMandiri,
-                    width: 60.0,
-                  ),
-                ),
-
-                //Metode Pembayaran
-                const Text("Kode Pembayaran",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600
-                  )
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: AppValues.buttonVerticalPadding
-                  ),
-                  child: Row(
-                    children: [
-                      const Text("8903910117976096",
-                        style: TextStyle(
-                          color: AppColors.colorRed,
-                          fontSize: 18.0,
+                    //Title
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(isSuccess ? "Pembelian Berhasil!" : "Menunggu Pembayaran",
+                        style: const TextStyle(
+                          fontSize: 20.0,
                           fontWeight: FontWeight.w600
                         )
                       ),
+                    ),
 
-                      const SizedBox(
-                        width: AppValues.halfPadding,
+                    //Desc
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(AppValues.padding),
+                      margin: const EdgeInsets.symmetric(
+                        vertical: AppValues.padding
                       ),
+                      decoration: BoxDecoration(
+                        color: isSuccess ? const Color(0xFFFBFEFA) : const Color(0xFFFBDFDF),
+                        borderRadius: BorderRadius.circular(AppValues.smallRadius),
+                        border: Border.all(
+                          color: isSuccess ? AppColors.colorGreen : AppColors.colorRed
+                        )
+                      ),
+                      child: Text(desc,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: isSuccess ? AppColors.colorGreen : AppColors.colorRed,
+                          fontWeight: FontWeight.w500
+                        )
+                      ),
+                    ),
 
-                      InkWell(
-                        onTap: () {
+                    //Logo
+                    Image.asset(imLogo,
+                      height: 40.0,
+                      width: 100.0,
+                    ),
 
-                        },
-                        borderRadius: BorderRadius.circular(AppValues.extraLargeRadius),
-                        child: Ink(
-                          padding: const EdgeInsets.all(AppValues.extraSmallPadding),
-                          decoration: BoxDecoration(
-                            color: AppColors.colorGrey,
-                            borderRadius: BorderRadius.circular(AppValues.extraLargeRadius)
-                          ),
-                          child: SvgPicture.asset(icCopy),
+                    //Label Detail Pembayaran
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppValues.padding
+                      ),
+                      child: Text("Detail Pemesanan",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600
                         ),
-                      )
-                    ],
-                  ),
-                ),
+                      ),
+                    ),
 
-                //Bagaimana Cara Bayar
-                Row(
-                  children: [
-                    const Text("Bagaimana Cara Bayar? ",
+                    //No Pesanan
+                    const PaymentLabelWidget(
+                      title: "No Pesanan",
+                      value: "240104YOIVTYDV",
+                    ),
+
+                    //No Invoice
+                    const PaymentLabelWidget(
+                      title: "No Invoice",
+                      value: "T2189913013458FKPGS",
+                    ),
+
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppValues.padding
+                      ),
+                      child: DashLineWidget(),
+                    ),
+
+                    //Metode Pembayaran
+                    const Text("Metode Pembayaran",
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.w500
                       )
                     ),
-                    InkWell(
-                      onTap: () {
 
-                      },
-                      borderRadius: BorderRadius.circular(AppValues.extraLargeRadius),
-                      child: const Text("Klik Disini!",
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: AppValues.halfPadding,
+                      ),
+                      child: Image.asset(imPaymentMandiri,
+                        width: 60.0,
+                      ),
+                    ),
+
+                    //Kode Pembayaran
+                    if (!isSuccess) const Padding(
+                      padding: EdgeInsets.only(
+                        top: AppValues.padding
+                      ),
+                      child: Text("Kode Pembayaran",
                         style: TextStyle(
                           fontSize: 18.0,
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.underline
+                          fontWeight: FontWeight.w600
                         )
                       ),
-                    )
+                    ),
+
+                    if (!isSuccess) Padding(
+                      padding: const EdgeInsets.only(
+                        top: AppValues.buttonVerticalPadding
+                      ),
+                      child: Row(
+                        children: [
+                          const Text("8903910117976096",
+                            style: TextStyle(
+                              color: AppColors.colorRed,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600
+                            )
+                          ),
+
+                          const SizedBox(
+                            width: AppValues.halfPadding,
+                          ),
+
+                          InkWell(
+                            onTap: () {
+
+                            },
+                            borderRadius: BorderRadius.circular(AppValues.extraLargeRadius),
+                            child: Ink(
+                              padding: const EdgeInsets.all(AppValues.extraSmallPadding),
+                              decoration: BoxDecoration(
+                                color: AppColors.colorGrey,
+                                borderRadius: BorderRadius.circular(AppValues.extraLargeRadius)
+                              ),
+                              child: SvgPicture.asset(icCopy),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+
+                    //Bagaimana Cara Bayar
+                    if (paymentDetailController.statusPayment == "waiting") Padding(
+                      padding: const EdgeInsets.only(
+                        top: AppValues.buttonVerticalPadding
+                      ),
+                      child: Row(
+                        children: [
+                          const Text("Bagaimana Cara Bayar? ",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w500
+                            )
+                          ),
+                          InkWell(
+                            onTap: () {
+
+                            },
+                            borderRadius: BorderRadius.circular(AppValues.extraLargeRadius),
+                            child: const Text("Klik Disini!",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline
+                              )
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+
+                    //Divider
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppValues.padding
+                      ),
+                      child: DashLineWidget(),
+                    ),
+
+                    //Label Detail Pembayaran
+                    const Text("Detail Pembayaran",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
+
+                    //Banner
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppValues.padding
+                      ),
+                      child: Image.asset(imBannerTicket),
+                    ),
+
+                    //Nama Acara
+                    const PaymentLabelWidget(
+                      title: "Nama Acara",
+                      value: "Karawang Anicosmic 2024",
+                      isTotal: true,
+                    ),
+
+                    //Nama Acara
+                    const PaymentLabelWidget(
+                      title: "Nama Tiket",
+                      value: "Early Bird - Day 1 (X1)",
+                      isTotal: true,
+                    ),
+
+                    //Divider
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppValues.padding
+                      ),
+                      child: DashLineWidget(),
+                    ),
+
+                    //Total Pembelian
+                    const PaymentLabelWidget(
+                      title: "Total Pembelian",
+                      value: 45000,
+                    ),
+
+                    //Biaya Admin
+                    const PaymentLabelWidget(
+                      title: "Biaya Admin",
+                      value: 5000,
+                    ),
+
+                    //Voucher Potongan
+                    const PaymentLabelWidget(
+                      title: "Voucher Potongan",
+                      value: 15000,
+                    ),
+
+                    //Divider
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppValues.padding
+                      ),
+                      child: DashLineWidget(),
+                    ),
+
+                    //Total before discount
+                    const PaymentLabelWidget(
+                      title: "Total Bayar",
+                      value: 50000,
+                      isTotal: true,
+                      isDiscount: true,
+                    ),
+
+                    //Total after discount
+                    const PaymentLabelWidget(
+                      title: "",
+                      value: 35000,
+                      isTotal: true,
+                    ),
                   ],
                 ),
 
-                //Divider
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppValues.padding
-                  ),
-                  child: DashLineWidget(),
-                ),
-
-                //Label Detail Pembayaran
-                const Text("Detail Pembayaran",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600
-                  ),
-                ),
-
-                //Banner
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: AppValues.padding
-                  ),
-                  child: Image.asset(imBannerTicket),
-                ),
-
-                //Nama Acara
-                const PaymentLabelWidget(
-                  title: "Nama Acara",
-                  value: "Karawang Anicosmic 2024",
-                  isTotal: true,
-                ),
-
-                //Nama Acara
-                const PaymentLabelWidget(
-                  title: "Nama Tiket",
-                  value: "Early Bird - Day 1 (X1)",
-                  isTotal: true,
-                ),
-
-                //Divider
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppValues.padding
-                  ),
-                  child: DashLineWidget(),
-                ),
-
-                //Total Pembelian
-                const PaymentLabelWidget(
-                  title: "Total Pembelian",
-                  value: 45000,
-                ),
-
-                //Biaya Admin
-                const PaymentLabelWidget(
-                  title: "Biaya Admin",
-                  value: 5000,
-                ),
-
-                //Voucher Potongan
-                const PaymentLabelWidget(
-                  title: "Voucher Potongan",
-                  value: 15000,
-                ),
-
-                //Divider
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppValues.padding
-                  ),
-                  child: DashLineWidget(),
-                ),
-
-                //Total before discount
-                const PaymentLabelWidget(
-                  title: "Total Bayar",
-                  value: 50000,
-                  isTotal: true,
-                  isDiscount: true,
-                ),
-
-                //Total after discount
-                const PaymentLabelWidget(
-                  title: "",
-                  value: 35000,
-                  isTotal: true,
+                if (paymentDetailController.statusPayment != "waiting") Positioned(
+                  top: 110.0,
+                  right: 0.0,
+                  child: Image.asset(isSuccess ? imStampSuccess : imStampFailed)
                 ),
               ],
             ),
@@ -327,10 +354,33 @@ class PaymentDetailPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
 
+              if (isSuccess) Padding(
+                padding: const EdgeInsets.only(
+                  bottom: AppValues.halfPadding
+                ),
+                child: ButtonPrimaryWidget(
+                  height: 40.0,
+                  backgroundColor: AppColors.colorRed,
+                  title: "Download Tiket PDF",
+                  icon: SvgPicture.asset(icDownload),
+                  textStyle: const TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500
+                  ),
+                  onPressed: () {
+
+                  },
+                ),
+              ),
+
               ButtonPrimaryWidget(
                 height: 40.0,
                 title: "Lihat Transaksi",
                 backgroundColor: AppColors.colorGreen,
+                textStyle: const TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500
+                ),
                 onPressed: () {
                   goto();
                 },
