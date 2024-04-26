@@ -126,10 +126,10 @@ class EventPage extends StatelessWidget {
                 child: Row(
                   children: [
 
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        "Karawang Anicosmic 2024",
-                        style: TextStyle(
+                        eventController.eventItem.title,
+                        style: const TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.w600
                         ),

@@ -471,12 +471,12 @@ class TicketChildItemWidget extends StatelessWidget {
 
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                              vertical: AppValues.halfPadding
+                              vertical: AppValues.padding
                             ),
                             child: Text("Kamu akan mendapatkan hak ekslusif tiket berupa:",
                               style: TextStyle(
                                 color: theme.disabledColor,
-                                fontSize: 16.0,
+                                fontSize: 18.0,
                               ),
                             ),
                           ),
@@ -502,7 +502,7 @@ class TicketChildItemWidget extends StatelessWidget {
                           ),
 
                           const SizedBox(
-                            height: AppValues.halfPadding,
+                            height: AppValues.padding,
                           ),
 
                           Row(
@@ -544,10 +544,14 @@ class TicketChildItemWidget extends StatelessWidget {
             ),
             child: Text(ticketChildItemModel.name,
               style: const TextStyle(
-                fontSize: 16.0,
+                fontSize: 18.0,
                 fontWeight: FontWeight.w600
               ),
             ),
+          ),
+
+          const SizedBox(
+            height: AppValues.halfPadding,
           ),
 
           //Date
@@ -557,6 +561,7 @@ class TicketChildItemWidget extends StatelessWidget {
             ),
             child: Text(ticketChildItemModel.date,
               style: TextStyle(
+                fontSize: 18.0,
                 color: theme.disabledColor
               ),
             ),
@@ -598,7 +603,7 @@ class TicketChildItemWidget extends StatelessWidget {
 
                       if (ticketChildItemModel.status) const Text("Max 5 tiket",
                         style: TextStyle(
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.w500
                         ),
                       ),

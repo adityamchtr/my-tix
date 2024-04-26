@@ -157,7 +157,7 @@ class EventItemWidget extends StatelessWidget {
                             top: AppValues.halfPadding
                           ),
                           child: RichText(
-                            maxLines: 2,
+                            maxLines: 4,
                             overflow: TextOverflow.ellipsis,
                             text: TextSpan(
                               style: TextStyle(
@@ -393,7 +393,7 @@ class EventVenueWidget extends StatelessWidget {
 
                 Text(title,
                   style: const TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -404,6 +404,7 @@ class EventVenueWidget extends StatelessWidget {
 
                 Text(desc,
                   style: TextStyle(
+                    fontSize: 14.0,
                     color: theme.disabledColor
                   ),
                 )
