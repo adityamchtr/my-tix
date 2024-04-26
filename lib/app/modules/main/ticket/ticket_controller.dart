@@ -103,9 +103,9 @@ class TicketChildItemController extends GetxController {
 
 class TicketDetailController extends GetxController {
 
-  GlobalKey globalKey = GlobalKey();
-
-  final PageController pageController = PageController();
+  final PageController pageController = PageController(
+    viewportFraction: 0.9,
+  );
   var page = 0.obs;
   var isSaving = false.obs;
   bool isExchanged = false;
@@ -124,7 +124,7 @@ class TicketDetailController extends GetxController {
     pageController.dispose();
   }
 
-  saveImageToGallery() async {
+  saveImageToGallery(GlobalKey globalKey) async {
     isSaving.value = true;
     RenderRepaintBoundary boundary = globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
 
@@ -154,4 +154,9 @@ class TicketDetailController extends GetxController {
     );
     isSaving.value = false;
   }
+}
+
+class TicketDetailItemController extends GetxController {
+
+  GlobalKey globalKey = GlobalKey();
 }

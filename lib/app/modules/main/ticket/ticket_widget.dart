@@ -12,6 +12,7 @@ import 'package:mytix/app/core/widgets/counter_widget.dart';
 import 'package:mytix/app/core/widgets/dash_line_widget.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/modules/main/event/event_review_page.dart';
+import 'package:mytix/app/modules/main/payment/payment_widget.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_controller.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_detail_page.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_model.dart';
@@ -233,6 +234,213 @@ class TicketItemWidget extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class TicketDetailItemWidget extends StatelessWidget {
+  const TicketDetailItemWidget({super.key,
+    required this.index
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final TicketDetailController ticketDetailController = Get.find();
+    final TicketDetailItemController ticketDetailItemController = Get.put(TicketDetailItemController(),
+      tag: index.toString()
+    );
+
+    return RepaintBoundary(
+      key: ticketDetailItemController.globalKey,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppValues.padding
+        ),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.background,
+          borderRadius: BorderRadius.circular(AppValues.smallRadius)
+        ),
+        child: Column(
+          children: [
+
+            //Logo
+            Image.asset(imLogo,
+              height: 50.0,
+              width: 125.0,
+            ),
+
+            //Title
+            const Padding(
+              padding: EdgeInsets.only(
+                top: AppValues.padding,
+                bottom: AppValues.extraSmallPadding
+              ),
+              child: Text("Scan QrCode",
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.w600
+                )
+              ),
+            ),
+
+            //Subtitle
+            Text("Silahkan Pindai Qrcode ini untuk masuk",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: theme.disabledColor
+              )
+            ),
+
+            //QR code
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppValues.padding
+              ),
+              child: SizedBox.square(
+                dimension: 200.0,
+                child: Hero(
+                  tag: "ticket-$index",
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        PageController pageController = PageController(
+                          initialPage: ticketDetailController.page.value,
+                        );
+
+                        Navigator.of(context).push(fadePageRoute(
+                          TicketPreviewWidget(
+                            pageController: pageController,
+                            tag: "ticket",
+                          )
+                        )).then((value) {
+                          pageController.dispose();
+                        });
+                      },
+                      child: Image.asset(imQrCode)
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            //Indicator Ticket
+            Obx(() {
+              return Text("Tiket ${ticketDetailController.page.value+1}/2",
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600
+                )
+              );
+            }),
+
+            //Divicer
+            const DividerCutterWidget(),
+
+            //Detail 1
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppValues.padding
+              ),
+              child: Column(
+                children: [
+
+                  //Nama
+                  PaymentLabelWidget(
+                    title: "Nama Lengkap",
+                    value: "Tommy Jason",
+                  ),
+
+                  //Tipe
+                  PaymentLabelWidget(
+                    title: "Tipe Tiket",
+                    value: "Early Bird - Day 1",
+                  ),
+
+                  //Masa Berlaku
+                  PaymentLabelWidget(
+                    title: "Masa Berlaku",
+                    value: "1 Hari\n(Sabtu, 23 Januari 2023)",
+                  ),
+
+                  //No Tiket
+                  PaymentLabelWidget(
+                    title: "Masa Berlaku",
+                    value: "240104YOIVTYDV",
+                  ),
+                ],
+              ),
+            ),
+
+            //Divicer
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: AppValues.padding,
+                horizontal: AppValues.padding
+              ),
+              child: DashLineWidget(),
+            ),
+
+            //Detail 2
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppValues.padding
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  //Nama Acara
+                  const PaymentLabelWidget(
+                    title: "Nama Acara",
+                    value: "Karawang Anicosmic 2024",
+                  ),
+
+                  //Lokasi
+                  const PaymentLabelWidget(
+                    title: "Lokasi",
+                    value: "Gedung Balai Kartini,\nPurwakarta",
+                  ),
+
+                  //Status
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: AppValues.smallPadding
+                    ),
+                    child: Text("Status",
+                      style: TextStyle(
+                        color:theme.disabledColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500
+                      ),
+                    ),
+                  ),
+
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: AppValues.buttonVerticalPadding,
+                      horizontal: AppValues.padding
+                    ),
+                    decoration: BoxDecoration(
+                      color: ticketDetailController.isExchanged ? AppColors.colorGreen : const Color(0xFF797979),
+                      borderRadius: BorderRadius.circular(AppValues.smallRadius),
+                    ),
+                    child: Text(ticketDetailController.isExchanged ? "Sudah Ditukar" : "Belum Ditukar",
+                      style: const TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
