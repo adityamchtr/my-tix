@@ -82,6 +82,9 @@ class VerificationPage extends StatelessWidget {
                   if (value == "1111") return "Kode Verifikasi salah";
                   return null;
                 },
+                onChanged: (value) {
+                  verificationController.isValid.value = (value.length == 4);
+                },
                 onSubmitted: (value) {
                   verificationController.formKey.currentState!.validate();
                 },
@@ -92,14 +95,16 @@ class VerificationPage extends StatelessWidget {
             ),
           ),
 
-          ButtonPrimaryWidget(
-            title: "Lanjutkan",
-            onPressed: () {
-              if (verificationController.formKey.currentState!.validate()) {
-                Get.toNamed(VerificationCompletePage.routeName);
-              }
-            },
-          ),
+          Obx(() {
+            return ButtonPrimaryWidget(
+              title: "Lanjutkan",
+              onPressed: verificationController.isValid.value ? () {
+                if (verificationController.formKey.currentState!.validate()) {
+                  Get.toNamed(VerificationCompletePage.routeName);
+                }
+              } : null,
+            );
+          }),
 
           Padding(
             padding: const EdgeInsets.symmetric(

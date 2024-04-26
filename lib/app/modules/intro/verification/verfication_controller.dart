@@ -10,6 +10,7 @@ class VerificationController extends GetxController {
 
   Timer? _timer;
   var counterResend = 0.obs;
+  var isValid = false.obs;
 
   late String email;
 
