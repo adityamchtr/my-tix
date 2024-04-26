@@ -8,7 +8,6 @@ import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/dash_line_widget.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
-import 'package:mytix/app/modules/main/main_page.dart';
 import 'package:mytix/app/modules/main/payment/payment_complete_page.dart';
 import 'package:mytix/app/modules/main/payment/payment_controller.dart';
 import 'package:mytix/app/modules/main/payment/payment_widget.dart';
@@ -37,14 +36,13 @@ class PaymentDetailPage extends StatelessWidget {
 
     bool fromList = Get.previousRoute != PaymentCompletePage.routeName;
 
-    void goto() {
+    void goto() async {
       if (fromList) {
         Get.back();
       } else {
-        Get.offNamedUntil(MainPage.routeName,
-          ModalRoute.withName(MainPage.routeName),
+        Get.offAllNamed(TransactionPage.routeName,
+          arguments: "oke"
         );
-        Get.toNamed(TransactionPage.routeName);
       }
     }
 
