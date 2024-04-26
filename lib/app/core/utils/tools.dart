@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 String convertToIdr(dynamic number, {bool showSymbol = false, int decimalDigits = 0}) {
@@ -11,4 +12,18 @@ String convertToIdr(dynamic number, {bool showSymbol = false, int decimalDigits 
     decimalDigits: decimalDigits,
   );
   return currencyFormatter.format(number);
+}
+
+Route fadePageRoute(Widget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) {
+      return page;
+    },
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: child,
+      );
+    },
+  );
 }

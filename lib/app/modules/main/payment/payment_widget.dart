@@ -282,6 +282,7 @@ class PaymentLabelWidget extends StatelessWidget {
           ),
 
           Text(value is String ? value : convertToIdr(value, showSymbol: true),
+            textAlign: TextAlign.end,
             style: TextStyle(
               color: isDiscount ? AppColors.colorRed : null,
               fontSize: 16.0,

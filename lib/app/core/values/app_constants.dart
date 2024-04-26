@@ -65,6 +65,7 @@ const imPaymentQris = "assets/images/payment_qris.png";
 const imPaymentShopeepay = "assets/images/payment_shopeepay.png";
 const imStampSuccess = "assets/images/stamp_success.png";
 const imStampFailed = "assets/images/stamp_failed.png";
+const imQrCode = "assets/images/qr_code.png";
 
 //Lottie
 const loComplete = "assets/lottie/complete.json";

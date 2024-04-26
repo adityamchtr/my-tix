@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:mytix/app/core/values/app_colors.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:pinput/pinput.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -51,5 +53,35 @@ PinTheme pinTheme(ThemeData theme) {
 ShimmerEffect shimmerEffect() {
   return const ShimmerEffect(
     duration: Duration(milliseconds: 1000)
+  );
+}
+
+showSnackBar({required String title, required String message, bool isSuccess = true}) {
+  return Get.snackbar(title, message,
+    snackPosition: SnackPosition.BOTTOM,
+    backgroundColor: const Color(0xFF242C32),
+    colorText: Colors.white,
+    duration: const Duration(seconds: 2),
+    icon: Container(
+      padding: const EdgeInsets.all(AppValues.buttonVerticalPadding),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppValues.extraLargeRadius),
+        boxShadow: [
+          BoxShadow(
+            color: (isSuccess ? AppColors.colorGreen : AppColors.colorRed).withOpacity(0.2),
+            spreadRadius: 20.0,
+            blurRadius: 40.0,
+          ),
+        ]
+      ),
+      child: Icon(Icons.check_circle_rounded,
+        color: isSuccess ? AppColors.colorGreen : AppColors.colorRed,
+      ),
+    ),
+    margin: const EdgeInsets.only(
+      left: AppValues.padding,
+      right: AppValues.padding,
+      bottom: AppValues.padding + kBottomNavigationBarHeight
+    )
   );
 }

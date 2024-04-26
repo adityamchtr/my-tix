@@ -6,12 +6,17 @@ import 'package:get/get.dart';
 import 'package:mytix/app/core/utils/tools.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/counter_widget.dart';
 import 'package:mytix/app/core/widgets/dash_line_widget.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
+import 'package:mytix/app/modules/main/event/event_review_page.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_controller.dart';
+import 'package:mytix/app/modules/main/ticket/ticket_detail_page.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_model.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 
 class TicketListWidget extends StatelessWidget {
   const TicketListWidget({super.key,
@@ -203,7 +208,7 @@ class TicketItemWidget extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     ),
                     onPressed: () {
-
+                      Get.toNamed(EventReviewPage.routeName);
                     },
                   ),
                 ),
@@ -219,12 +224,76 @@ class TicketItemWidget extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                   onPressed: () {
-
-
+                    Get.toNamed(TicketDetailPage.routeName,
+                      arguments: isEnded
+                    );
                   },
                 ),
               )
             ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class TicketPreviewWidget extends StatelessWidget {
+  const TicketPreviewWidget({super.key,
+    required this.pageController,
+    required this.tag,
+  });
+
+  final PageController pageController;
+  final String tag;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final TicketDetailController ticketDetailController = Get.find();
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: theme.scaffoldBackgroundColor,
+        foregroundColor: theme.iconTheme.color,
+        elevation: 0.0,
+        systemOverlayStyle: systemUiOverlayStyle(theme),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PhotoViewGallery.builder(
+              pageController: pageController,
+              backgroundDecoration: BoxDecoration(
+                color: theme.scaffoldBackgroundColor
+              ),
+              onPageChanged: (value) {
+                ticketDetailController.pageController.jumpToPage(value);
+                ticketDetailController.page.value = value;
+              },
+              itemCount: 2,
+              builder: (context, index) {
+                return PhotoViewGalleryPageOptions(
+                  heroAttributes: PhotoViewHeroAttributes(tag: "$tag-$index"),
+                  initialScale: PhotoViewComputedScale.contained * 0.8,
+                  minScale: PhotoViewComputedScale.contained * 0.8,
+                  maxScale: PhotoViewComputedScale.contained,
+                  imageProvider: const AssetImage(imQrCode),
+                );
+              },
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(AppValues.padding),
+            child: Obx(() {
+              return Text("Tiket ${ticketDetailController.page.value+1}/2",
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600
+                )
+              );
+            }),
           )
         ],
       ),

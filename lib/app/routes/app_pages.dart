@@ -15,6 +15,7 @@ import 'package:mytix/app/modules/main/payment/payment_method_page.dart';
 import 'package:mytix/app/modules/main/payment/payment_page.dart';
 import 'package:mytix/app/modules/main/payment/payment_voucher_page.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_checkout_page.dart';
+import 'package:mytix/app/modules/main/ticket/ticket_detail_page.dart';
 import 'package:mytix/app/modules/main/transaction/transaction_page.dart';
 
 class AppPages {
@@ -87,6 +88,10 @@ class AppPages {
     GetPage(
       name: TransactionPage.routeName,
       page: () => const TransactionPage(),
+    ),
+    GetPage(
+      name: TicketDetailPage.routeName,
+      page: () => const TicketDetailPage(),
     ),
   ];
 }

@@ -1,6 +1,12 @@
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/modules/main/ticket/ticket_model.dart';
 
 class TicketCheckoutController extends GetxController {
@@ -92,5 +98,60 @@ class TicketChildItemController extends GetxController {
     super.onClose();
 
     counterTextController.dispose();
+  }
+}
+
+class TicketDetailController extends GetxController {
+
+  GlobalKey globalKey = GlobalKey();
+
+  final PageController pageController = PageController();
+  var page = 0.obs;
+  var isSaving = false.obs;
+  bool isExchanged = false;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    isExchanged = Get.arguments ?? false;
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+
+    pageController.dispose();
+  }
+
+  saveImageToGallery() async {
+    isSaving.value = true;
+    RenderRepaintBoundary boundary = globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+
+    ui.Image image = await boundary.toImage();
+
+    ByteData? byteData = await (image.toByteData(
+      format: ui.ImageByteFormat.png)
+    );
+
+    if (byteData != null) {
+      final result = await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
+
+      if (result["isSuccess"]) {
+        showSnackBar(
+          title: "Berhasil",
+          message: "Tiket berhasil disimpan di gallery"
+        );
+        isSaving.value = false;
+        return;
+      }
+    }
+
+    showSnackBar(
+      title: "Gagal",
+      message: "Tiket gagal disimpan di gallery",
+      isSuccess: false
+    );
+    isSaving.value = false;
   }
 }
