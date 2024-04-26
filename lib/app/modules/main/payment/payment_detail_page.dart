@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
@@ -201,8 +202,14 @@ class PaymentDetailPage extends StatelessWidget {
                           ),
 
                           InkWell(
-                            onTap: () {
-
+                            onTap: () async {
+                              await Clipboard.setData(const ClipboardData(
+                                text: "8903910117976096")
+                              );
+                              showSnackBar(
+                                title: "Berhasil",
+                                message: "Kode pembayaran berhasil disalin"
+                              );
                             },
                             borderRadius: BorderRadius.circular(AppValues.extraLargeRadius),
                             child: Ink(
