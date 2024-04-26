@@ -8,6 +8,8 @@ import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/main/event/event_widget.dart';
 import 'package:mytix/app/modules/main/home/home_controller.dart';
 import 'package:mytix/app/modules/main/home/home_widget.dart';
+import 'package:mytix/app/modules/main/main_controller.dart';
+import 'package:mytix/app/modules/main/search/search_page_controller.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatelessWidget {
@@ -90,7 +92,8 @@ class HomePage extends StatelessWidget {
               child: LabelMoreWidget(
                 label: "Pilihan Terbaik",
                 onTap: () {
-
+                  if (Get.isRegistered<MainController>()) MainController.to.selectedIndex = 1;
+                  if (Get.isRegistered<SearchPageController>()) SearchPageController.to.tabController.animateTo(0);
                 },
               ),
             ),
@@ -127,7 +130,8 @@ class HomePage extends StatelessWidget {
               child: LabelMoreWidget(
                 label: "Acara Berakhir",
                 onTap: () {
-
+                  if (Get.isRegistered<MainController>()) MainController.to.selectedIndex = 1;
+                  if (Get.isRegistered<SearchPageController>()) SearchPageController.to.tabController.animateTo(1);
                 },
               ),
             ),
