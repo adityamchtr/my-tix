@@ -7,6 +7,8 @@ import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/intro/login/login_page.dart';
+import 'package:mytix/app/modules/main/main_controller.dart';
+import 'package:mytix/app/modules/main/main_page.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   const ProfileHeaderWidget({super.key});
@@ -229,8 +231,10 @@ class DialogLogoutWidget extends StatelessWidget {
                   title: "Ya, Keluar",
                   onPressed: () async {
                     await SessionManager.removeAccessToken();
-                    Get.back();
-                    Get.offNamed(LoginPage.routeName);
+                    await Get.delete<MainController>();
+                    Get.offAllNamed(
+                      MainPage.routeName,
+                    );
                   },
                 ),
               )
