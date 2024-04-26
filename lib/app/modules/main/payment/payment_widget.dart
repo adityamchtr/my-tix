@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mytix/app/core/utils/tools.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/modules/main/payment/payment_controller.dart';
@@ -558,6 +559,10 @@ class VoucherItemWidget extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       paymentVoucherController.searchTextController.text = "KWFXSJC";
+                      showSnackBar(
+                        title: "Berhasil",
+                        message: "kode promo berhasil dipasang"
+                      );
                     },
                     child: const Text("Salin",
                       style: TextStyle(
