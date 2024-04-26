@@ -75,6 +75,7 @@ class WishlistPage extends StatelessWidget {
             return EventItemWidget(
               eventItem: eventItem,
               showBadge: false,
+              fromWishlist: true,
             );
           },
         );

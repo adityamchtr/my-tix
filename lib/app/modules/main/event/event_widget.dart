@@ -5,7 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mytix/app/core/values/app_colors.dart';
 import 'package:mytix/app/core/values/app_constants.dart';
+import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
+import 'package:mytix/app/core/widgets/dash_line_widget.dart';
+import 'package:mytix/app/core/widgets/widgets.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
 import 'package:mytix/app/modules/main/event/event_controller.dart';
 import 'package:mytix/app/modules/main/event/event_model.dart';
@@ -18,12 +21,14 @@ class EventItemWidget extends StatelessWidget {
     required this.eventItem,
     this.showBadge = true,
     this.showLike = true,
+    this.fromWishlist = false,
     this.onTap,
   });
 
   final EventItemModel eventItem;
   final bool showBadge;
   final bool showLike;
+  final bool fromWishlist;
   final GestureTapCallback? onTap;
 
   @override
@@ -195,14 +200,34 @@ class EventItemWidget extends StatelessWidget {
                                   minWidth: 40.0
                                 ),
                                 splashRadius: AppValues.splashRadius,
-                                onPressed: () {
-                                  eventItemController.isLike.value = !eventItemController.isLike.value;
-
+                                onPressed: () async {
                                   if (Get.isRegistered<WishlistController>()) {
-                                    if (eventItemController.isLike.value) {
+                                    if (!eventItemController.isLike.value) {
                                       WishlistController.to.wishlistItems.add(eventItem);
+                                      eventItemController.isLike.value = !eventItemController.isLike.value;
                                     } else {
-                                      WishlistController.to.wishlistItems.remove(eventItem);
+                                      //From wishlist
+                                      if (fromWishlist) {
+                                        if (Get.isSnackbarOpen) Get.back();
+                                        await Get.bottomSheet(
+                                          EventAlertRemoveWidget(
+                                            eventItem: eventItem,
+                                          ),
+                                          isScrollControlled: true
+                                        ).then((value) {
+                                          if (value == "oke") {
+                                            WishlistController.to.wishlistItems.remove(eventItem);
+                                            eventItemController.isLike.value = !eventItemController.isLike.value;
+                                            showSnackBar(
+                                              title: "Berhasil Dihapus",
+                                              message: "Ayo cari lagi acara yang kamu suka dan taruh disini!"
+                                            );
+                                          }
+                                        });
+                                      } else {
+                                        WishlistController.to.wishlistItems.remove(eventItem);
+                                        eventItemController.isLike.value = !eventItemController.isLike.value;
+                                      }
                                     }
                                   }
                                 },
@@ -222,6 +247,103 @@ class EventItemWidget extends StatelessWidget {
     );
   }
 }
+
+class EventAlertRemoveWidget extends StatelessWidget {
+  const EventAlertRemoveWidget({super.key,
+    required this.eventItem,
+  });
+
+  final EventItemModel eventItem;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    return Ink(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppValues.padding
+      ),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.background,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(AppValues.smallRadius),
+          topRight: Radius.circular(AppValues.smallRadius)
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+
+          EventItemWidget(
+            eventItem: eventItem,
+            showLike: false,
+            showBadge: false,
+            onTap: () {},
+          ),
+
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppValues.padding
+            ),
+            child: DashLineWidget(),
+          ),
+
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: AppValues.padding
+            ),
+            child: Text("Hapus Dari Daftar Keinginan?:",
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 18.0
+              ),
+            ),
+          ),
+
+          //Button
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppValues.padding
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ButtonPrimaryWidget(
+                    height: 40,
+                    backgroundColor: theme.disabledColor,
+                    title: "Kembali",
+                    isOutlined: true,
+                    onPressed: () {
+                      Get.back();
+                    },
+                  ),
+                ),
+
+                const SizedBox(
+                  width: AppValues.padding,
+                ),
+
+                Expanded(
+                  child: ButtonPrimaryWidget(
+                    height: 40,
+                    backgroundColor: AppColors.colorRed,
+                    title: "Ya, Hapus",
+                    onPressed: () {
+                      Get.back(
+                        result: "oke"
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 
 class EventVenueWidget extends StatelessWidget {
   const EventVenueWidget({super.key,
