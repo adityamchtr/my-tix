@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:blitix/app/modules/main/event/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ class TicketCheckoutController extends GetxController {
 
   static TicketCheckoutController get to => Get.find();
 
+  late EventItemModel eventItem;
   List<TicketParentItemModel> ticketParents = [];
 
   var totalPrice = 0.0.obs;
@@ -20,6 +22,8 @@ class TicketCheckoutController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    eventItem = Get.arguments;
 
     fetchTicket();
   }

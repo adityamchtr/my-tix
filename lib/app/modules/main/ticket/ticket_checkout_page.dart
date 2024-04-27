@@ -6,7 +6,6 @@ import 'package:blitix/app/core/values/app_constants.dart';
 import 'package:blitix/app/core/values/app_styles.dart';
 import 'package:blitix/app/core/values/app_values.dart';
 import 'package:blitix/app/core/widgets/widgets.dart';
-import 'package:blitix/app/modules/main/event/event_model.dart';
 import 'package:blitix/app/modules/main/event/event_widget.dart';
 import 'package:blitix/app/modules/main/payment/payment_page.dart';
 import 'package:blitix/app/modules/main/ticket/ticket_controller.dart';
@@ -39,13 +38,7 @@ class TicketCheckoutPage extends StatelessWidget {
           children: [
 
             EventItemWidget(
-              eventItem: EventItemModel(
-                id: "1",
-                image: "",
-                desc: "",
-                title: "Karawang Anicosmic 2023",
-                isLiked: true,
-              ),
+              eventItem: ticketCheckoutController.eventItem,
               showLike: false,
               showBadge: false,
               onTap: () {

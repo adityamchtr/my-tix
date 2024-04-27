@@ -10,7 +10,7 @@ class EventController extends GetxController {
   void onInit() {
     super.onInit();
 
-    eventItem = Get.arguments ?? false;
+    eventItem = Get.arguments;
 
     fetchData();
   }

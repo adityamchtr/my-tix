@@ -167,7 +167,10 @@ class EventPage extends StatelessWidget {
                                 message: "Event berhasil ditambahkan ke wishlist"
                               );
                             } else {
-                              WishlistController.to.wishlistItems.remove(eventController.eventItem);
+                              int index = WishlistController.to.wishlistItems.indexWhere((element) {
+                                return element.id == eventController.eventItem.id;
+                              });
+                              WishlistController.to.wishlistItems.removeAt(index);
                             }
                           }
                         },
@@ -409,7 +412,9 @@ class EventPage extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (SessionManager.getAccessToken() != null) {
-                          Get.toNamed(TicketCheckoutPage.routeName);
+                          Get.toNamed(TicketCheckoutPage.routeName,
+                            arguments: eventController.eventItem
+                          );
                         } else {
                           Get.toNamed(LoginPage.routeName);
                         }
