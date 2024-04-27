@@ -30,14 +30,9 @@ class TicketDetailPage extends StatelessWidget {
         onPageChanged: (value) {
           ticketDetailController.page.value = value;
         },
-        padEnds: false,
         itemCount: 2,
         itemBuilder: (context, index) {
           return SingleChildScrollView(
-            padding: EdgeInsets.only(
-              left: index == 0 ? AppValues.padding : AppValues.halfPadding,
-              right: index == 1 ? AppValues.padding : AppValues.halfPadding,
-            ),
             child: TicketDetailItemWidget(index: index),
           );
         }

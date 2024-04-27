@@ -103,9 +103,7 @@ class TicketChildItemController extends GetxController {
 
 class TicketDetailController extends GetxController {
 
-  final PageController pageController = PageController(
-    viewportFraction: 0.9,
-  );
+  final PageController pageController = PageController();
   var page = 0.obs;
   var isSaving = false.obs;
   bool isExchanged = false;
