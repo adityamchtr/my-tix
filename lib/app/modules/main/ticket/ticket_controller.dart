@@ -26,7 +26,7 @@ class TicketCheckoutController extends GetxController {
 
   void fetchTicket() {
     List<TicketParentItemModel> data = List<TicketParentItemModel>.from(
-      ticketDummies["data"]!.map((item) {
+      ticketSample["data"]!.map((item) {
         return TicketParentItemModel.fromMap(item);
       })
     );

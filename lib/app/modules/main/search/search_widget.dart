@@ -18,6 +18,11 @@ class SearchListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final SearchPageController searchPageController = Get.find();
+    final SearchListController searchListController = Get.put(SearchListController(
+      isEnded: isEnded
+    ),
+      tag: isEnded ? "berakhir" : "berjalan"
+    );
 
     return Obx(() {
       if (searchPageController.showEmpty.value) {
@@ -65,9 +70,9 @@ class SearchListWidget extends StatelessWidget {
         padding: const EdgeInsets.only(
           top: AppValues.padding
         ),
-        itemCount: isEnded ? eventEndedDummies.length : eventDummies.length,
+        itemCount: searchListController.eventItems.length,
         itemBuilder: (context, index) {
-          EventItemModel eventItem = isEnded ? eventEndedDummies[index] : eventDummies[index];
+          EventItemModel eventItem = searchListController.eventItems[index];
           return EventItemWidget(
             eventItem: eventItem,
           );

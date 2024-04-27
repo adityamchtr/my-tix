@@ -573,7 +573,10 @@ class MenuItemWidget extends StatelessWidget {
                                     message: "Event berhasil ditambahkan ke wishlist"
                                   );
                                 } else {
-                                  WishlistController.to.wishlistItems.remove(eventItem);
+                                  int index = WishlistController.to.wishlistItems.indexWhere((element) {
+                                    return element.id == eventItem.id;
+                                  });
+                                  WishlistController.to.wishlistItems.removeAt(index);
                                 }
                               }
                             },

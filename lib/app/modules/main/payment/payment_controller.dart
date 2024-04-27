@@ -41,7 +41,7 @@ class PaymentMethodController extends GetxController {
 
   void fetchPaymentMethod() {
     List<PaymentParentItemModel> data = List<PaymentParentItemModel>.from(
-        paymentMethodDummies["data"]!.map((item) {
+        paymentMethodSample["data"]!.map((item) {
         return PaymentParentItemModel.fromMap(item);
       })
     );

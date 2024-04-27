@@ -70,7 +70,61 @@ const imQrCode = "assets/images/qr_code.png";
 const loComplete = "assets/lottie/complete.json";
 const loPaymentComplete = "assets/lottie/payment_complete.json";
 
-const ticketDummies = {
+//Contoh respon json event (Gambaran respon dari API)
+const eventSample = {
+  "data": [
+    {
+      "id": "1",
+      "image": imBannerEvent,
+      "title": "Karawang Anicosmic 2023",
+      "desc": "Menghadirkan kembali acara japan di karawa..",
+      "isLiked": true,
+    },
+    {
+      "id": "2",
+      "image": imBannerEvent,
+      "title": "Bandung Java 2024",
+      "desc": "Menghadirkan kembali acara japan di bandun..",
+      "isLiked": true,
+    },
+    {
+      "id": "3",
+      "image": imBannerEvent,
+      "title": "Jakarta Festival 2024",
+      "desc": "Menghadirkan kembali acara japan di jakart..",
+      "isLiked": true,
+    }
+  ]
+};
+
+const eventEndedSample = {
+  "data": [
+    {
+      "id": "1",
+      "image": imBannerEvent,
+      "title": "Karawang Anicosmic 2023",
+      "desc": "Menghadirkan kembali acara japan di karawa..",
+      "isEnded": true,
+    },
+    {
+      "id": "2",
+      "image": imBannerEvent,
+      "title": "Bandung Java 2024",
+      "desc": "Menghadirkan kembali acara japan di bandun..",
+      "isEnded": true,
+    },
+    {
+      "id": "3",
+      "image": imBannerEvent,
+      "title": "Jakarta Festival 2024",
+      "desc": "Menghadirkan kembali acara japan di jakart..",
+      "isEnded": true,
+    }
+  ]
+};
+
+//Contoh respon json pilihan tiket
+const ticketSample = {
   "data": [
     {
       "id": "early",
@@ -120,7 +174,8 @@ const ticketDummies = {
   ]
 };
 
-const paymentMethodDummies = {
+//Contoh respon json payment method
+const paymentMethodSample = {
   "data": [
     {
       "id": "va",
@@ -224,19 +279,26 @@ const voucherProvision = [
   "Kode voucher dapat ditumpuk jika memang ada voucher lain yang tersedia.",
 ];
 
+//Mock data event
 final List<EventItemModel> eventDummies = [
   EventItemModel(
     id: "1",
+    image: imBannerEvent,
+    desc: "Menghadirkan kembali acara japan di karawa..",
     title: "Karawang Anicosmic 2023",
     isLiked: true,
   ),
   EventItemModel(
     id: "2",
+    image: imBannerEvent,
+    desc: "Menghadirkan kembali acara japan di bandun.",
     title: "Bandung Java 2024",
     isLiked: true,
   ),
   EventItemModel(
     id: "3",
+    image: imBannerEvent,
+    desc: "Menghadirkan kembali acara japan di jakart..",
     title: "Jakarta Festival 2024",
     isLiked: true,
   ),
@@ -245,16 +307,22 @@ final List<EventItemModel> eventDummies = [
 final List<EventItemModel> eventEndedDummies = [
   EventItemModel(
     id: "4",
+    image: imBannerEvent,
+    desc: "Menghadirkan kembali acara japan di karawa..",
     title: "Karawang Anicosmic 2023",
     isEnded: true,
   ),
   EventItemModel(
     id: "5",
+    image: imBannerEvent,
+    desc: "Menghadirkan kembali acara japan di bandun..",
     title: "Bandung Java 2024",
     isEnded: true,
   ),
   EventItemModel(
     id: "6",
+    image: imBannerEvent,
+    desc: "Menghadirkan kembali acara japan di jakart..",
     title: "Jakarta Festival 2024",
     isEnded: true,
   ),

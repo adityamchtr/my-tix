@@ -41,6 +41,8 @@ class TicketCheckoutPage extends StatelessWidget {
             EventItemWidget(
               eventItem: EventItemModel(
                 id: "1",
+                image: "",
+                desc: "",
                 title: "Karawang Anicosmic 2023",
                 isLiked: true,
               ),

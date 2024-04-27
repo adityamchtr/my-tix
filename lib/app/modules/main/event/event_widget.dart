@@ -81,8 +81,8 @@ class EventItemWidget extends StatelessWidget {
                         height: 120.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(AppValues.radius_6),
-                          image: const DecorationImage(
-                            image: AssetImage(imBannerEvent),
+                          image: DecorationImage(
+                            image: AssetImage(eventItem.image),
                             fit: BoxFit.cover
                           ),
                           boxShadow: [
@@ -163,11 +163,11 @@ class EventItemWidget extends StatelessWidget {
                               style: TextStyle(
                                 color: theme.disabledColor,
                               ),
-                              children: const [
+                              children: [
                                 TextSpan(
-                                  text: "Menghadirkan kembali acara japan di karawa..",
+                                  text: eventItem.desc,
                                 ),
-                                TextSpan(
+                                const TextSpan(
                                   text: "Selengkapnya",
                                   style: TextStyle(
                                     color: AppColors.colorBlue
@@ -230,7 +230,10 @@ class EventItemWidget extends StatelessWidget {
                                           }
                                         });
                                       } else {
-                                        WishlistController.to.wishlistItems.remove(eventItem);
+                                        int index = WishlistController.to.wishlistItems.indexWhere((element) {
+                                          return element.id == eventItem.id;
+                                        });
+                                        WishlistController.to.wishlistItems.removeAt(index);
                                         eventItemController.isLike.value = !eventItemController.isLike.value;
                                       }
                                     }
@@ -348,7 +351,6 @@ class EventAlertRemoveWidget extends StatelessWidget {
     );
   }
 }
-
 
 class EventVenueWidget extends StatelessWidget {
   const EventVenueWidget({super.key,

@@ -1,3 +1,4 @@
+import 'package:blitix/app/modules/main/event/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:blitix/app/core/values/app_constants.dart';
@@ -105,15 +106,18 @@ class HomePage extends StatelessWidget {
               ),
               scrollDirection: Axis.horizontal,
               child: Obx(() {
+                bool isEmpty = homeController.eventItems.isEmpty;
+
                 return Skeletonizer(
                   enabled: homeController.isLoading.value,
                   effect: shimmerEffect(),
                   child: Row(
-                    children: eventDummies.map((e) {
+                    children: List.generate(isEmpty ? eventDummies.length : homeController.eventItems.length, (index) {
+                      EventItemModel event = isEmpty ? eventDummies[index] : homeController.eventItems[index];
                       return MenuItemWidget(
-                        eventItem: e,
+                        eventItem: event,
                       );
-                    }).toList(),
+                    })
                   ),
                 );
               }),
@@ -138,15 +142,18 @@ class HomePage extends StatelessWidget {
 
             //Event Ended
             Obx(() {
+              bool isEmpty = homeController.eventEndedItems.isEmpty;
+
               return Skeletonizer(
                 enabled: homeController.isLoading.value,
                 effect: shimmerEffect(),
                 child: Column(
-                  children: eventEndedDummies.map((e) {
+                  children: List.generate(isEmpty ? eventEndedDummies.length : homeController.eventEndedItems.length, (index) {
+                    EventItemModel event = isEmpty ? eventEndedDummies[index] : homeController.eventEndedItems[index];
                     return EventItemWidget(
-                      eventItem: e,
+                      eventItem: event,
                     );
-                  }).toList(),
+                  })
                 ),
               );
             })

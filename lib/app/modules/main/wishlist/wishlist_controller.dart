@@ -12,6 +12,17 @@ class WishlistController extends GetxController {
   void onInit() {
     super.onInit();
 
-    wishlistItems.addAll(eventDummies);
+    //wishlistItems.addAll(eventDummies);
+    fetchWishlist();
+  }
+
+  void fetchWishlist() {
+    List<EventItemModel> data = List<EventItemModel>.from(
+      eventSample["data"]!.map((item) {
+        return EventItemModel.fromMap(item);
+      })
+    );
+
+    wishlistItems.addAll(data);
   }
 }
