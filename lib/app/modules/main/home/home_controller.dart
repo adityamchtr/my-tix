@@ -29,7 +29,7 @@ class HomeController extends GetxController {
     eventItems.addAll(data);
 
     List<EventItemModel> dataEnded = List<EventItemModel>.from(
-      eventSample["data"]!.map((item) {
+      eventEndedSample["data"]!.map((item) {
         return EventItemModel.fromMap(item);
       })
     );
