@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_colors.dart';
-import 'package:mytix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/values/app_colors.dart';
+import 'package:blitix/app/core/values/app_values.dart';
 import 'package:pinput/pinput.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

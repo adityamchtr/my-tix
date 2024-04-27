@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_styles.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/search_widget.dart';
-import 'package:mytix/app/modules/main/main_controller.dart';
-import 'package:mytix/app/modules/main/main_page.dart';
-import 'package:mytix/app/modules/main/transaction/transaction_widget.dart';
+import 'package:blitix/app/core/values/app_styles.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/search_widget.dart';
+import 'package:blitix/app/modules/main/main_controller.dart';
+import 'package:blitix/app/modules/main/main_page.dart';
+import 'package:blitix/app/modules/main/transaction/transaction_widget.dart';
 
 class TransactionPage extends StatelessWidget {
   const TransactionPage({super.key});

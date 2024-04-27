@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_styles.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/modules/main/ticket/ticket_widget.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_styles.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/modules/main/ticket/ticket_widget.dart';
 
 class TicketPage extends StatelessWidget {
   const TicketPage({super.key});

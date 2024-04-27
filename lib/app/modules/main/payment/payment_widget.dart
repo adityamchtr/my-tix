@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/utils/tools.dart';
-import 'package:mytix/app/core/values/app_colors.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_styles.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/widgets.dart';
-import 'package:mytix/app/modules/main/payment/payment_controller.dart';
-import 'package:mytix/app/modules/main/payment/payment_model.dart';
+import 'package:blitix/app/core/utils/tools.dart';
+import 'package:blitix/app/core/values/app_colors.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_styles.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/widgets.dart';
+import 'package:blitix/app/modules/main/payment/payment_controller.dart';
+import 'package:blitix/app/modules/main/payment/payment_model.dart';
 
 class PaymentVoucherWidget extends StatelessWidget {
   const PaymentVoucherWidget({super.key,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_styles.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/search_widget.dart';
-import 'package:mytix/app/modules/main/search/search_page_controller.dart';
-import 'package:mytix/app/modules/main/search/search_widget.dart';
+import 'package:blitix/app/core/values/app_styles.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/search_widget.dart';
+import 'package:blitix/app/modules/main/search/search_page_controller.dart';
+import 'package:blitix/app/modules/main/search/search_widget.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});

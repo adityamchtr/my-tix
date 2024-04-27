@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/widgets.dart';
-import 'package:mytix/app/data/preference/session_manager.dart';
-import 'package:mytix/app/modules/intro/login/login_page.dart';
-import 'package:mytix/app/modules/main/home/home_page.dart';
-import 'package:mytix/app/modules/main/main_controller.dart';
-import 'package:mytix/app/modules/main/profile/profile_page.dart';
-import 'package:mytix/app/modules/main/search/search_page.dart';
-import 'package:mytix/app/modules/main/ticket/ticket_page.dart';
-import 'package:mytix/app/modules/main/wishlist/wishlist_page.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/widgets.dart';
+import 'package:blitix/app/data/preference/session_manager.dart';
+import 'package:blitix/app/modules/intro/login/login_page.dart';
+import 'package:blitix/app/modules/main/home/home_page.dart';
+import 'package:blitix/app/modules/main/main_controller.dart';
+import 'package:blitix/app/modules/main/profile/profile_page.dart';
+import 'package:blitix/app/modules/main/search/search_page.dart';
+import 'package:blitix/app/modules/main/ticket/ticket_page.dart';
+import 'package:blitix/app/modules/main/wishlist/wishlist_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -50,7 +50,7 @@ class MainPage extends StatelessWidget {
               ],
               onDestinationSelected: (value) {
                 if (SessionManager.getAccessToken() == null) {
-                  if (value != 0 && value != 4) {
+                  if (value != 0 && value != 1 && value != 4) {
                     Get.toNamed(LoginPage.routeName);
                     return;
                   }

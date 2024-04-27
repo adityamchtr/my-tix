@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mytix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/values/app_values.dart';
 
 class CounterWidget extends StatefulWidget {
   const CounterWidget({super.key,

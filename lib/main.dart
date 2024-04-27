@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/modules/my_app.dart';
+import 'package:blitix/app/modules/my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {

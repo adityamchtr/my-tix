@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/widgets.dart';
-import 'package:mytix/app/data/preference/session_manager.dart';
-import 'package:mytix/app/modules/main/main_controller.dart';
-import 'package:mytix/app/modules/main/main_page.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/widgets.dart';
+import 'package:blitix/app/data/preference/session_manager.dart';
+import 'package:blitix/app/modules/main/main_controller.dart';
+import 'package:blitix/app/modules/main/main_page.dart';
 
 class VerificationCompletePage extends StatelessWidget {
   const VerificationCompletePage({super.key});

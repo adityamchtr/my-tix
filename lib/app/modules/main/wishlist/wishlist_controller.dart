@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/modules/main/event/event_model.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/modules/main/event/event_model.dart';
 
 class WishlistController extends GetxController {
 

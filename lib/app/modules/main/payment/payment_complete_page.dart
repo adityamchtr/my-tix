@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mytix/app/core/values/app_colors.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/widgets.dart';
-import 'package:mytix/app/modules/main/payment/payment_detail_page.dart';
+import 'package:blitix/app/core/values/app_colors.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/widgets.dart';
+import 'package:blitix/app/modules/main/payment/payment_detail_page.dart';
 
 class PaymentCompletePage extends StatelessWidget {
   const PaymentCompletePage({super.key});

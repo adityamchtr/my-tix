@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_colors.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_styles.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/dash_line_widget.dart';
-import 'package:mytix/app/core/widgets/widgets.dart';
-import 'package:mytix/app/modules/main/payment/payment_complete_page.dart';
-import 'package:mytix/app/modules/main/payment/payment_controller.dart';
-import 'package:mytix/app/modules/main/payment/payment_widget.dart';
-import 'package:mytix/app/modules/main/transaction/transaction_page.dart';
+import 'package:blitix/app/core/values/app_colors.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_styles.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/dash_line_widget.dart';
+import 'package:blitix/app/core/widgets/widgets.dart';
+import 'package:blitix/app/modules/main/payment/payment_complete_page.dart';
+import 'package:blitix/app/modules/main/payment/payment_controller.dart';
+import 'package:blitix/app/modules/main/payment/payment_widget.dart';
+import 'package:blitix/app/modules/main/transaction/transaction_page.dart';
 
 class PaymentDetailPage extends StatelessWidget {
   const PaymentDetailPage({super.key});

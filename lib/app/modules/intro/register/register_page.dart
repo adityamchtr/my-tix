@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_styles.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/widgets.dart';
-import 'package:mytix/app/modules/intro/register/register_controller.dart';
-import 'package:mytix/app/modules/intro/register/register_widget.dart';
-import 'package:mytix/app/modules/intro/verification/verification_page.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_styles.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/widgets.dart';
+import 'package:blitix/app/modules/intro/register/register_controller.dart';
+import 'package:blitix/app/modules/intro/register/register_widget.dart';
+import 'package:blitix/app/modules/intro/verification/verification_page.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});

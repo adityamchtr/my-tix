@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_colors.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/core/values/app_styles.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/data/preference/session_manager.dart';
-import 'package:mytix/app/modules/intro/login/login_page.dart';
-import 'package:mytix/app/modules/main/account/account_info_page.dart';
-import 'package:mytix/app/modules/main/profile/profile_widget.dart';
-import 'package:mytix/app/modules/main/transaction/transaction_page.dart';
+import 'package:blitix/app/core/values/app_colors.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/core/values/app_styles.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/data/preference/session_manager.dart';
+import 'package:blitix/app/modules/intro/login/login_page.dart';
+import 'package:blitix/app/modules/main/account/account_info_page.dart';
+import 'package:blitix/app/modules/main/profile/profile_widget.dart';
+import 'package:blitix/app/modules/main/transaction/transaction_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

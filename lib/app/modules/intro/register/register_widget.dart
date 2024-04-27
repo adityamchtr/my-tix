@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_values.dart';
-import 'package:mytix/app/core/widgets/text_field_widget.dart';
-import 'package:mytix/app/modules/intro/register/register_controller.dart';
+import 'package:blitix/app/core/values/app_values.dart';
+import 'package:blitix/app/core/widgets/text_field_widget.dart';
+import 'package:blitix/app/modules/intro/register/register_controller.dart';
 
 class FormOneWidget extends StatelessWidget {
   const FormOneWidget({super.key});

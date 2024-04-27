@@ -1,23 +1,23 @@
 import 'package:get/get.dart';
-import 'package:mytix/app/modules/intro/boarding/boarding_page.dart';
-import 'package:mytix/app/modules/intro/forgot/forgot_password_page.dart';
-import 'package:mytix/app/modules/intro/login/login_page.dart';
-import 'package:mytix/app/modules/intro/register/register_page.dart';
-import 'package:mytix/app/modules/intro/verification/verification_complete_page.dart';
-import 'package:mytix/app/modules/intro/verification/verification_page.dart';
-import 'package:mytix/app/modules/main/account/account_info_page.dart';
-import 'package:mytix/app/modules/main/event/event_page.dart';
-import 'package:mytix/app/modules/main/event/event_review_page.dart';
-import 'package:mytix/app/modules/main/main_page.dart';
-import 'package:mytix/app/modules/main/notication/notification_page.dart';
-import 'package:mytix/app/modules/main/payment/payment_complete_page.dart';
-import 'package:mytix/app/modules/main/payment/payment_detail_page.dart';
-import 'package:mytix/app/modules/main/payment/payment_method_page.dart';
-import 'package:mytix/app/modules/main/payment/payment_page.dart';
-import 'package:mytix/app/modules/main/payment/payment_voucher_page.dart';
-import 'package:mytix/app/modules/main/ticket/ticket_checkout_page.dart';
-import 'package:mytix/app/modules/main/ticket/ticket_detail_page.dart';
-import 'package:mytix/app/modules/main/transaction/transaction_page.dart';
+import 'package:blitix/app/modules/intro/boarding/boarding_page.dart';
+import 'package:blitix/app/modules/intro/forgot/forgot_password_page.dart';
+import 'package:blitix/app/modules/intro/login/login_page.dart';
+import 'package:blitix/app/modules/intro/register/register_page.dart';
+import 'package:blitix/app/modules/intro/verification/verification_complete_page.dart';
+import 'package:blitix/app/modules/intro/verification/verification_page.dart';
+import 'package:blitix/app/modules/main/account/account_info_page.dart';
+import 'package:blitix/app/modules/main/event/event_page.dart';
+import 'package:blitix/app/modules/main/event/event_review_page.dart';
+import 'package:blitix/app/modules/main/main_page.dart';
+import 'package:blitix/app/modules/main/notication/notification_page.dart';
+import 'package:blitix/app/modules/main/payment/payment_complete_page.dart';
+import 'package:blitix/app/modules/main/payment/payment_detail_page.dart';
+import 'package:blitix/app/modules/main/payment/payment_method_page.dart';
+import 'package:blitix/app/modules/main/payment/payment_page.dart';
+import 'package:blitix/app/modules/main/payment/payment_voucher_page.dart';
+import 'package:blitix/app/modules/main/ticket/ticket_checkout_page.dart';
+import 'package:blitix/app/modules/main/ticket/ticket_detail_page.dart';
+import 'package:blitix/app/modules/main/transaction/transaction_page.dart';
 
 class AppPages {
 

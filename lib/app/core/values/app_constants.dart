@@ -1,7 +1,6 @@
+import 'package:blitix/app/modules/main/event/event_model.dart';
 
 //Icons
-import 'package:mytix/app/modules/main/event/event_model.dart';
-
 const icMainHome = "assets/icons/main_home.svg";
 const icMainHomeSelected = "assets/icons/main_home_selected.svg";
 const icMainSearch = "assets/icons/main_search.svg";

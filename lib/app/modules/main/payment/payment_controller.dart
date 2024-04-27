@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytix/app/core/values/app_constants.dart';
-import 'package:mytix/app/modules/main/payment/payment_model.dart';
-import 'package:mytix/app/modules/main/ticket/ticket_model.dart';
+import 'package:blitix/app/core/values/app_constants.dart';
+import 'package:blitix/app/modules/main/payment/payment_model.dart';
+import 'package:blitix/app/modules/main/ticket/ticket_model.dart';
 
 class PaymentController extends GetxController {
 
