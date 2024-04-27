@@ -1,4 +1,4 @@
-package com.example.mytix
+package com.blitix.app
 
 import io.flutter.embedding.android.FlutterActivity
 

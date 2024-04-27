@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     }
 
     return GetMaterialApp(
-      title: "MyTix",
+      title: "BliTix",
       initialRoute: initialPage,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
