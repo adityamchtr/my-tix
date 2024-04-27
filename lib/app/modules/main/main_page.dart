@@ -21,47 +21,45 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final MainController mainController = Get.put(MainController());
 
     return SystemUiOverlayWidget(
       isBackground: true,
-      child: GetBuilder<MainController>(
-        init: MainController(),
-        builder: (controller) {
-          return Scaffold(
-            body: IndexedStack(
-              index: controller.selectedIndex,
-              children: _pages,
+      child: Obx(() {
+        return Scaffold(
+          body: IndexedStack(
+            index: mainController.selectedIndex.value,
+            children: _pages,
+          ),
+          bottomNavigationBar: NavigationBar(
+            height: 70,
+            selectedIndex: mainController.selectedIndex.value,
+            backgroundColor: theme.colorScheme.background,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+            indicatorColor: theme.colorScheme.primary,
+            indicatorShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppValues.smallRadius),
             ),
-            bottomNavigationBar: NavigationBar(
-              height: 70,
-              selectedIndex: controller.selectedIndex,
-              backgroundColor: theme.colorScheme.background,
-              labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-              indicatorColor: theme.colorScheme.primary,
-              indicatorShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppValues.smallRadius),
-              ),
-              destinations: [
-                _navigationDestination(icMainHome, icMainHomeSelected, "Home"),
-                _navigationDestination(icMainSearch, icMainSearchSelected, "Pencarian"),
-                _navigationDestination(icMainWishlist, icMainWishlistSelected, "Keinginan"),
-                _navigationDestination(icMainTicket, icMainTicketSelected, "Ticket"),
-                _navigationDestination(icMainProfile, icMainProfileSelected, "Profile"),
-              ],
-              onDestinationSelected: (value) {
-                if (SessionManager.getAccessToken() == null) {
-                  if (value != 0 && value != 1 && value != 4) {
-                    Get.toNamed(LoginPage.routeName);
-                    return;
-                  }
+            destinations: [
+              _navigationDestination(icMainHome, icMainHomeSelected, "Home"),
+              _navigationDestination(icMainSearch, icMainSearchSelected, "Pencarian"),
+              _navigationDestination(icMainWishlist, icMainWishlistSelected, "Keinginan"),
+              _navigationDestination(icMainTicket, icMainTicketSelected, "Ticket"),
+              _navigationDestination(icMainProfile, icMainProfileSelected, "Profile"),
+            ],
+            onDestinationSelected: (value) {
+              if (SessionManager.getAccessToken() == null) {
+                if (value != 0 && value != 1 && value != 4) {
+                  Get.toNamed(LoginPage.routeName);
+                  return;
                 }
+              }
 
-                controller.selectedIndex = value;
-              },
-            ),
-          );
-        }
-      ),
+              mainController.selectedIndex.value = value;
+            },
+          ),
+        );
+      }),
     );
   }
 }

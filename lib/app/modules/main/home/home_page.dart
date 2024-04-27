@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
               child: LabelMoreWidget(
                 label: "Pilihan Terbaik",
                 onTap: () {
-                  if (Get.isRegistered<MainController>()) MainController.to.selectedIndex = 1;
+                  if (Get.isRegistered<MainController>()) MainController.to.selectedIndex.value = 1;
                   if (Get.isRegistered<SearchPageController>()) SearchPageController.to.tabController.animateTo(0);
                 },
               ),
@@ -134,7 +134,7 @@ class HomePage extends StatelessWidget {
               child: LabelMoreWidget(
                 label: "Acara Berakhir",
                 onTap: () {
-                  if (Get.isRegistered<MainController>()) MainController.to.selectedIndex = 1;
+                  if (Get.isRegistered<MainController>()) MainController.to.selectedIndex.value = 1;
                   if (Get.isRegistered<SearchPageController>()) SearchPageController.to.tabController.animateTo(1);
                 },
               ),

@@ -1,3 +1,5 @@
+import 'package:blitix/app/modules/main/main_controller.dart';
+import 'package:blitix/app/modules/main/search/search_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:blitix/app/core/values/app_colors.dart';
@@ -34,7 +36,11 @@ class ProfilePage extends StatelessWidget {
       {"icon": icProfileTransaction, "title": "Lihat Transaksi", "action": () {
         if (!isGuest()) Get.toNamed(TransactionPage.routeName);
       }},
-      {"icon": icProfileTicket, "title": "Lihat Tiket", "action": () {}},
+      {"icon": icProfileTicket, "title": "Lihat Tiket", "action": () {
+        if (!isGuest()) {
+          if (Get.isRegistered<MainController>()) MainController.to.selectedIndex.value = 3;
+        }
+      }},
       {"icon": icProfileAbout, "title": "Tentang Kami", "action": () {}},
       {"icon": icProfileContact, "title": "Kontak Kami", "action": () {}},
     ];
