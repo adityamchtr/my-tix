@@ -33,7 +33,7 @@ class HomeController extends GetxController {
         return EventItemModel.fromMap(item);
       })
     );
-    eventEndedItems.addAll(data);
+    eventEndedItems.addAll(dataEnded);
 
     await 2.delay();
     isLoading.value = false;
