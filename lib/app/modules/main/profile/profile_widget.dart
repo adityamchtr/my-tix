@@ -65,6 +65,18 @@ class ProfileHeaderWidget extends StatelessWidget {
       );
     }
 
+    return const ProfileTileWidget();
+  }
+}
+
+//Profile Header untuk user sudah login
+class ProfileTileWidget extends StatelessWidget {
+  const ProfileTileWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Container(
       padding: const EdgeInsets.all(AppValues.padding),
       decoration: BoxDecoration(
@@ -245,5 +257,3 @@ class DialogLogoutWidget extends StatelessWidget {
     );
   }
 }
-
-

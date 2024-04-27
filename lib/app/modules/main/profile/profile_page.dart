@@ -5,6 +5,8 @@ import 'package:mytix/app/core/values/app_constants.dart';
 import 'package:mytix/app/core/values/app_styles.dart';
 import 'package:mytix/app/core/values/app_values.dart';
 import 'package:mytix/app/data/preference/session_manager.dart';
+import 'package:mytix/app/modules/intro/login/login_page.dart';
+import 'package:mytix/app/modules/main/account/account_info_page.dart';
 import 'package:mytix/app/modules/main/profile/profile_widget.dart';
 import 'package:mytix/app/modules/main/transaction/transaction_page.dart';
 
@@ -15,11 +17,22 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
+    bool isGuest() {
+      if (SessionManager.getAccessToken() == null) {
+        Get.toNamed(LoginPage.routeName);
+        return true;
+      }
+
+      return false;
+    }
+
     final List<Map<String, dynamic>> menuList = [
-      {"icon": icProfileAccount, "title": "Informasi Akun", "action": () {}},
+      {"icon": icProfileAccount, "title": "Informasi Akun", "action": () {
+        if (!isGuest()) Get.toNamed(AccountInfoPage.routeName);
+      }},
       {"icon": icProfilePassword, "title": "Ubah Kata Sandi", "action": () {}},
       {"icon": icProfileTransaction, "title": "Lihat Transaksi", "action": () {
-        Get.toNamed(TransactionPage.routeName);
+        if (!isGuest()) Get.toNamed(TransactionPage.routeName);
       }},
       {"icon": icProfileTicket, "title": "Lihat Tiket", "action": () {}},
       {"icon": icProfileAbout, "title": "Tentang Kami", "action": () {}},

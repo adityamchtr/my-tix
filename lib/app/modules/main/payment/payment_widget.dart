@@ -256,19 +256,21 @@ class PaymentLabelWidget extends StatelessWidget {
     required this.value,
     this.isTotal = false,
     this.isDiscount = false,
+    this.padding
   });
 
   final String title;
   final dynamic value;
   final bool isTotal;
   final bool isDiscount;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
+      padding: padding ?? const EdgeInsets.symmetric(
         vertical: AppValues.smallPadding
       ),
       child: Row(
