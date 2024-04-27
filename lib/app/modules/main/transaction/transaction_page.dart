@@ -19,7 +19,6 @@ class TransactionPage extends StatelessWidget {
 
     void goto() async {
       if (isFromBooking) {
-        await Get.delete<MainController>();
         Get.offAllNamed(MainPage.routeName);
       } else {
         Get.back();

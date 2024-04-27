@@ -243,7 +243,6 @@ class DialogLogoutWidget extends StatelessWidget {
                   title: "Ya, Keluar",
                   onPressed: () async {
                     await SessionManager.removeAccessToken();
-                    await Get.delete<MainController>();
                     Get.offAllNamed(
                       MainPage.routeName,
                     );

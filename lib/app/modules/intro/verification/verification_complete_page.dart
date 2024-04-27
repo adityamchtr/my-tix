@@ -19,7 +19,6 @@ class VerificationCompletePage extends StatelessWidget {
 
     void gotoMain() async {
       await SessionManager.setAccessToken("oke");
-      await Get.delete<MainController>();
       Get.offAllNamed(
         MainPage.routeName,
       );

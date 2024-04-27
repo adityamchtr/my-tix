@@ -202,7 +202,6 @@ class LoginPage extends StatelessWidget {
               onPressed: () async {
                 if (loginController.formKey.currentState!.validate()) {
                   await SessionManager.setAccessToken("oke");
-                  await Get.delete<MainController>();
                   Get.offAllNamed(
                     MainPage.routeName,
                   );
