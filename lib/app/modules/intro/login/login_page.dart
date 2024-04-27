@@ -10,7 +10,6 @@ import 'package:blitix/app/data/preference/session_manager.dart';
 import 'package:blitix/app/modules/intro/forgot/forgot_password_page.dart';
 import 'package:blitix/app/modules/intro/login/login_controller.dart';
 import 'package:blitix/app/modules/intro/register/register_page.dart';
-import 'package:blitix/app/modules/main/main_controller.dart';
 import 'package:blitix/app/modules/main/main_page.dart';
 
 class LoginPage extends StatelessWidget {

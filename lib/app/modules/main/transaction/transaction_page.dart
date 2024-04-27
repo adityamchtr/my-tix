@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:blitix/app/core/values/app_styles.dart';
 import 'package:blitix/app/core/values/app_values.dart';
 import 'package:blitix/app/core/widgets/search_widget.dart';
-import 'package:blitix/app/modules/main/main_controller.dart';
 import 'package:blitix/app/modules/main/main_page.dart';
 import 'package:blitix/app/modules/main/transaction/transaction_widget.dart';
 

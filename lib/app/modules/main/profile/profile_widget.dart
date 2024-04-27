@@ -7,7 +7,6 @@ import 'package:blitix/app/core/values/app_values.dart';
 import 'package:blitix/app/core/widgets/widgets.dart';
 import 'package:blitix/app/data/preference/session_manager.dart';
 import 'package:blitix/app/modules/intro/login/login_page.dart';
-import 'package:blitix/app/modules/main/main_controller.dart';
 import 'package:blitix/app/modules/main/main_page.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
