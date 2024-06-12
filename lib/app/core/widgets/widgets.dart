@@ -22,7 +22,7 @@ class SystemUiOverlayWidget extends StatelessWidget {
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: isBackground ? theme.colorScheme.background : theme.scaffoldBackgroundColor,
+        systemNavigationBarColor: isBackground ? theme.colorScheme.surface : theme.scaffoldBackgroundColor,
       ),
       child: child
     );
@@ -65,7 +65,7 @@ class ButtonPrimaryWidget extends StatelessWidget {
             side: isOutlined ? BorderSide(color: backgroundColor ?? theme.colorScheme.primary) : BorderSide.none
           ),
           foregroundColor: isOutlined ? (backgroundColor ?? theme.colorScheme.primary) : Colors.white,
-          backgroundColor: isOutlined ? theme.colorScheme.background : backgroundColor ?? theme.colorScheme.primary,
+          backgroundColor: isOutlined ? theme.colorScheme.surface : backgroundColor ?? theme.colorScheme.primary,
           disabledForegroundColor: disabledForegroundColor,
           disabledBackgroundColor: isOutlined ? null : disabledBackgroundColor ?? theme.dividerColor,
           textStyle: textStyle ?? const TextStyle(
@@ -109,7 +109,7 @@ class AlertDialogWidget extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     return Dialog(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(AppValues.radius))
       ),

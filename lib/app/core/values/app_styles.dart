@@ -28,7 +28,7 @@ SystemUiOverlayStyle systemUiOverlayStyle(ThemeData theme, {bool isBackground = 
   return SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: isBackground ? theme.colorScheme.background : theme.scaffoldBackgroundColor,
+    systemNavigationBarColor: isBackground ? theme.colorScheme.surface : theme.scaffoldBackgroundColor,
   );
 }
 

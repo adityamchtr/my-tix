@@ -20,7 +20,7 @@ class ProfileHeaderWidget extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.all(AppValues.padding),
         decoration: BoxDecoration(
-          color: theme.colorScheme.background,
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(AppValues.radius)
         ),
         child: Column(
@@ -79,7 +79,7 @@ class ProfileTileWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppValues.padding),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(AppValues.radius)
       ),
       child: Row(

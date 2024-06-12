@@ -61,7 +61,7 @@ class TicketItemWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(AppValues.padding),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(AppValues.smallRadius),
         boxShadow: [
           BoxShadow(
@@ -269,7 +269,7 @@ class TicketDetailItemWidget extends StatelessWidget {
             horizontal: AppValues.halfPadding
           ),
           decoration: BoxDecoration(
-            color: theme.colorScheme.background,
+            color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(AppValues.smallRadius)
           ),
           child: Column(
@@ -624,7 +624,7 @@ class TicketChildItemWidget extends StatelessWidget {
         vertical: AppValues.padding
       ),
       decoration: BoxDecoration(
-        color: ticketChildItemModel.status ? theme.colorScheme.background : theme.disabledColor,
+        color: ticketChildItemModel.status ? theme.colorScheme.surface : theme.disabledColor,
         borderRadius: BorderRadius.circular(AppValues.smallRadius),
       ),
       child: Column(

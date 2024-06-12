@@ -43,7 +43,7 @@ class BoardingPage extends StatelessWidget {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(AppValues.padding),
         decoration: BoxDecoration(
-          color: theme.colorScheme.background,
+          color: theme.colorScheme.surface,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(AppValues.radius),
             topRight: Radius.circular(AppValues.radius)

@@ -44,7 +44,7 @@ class TransactionListWidget extends StatelessWidget {
             bottom: AppValues.padding
           ),
           decoration: BoxDecoration(
-            color: theme.colorScheme.background,
+            color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(AppValues.smallRadius),
             boxShadow: [
               BoxShadow(

@@ -67,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                 vertical: AppValues.padding
               ),
               decoration: BoxDecoration(
-                color: theme.colorScheme.background,
+                color: theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(AppValues.radius)
               ),
               child: ProfileItemWidget(
@@ -97,7 +97,7 @@ class ProfilePage extends StatelessWidget {
                 vertical: AppValues.halfPadding
               ),
               decoration: BoxDecoration(
-                color: theme.colorScheme.background,
+                color: theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(AppValues.radius)
               ),
               child: Column(

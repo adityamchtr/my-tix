@@ -116,7 +116,7 @@ class AppBarHomeWidget extends StatelessWidget implements PreferredSizeWidget {
           ),
 
           //Name
-          const Text("Hai, hilmychan",
+          const Text("Hai, John Doe",
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 20.0,
@@ -192,7 +192,7 @@ class BannerWidget extends StatelessWidget {
                       height: 150,
                       replacement: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.background,
+                          color: theme.colorScheme.surface,
                           borderRadius: BorderRadius.circular(AppValues.radius),
                         ),
                       ),
@@ -203,7 +203,7 @@ class BannerWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(AppValues.radius),
                         child: Ink(
                           decoration: BoxDecoration(
-                            color: homeController.isLoading.value ? AppColors.colorGrey :theme.colorScheme.background,
+                            color: homeController.isLoading.value ? AppColors.colorGrey :theme.colorScheme.surface,
                             borderRadius: BorderRadius.circular(AppValues.radius),
                             image: homeController.isLoading.value ? null : DecorationImage(
                               image: AssetImage(image),
@@ -227,8 +227,8 @@ class BannerWidget extends StatelessWidget {
                     activeIndex: homeController.bannerSelected.value,
                     count: bannerList.length,
                     effect: ExpandingDotsEffect(
-                      dotColor: theme.colorScheme.background.withOpacity(0.5),
-                      activeDotColor: theme.colorScheme.background,
+                      dotColor: theme.colorScheme.surface.withOpacity(0.5),
+                      activeDotColor: theme.colorScheme.surface,
                       dotHeight: 6.0,
                       dotWidth: 6.0,
                     ),
@@ -274,7 +274,7 @@ class LocationWidget extends StatelessWidget {
               return Skeletonizer(
                 enabled: homeController.isLoading.value,
                 effect: shimmerEffect(),
-                containersColor: theme.colorScheme.background,
+                containersColor: theme.colorScheme.surface,
                 child: FilterChipWidget(
                   title: e["title"],
                   isSelected: isSelected,
@@ -373,7 +373,7 @@ class MenuItemWidget extends StatelessWidget {
                   height: 140.0,
                   replacement: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.background,
+                      color: theme.colorScheme.surface,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(AppValues.radius),
                         topRight: Radius.circular(AppValues.radius)
@@ -451,7 +451,7 @@ class MenuItemWidget extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                     colors: [
-                      theme.colorScheme.background.withOpacity(0.0),
+                      theme.colorScheme.surface.withOpacity(0.0),
                       AppColors.colorGrey,
                       AppColors.colorGrey,
                     ]
@@ -465,7 +465,7 @@ class MenuItemWidget extends StatelessWidget {
                     width: width,
                     padding: const EdgeInsets.all(AppValues.padding),
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.background,
+                      color: theme.colorScheme.surface,
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(AppValues.radius),
                         bottomRight: Radius.circular(AppValues.radius)
@@ -474,8 +474,8 @@ class MenuItemWidget extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          theme.colorScheme.background.withOpacity(0.0),
-                          theme.colorScheme.background,
+                          theme.colorScheme.surface.withOpacity(0.0),
+                          theme.colorScheme.surface,
                         ]
                       )
                     ),

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: AppColors.colorPrimary,
           secondary: AppColors.colorPrimary,
-          background: AppColors.colorLight,
+          surface: AppColors.colorLight,
           error: AppColors.colorRed,
           brightness: Brightness.light,
         ),

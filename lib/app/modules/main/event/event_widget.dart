@@ -72,7 +72,7 @@ class EventItemWidget extends StatelessWidget {
                       height: 120.0,
                       replacement: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.background,
+                          color: theme.colorScheme.surface,
                           borderRadius: BorderRadius.circular(AppValues.radius_6),
                         ),
                       ),
@@ -272,7 +272,7 @@ class EventAlertRemoveWidget extends StatelessWidget {
         vertical: AppValues.padding
       ),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppValues.smallRadius),
           topRight: Radius.circular(AppValues.smallRadius)
@@ -370,7 +370,7 @@ class EventVenueWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppValues.padding),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(AppValues.smallRadius),
       ),
       child: Row(

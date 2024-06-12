@@ -34,7 +34,7 @@ class MainPage extends StatelessWidget {
           bottomNavigationBar: NavigationBar(
             height: 70,
             selectedIndex: mainController.selectedIndex.value,
-            backgroundColor: theme.colorScheme.background,
+            backgroundColor: theme.colorScheme.surface,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
             indicatorColor: theme.colorScheme.primary,
             indicatorShape: RoundedRectangleBorder(

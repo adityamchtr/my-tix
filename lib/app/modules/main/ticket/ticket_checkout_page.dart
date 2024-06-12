@@ -52,7 +52,7 @@ class TicketCheckoutPage extends StatelessWidget {
                 horizontal: AppValues.padding
               ),
               decoration: BoxDecoration(
-                color: theme.colorScheme.background,
+                color: theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(AppValues.smallRadius)
               ),
               child: Column(

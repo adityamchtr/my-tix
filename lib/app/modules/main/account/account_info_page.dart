@@ -37,7 +37,7 @@ class AccountInfoPage extends StatelessWidget {
                 vertical: AppValues.padding
               ),
               decoration: BoxDecoration(
-                color: theme.colorScheme.background,
+                color: theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(AppValues.smallRadius)
               ),
               child: const Column(

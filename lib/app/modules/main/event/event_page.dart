@@ -217,7 +217,7 @@ class EventPage extends StatelessWidget {
                 effect: shimmerEffect(),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.background,
+                    color: theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(AppValues.smallRadius)
                   ),
                   child: ListTile(
@@ -292,7 +292,7 @@ class EventPage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(AppValues.smallPadding),
                   decoration: BoxDecoration(
-                      color: theme.colorScheme.background,
+                      color: theme.colorScheme.surface,
                       borderRadius: BorderRadius.circular(AppValues.smallRadius)
                   ),
                   child: Text("Karawang Anicosmic merupakan acara berkonsep Japan Pop Culture yang ruang ingkup kegiatannya antara lain Comic Talkshow, Cosplay Competition, Tournament Game, Community Gathering, Bazar Merchandise, Anime & Toys Exhibition, dan masih banyak lagi. Acara ini bertujuan untuk memenuhi antusiasme para penggemar Anime, Cosplay, Toys dan Comic.",

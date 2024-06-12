@@ -108,7 +108,7 @@ class PaymentMethodPage extends StatelessWidget {
                           return Container(
                             padding: const EdgeInsets.all(AppValues.padding),
                             decoration: BoxDecoration(
-                              color: theme.colorScheme.background,
+                              color: theme.colorScheme.surface,
                               borderRadius: BorderRadius.circular(AppValues.smallRadius),
                               border: Border.all(
                                 color: isSelected ? theme.colorScheme.primary : theme.dividerColor,

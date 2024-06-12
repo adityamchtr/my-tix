@@ -37,7 +37,7 @@ class PaymentVoucherWidget extends StatelessWidget {
       child: Ink(
         padding: const EdgeInsets.all(AppValues.padding),
         decoration: BoxDecoration(
-          color: theme.colorScheme.background,
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(AppValues.smallRadius),
           border: Border.all(
             color: theme.dividerColor,
@@ -152,7 +152,7 @@ class PaymentVoucherWidget extends StatelessWidget {
 
                       CircleAvatar(
                         radius: 15.0,
-                        backgroundColor: theme.colorScheme.background,
+                        backgroundColor: theme.colorScheme.surface,
                         child: const Icon(Icons.check_circle_rounded),
                       ),
 
@@ -220,7 +220,7 @@ class PaymentVoucherWidget extends StatelessWidget {
                         child: Badge(
                           child: CircleAvatar(
                             radius: 15.0,
-                            backgroundColor: theme.colorScheme.background,
+                            backgroundColor: theme.colorScheme.surface,
                             child: SvgPicture.asset(icVoucher),
                           ),
                         ),
@@ -451,7 +451,7 @@ class VoucherItemWidget extends StatelessWidget {
           vertical: AppValues.padding
         ),
         decoration: BoxDecoration(
-          color: theme.colorScheme.background,
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(AppValues.radius),
         ),
         child: Column(
