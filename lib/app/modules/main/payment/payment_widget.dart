@@ -1,3 +1,5 @@
+import 'package:blitix/app/core/widgets/dash_line_widget.dart';
+import 'package:blitix/app/core/widgets/voucher_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -204,8 +206,8 @@ class PaymentVoucherWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppValues.smallRadius),
                 child: Ink(
                   padding: EdgeInsets.symmetric(
-                      vertical: isVoucher ? AppValues.extraSmallPadding : AppValues.halfPadding,
-                      horizontal: AppValues.padding
+                    vertical: isVoucher ? AppValues.extraSmallPadding : AppValues.halfPadding,
+                    horizontal: AppValues.padding
                   ),
                   decoration: BoxDecoration(
                     color: theme.scaffoldBackgroundColor,
@@ -445,139 +447,147 @@ class VoucherItemWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         right: AppValues.padding
       ),
-      child: Ink(
-        width: 250.0,
-        padding: const EdgeInsets.symmetric(
-          vertical: AppValues.padding
+      child: VoucherWidget(
+        shadow: Shadow(
+          blurRadius: AppValues.smallRadius,
+          color: theme.dividerColor
         ),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(AppValues.radius),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        child: Container(
+          width: 250.0,
+          padding: const EdgeInsets.symmetric(
+            vertical: AppValues.padding
+          ),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
 
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppValues.padding
-              ),
-              child: Text("Kolaborasi Amegi X SJC",
-                style: TextStyle(
-                  fontSize: 12.0,
-                  color: theme.disabledColor
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppValues.padding
+                  ),
+                  child: Text("Kolaborasi Amegi X SJC",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: theme.disabledColor
+                    ),
+                  ),
                 ),
-              ),
-            ),
 
-            Container(
-              padding: const EdgeInsets.all(AppValues.halfPadding),
-              margin: const EdgeInsets.only(
-                top: AppValues.padding,
-                left: AppValues.padding,
-                right: AppValues.padding
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppValues.smallRadius),
-                border: Border.all(
-                  width: 1.0,
-                  color: theme.disabledColor
-                )
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                Container(
+                  padding: const EdgeInsets.all(AppValues.halfPadding),
+                  margin: const EdgeInsets.all(AppValues.padding),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppValues.smallRadius),
+                    border: Border.all(
+                      width: 1.0,
+                      color: theme.disabledColor
+                    )
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                  Row(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("Diskon Voucher",
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.colorBlue,
+                            ),
+                          ),
+
+                          IconButton(
+                            icon: Icon(Icons.info_outline_rounded,
+                              size: 15.0,
+                              color: theme.disabledColor,
+                            ),
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                            splashRadius: AppValues.radius,
+                            onPressed: () {
+                              Get.bottomSheet(
+                                const VoucherProvisionWidget(),
+                                isScrollControlled: true
+                              );
+                            },
+                          )
+                        ],
+                      ),
+
+                      const Text("Diskon Rp. 15.000"),
+
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppValues.padding
+                  ),
+                  child: DashLineWidget(
+                    color: theme.disabledColor,
+                    height: 1.0,
+                  ),
+                ),
+
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: AppValues.padding,
+                    left: AppValues.padding,
+                    right: AppValues.padding,
+                    bottom: AppValues.halfPadding
+                  ),
+                  child: Text("Kode Voucher",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.colorBlue,
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppValues.padding
+                  ),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Diskon Voucher",
+                      const Text("KWFXSJC",
                         style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.colorBlue,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
 
-                      IconButton(
-                        icon: Icon(Icons.info_outline_rounded,
-                          size: 15.0,
-                          color: theme.disabledColor,
-                        ),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        splashRadius: AppValues.radius,
-                        onPressed: () {
-                          Get.bottomSheet(
-                            const VoucherProvisionWidget(),
-                            isScrollControlled: true
+                      InkWell(
+                        onTap: () {
+                          paymentVoucherController.searchTextController.text = "KWFXSJC";
+                          showSnackBar(
+                            title: "Berhasil",
+                            message: "kode promo berhasil dipasang"
                           );
                         },
+                        child: const Text("Salin",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.colorBlue,
+                          ),
+                        ),
                       )
                     ],
                   ),
-
-                  const Text("Diskon Rp. 15.000"),
-
-                ],
-              ),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: AppValues.radius
-              ),
-              child: DividerCutterWidget(),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.only(
-                left: AppValues.padding,
-                right: AppValues.padding,
-                bottom: AppValues.halfPadding
-              ),
-              child: Text("Kode Voucher",
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.colorBlue,
                 ),
-              ),
+              ],
             ),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppValues.padding
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("KWFXSJC",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-
-                  InkWell(
-                    onTap: () {
-                      paymentVoucherController.searchTextController.text = "KWFXSJC";
-                      showSnackBar(
-                        title: "Berhasil",
-                        message: "kode promo berhasil dipasang"
-                      );
-                    },
-                    child: const Text("Salin",
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.colorBlue,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
